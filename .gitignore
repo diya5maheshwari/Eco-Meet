@@ -1,0 +1,28 @@
+# dependencies
+**/node_modules/
+
+# env files
+**/.env
+**/.env.*
+
+# logs
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+**/pnpm-debug.log*
+
+# build output
+**/dist/
+**/build/
+**/coverage/
+
+# Expo / React Native
+**/.expo/
+**/android/build/
+**/android/.gradle/
+
+# OS + editor
+**/.vscode/
+**/.idea/
+**/.DS_Store
+**/Thumbs.db
