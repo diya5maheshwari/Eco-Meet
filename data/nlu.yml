@@ -1,0 +1,227 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: create_meeting
+  examples: |
+    - schedule a meeting with [Ananya]{"entity":"participants"}
+    - I want to set up a meeting with [Rahul]{"entity":"participants"}
+    - book a call with [Rohan]{"entity":"participants"} for tomorrow
+    - arrange a meeting with [Priya and Amit]{"entity":"participants"}
+    - set up a meeting with [Deepak, Neha, and Suresh]{"entity":"participants"}
+    - create a meeting with [Kiran and Kavita]{"entity":"participants"} next week
+    - schedule a call with [Anil, Sunita, and Rajesh]{"entity":"participants"}
+    - please book a meeting with [Divya and Manish]{"entity":"participants"}
+    - organize a meeting for [Amit and Sneha]{"entity":"participants"} on Friday
+    - set up a discussion with [Sanjay, Ritu, and Alok]{"entity":"participants"}
+    - meeting with [Vijay and Rekha]{"entity":"participants"} tomorrow afternoon
+    - call with [Harsh, Nisha, and Karan]{"entity":"participants"}
+    - arrange a chat with [Anju]{"entity":"participants"}
+    - book a conference with [Shweta and Rohit]{"entity":"participants"}
+    - schedule an appointment with [Rakesh, Meena, and Varun]{"entity":"participants"} next Monday
+    - chat with [Raj and Pooja]{"entity":"participants"} later today
+    - meeting with [Ankit, Kavya, and Sameer]{"entity":"participants"} this evening
+    - plan meeting for [Nitin]{"entity":"participants"} and [Ashwini]{"entity":"participants"}
+    - invite [Bhavna, Kunal, and Priyanka]{"entity":"participants"}
+    - create a session with [Gaurav]{"entity":"participants"}
+    - schedule meeting with [dog](invalid_participant)
+    - book a call with [penguin](invalid_participant)
+    - arrange meeting with [unicorn](invalid_participant)
+    - create meeting with [at](invalid_participant)
+    - schedule a call with [banana](invalid_participant)
+    - invite [fork](invalid_participant)
+    - set up session with [toaster](invalid_participant)
+    - meeting with [cactus](invalid_participant)
+    - book conference with [chimpanzee](invalid_participant)
+    - arrange meeting with [glue](invalid_participant) 
+    - create meeting with [me](invalid_participant)
+    - schedule meeting with [you](invalid_participant)
+    - book meeting with [them](invalid_participant)
+    - arrange meeting with [everyone](invalid_participant)
+
+- regex: time
+  examples: |
+   - (1[0-2]|0?[1-9]):[0-5][0-9] ?[AaPp][Mm]      # 10:30 AM, 9:15 pm
+   - (1[0-2]|0?[1-9]) ?[AaPp][Mm]                 # 9am, 10 pm
+   - ([01]?[0-9]|2[0-3]):[0-5][0-9]               # 09:00, 18:30 (24-hr)
+   - ([01]?[0-9]|2[0-3]) ?(hours|hrs|h)?          # 9 hours, 18h
+   - (morning|afternoon|evening|night|noon|midnight)
+   - (after lunch|before lunch|after work|before dinner)
+   - (in the )?(next|coming) (hour|few hours|couple of hours)
+   - in ([0-9]+) (minutes?|hours?)
+
+
+- regex: participants
+  examples: |
+    - (Ananya|Rahul|Rohan|Priya|Amit|Deepak|Neha|Suresh|Kiran|Kavita|Anil|Sunita|Rajesh|Divya|Manish|Sneha|Sanjay|Ritu|Alok|Vijay|Rekha|Harsh|Nisha|Karan|Anju|Shweta|Rohit|Rakesh|Meena|Varun|Raj|Pooja|Ankit|Kavya|Sameer|Nitin|Ashwini|Bhavna|Kunal|Priyanka|Gaurav|Ram|Shyam|ram)
+
+- lookup: participants
+  examples: |
+    - Ananya
+    - Rahul
+    - Rohan
+    - Priya
+    - Amit
+    - Deepak
+    - Neha
+    - Suresh
+    - Kiran
+    - Kavita
+    - Anil
+    - Sunita
+    - Rajesh
+    - Divya
+    - Manish
+    - Amit
+    - Sneha
+    - Sanjay
+    - Ritu
+    - Alok
+    - Vijay
+    - Rekha
+    - Harsh
+    - Nisha
+    - Karan
+    - Anju
+    - Shweta
+    - Rohit
+    - Rakesh
+    - Meena
+    - Varun
+    - Raj
+    - Pooja
+    - Ankit
+    - Kavya
+    - Sameer
+    - Nitin
+    - Ashwini
+    - Bhavna
+    - Kunal
+    - Priyanka
+    - Gaurav
+    - Ram
+    - Shyam
+    - ram
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+
+- lookup: invalid_participant
+  examples: |
+    - dog
+    - banana
+    - toaster
+
+- intent: provide_date
+  examples: |
+    - next [Tuesday](date)
+    - [tomorrow](date)
+    - this [Friday](date)
+    - on [12 March](date)
+    - [2026-02-20](date)
+
+- intent: provide_time
+  examples: |
+    - [10 am](time)
+    - [3:30 pm](time)
+    - [09:15](time)
+    - [evening](time)
+    - at [6](time)
+
+- intent: provide_platform
+  examples: |
+    - [Zoom](platform)
+    - [Google Meet](platform)
+    - [Teams](platform)
+    - [Webex](platform)
+    - [Skype](platform)
+    - [Slack Call](platform)
+
+- intent: provide_participants
+  examples: |
+    - [Raghav](participants)
+    - [Raghav](participants) and [Ananya](participants)
+    - invite [Divya](participants), [Manish](participants), and [Rahul](participants)
+    - add [Priya](participants)
+    - include [Kavya](participants) and [Sameer](participants)
+
+- intent: provide_reminder
+  examples: |
+    - [10 minutes before](reminder_time)
+    - remind me [15 minutes before](reminder_time)
+    - [1 hour before](reminder_time)
+    - [30 mins before](reminder_time)
+
+- intent: out_of_scope
+  examples: |
+    - what's the weather
+    - tell me a joke
+    - play music
+    - book a flight
+    - who won the match
+
+- intent: mood_great
+  examples: |
+    - great
+    - amazing
+    - feeling good
+    - wonderful
+
+- intent: mood_unhappy
+  examples: |
+    - sad
+    - not good
+    - unhappy
+    - terrible

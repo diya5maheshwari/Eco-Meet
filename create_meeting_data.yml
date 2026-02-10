@@ -1,0 +1,2656 @@
+nlu:
+- intent: create_meeting
+  examples: '- book a call with [banana](invalid_participant) [in the evening](date)
+
+    - Schedule a meeting for [Nisha](participants), [Priya](participants) [on 5th
+    November](time)  [on Skype](platform)
+
+    - Can you plan a meeting with [Anju](participants), [Sameer](participants), [Neha](participants)
+    [next Monday](time)  [on Google Meet](platform)?
+
+    - arrange a meeting with [Manish](participants), [Varun](participants) [in the
+    evening](date) [on Skype](platform)
+
+    - Please create a session for [Deepak](participants) [on Google Meet](platform)
+
+    - Can you book a conference with [Suresh](participants) [in the evening](time)  [using
+    Webex](platform)?
+
+    - Set up a call for [Sneha](participants), [Rohit](participants) [tomorrow](time)
+    [on 5th November](date)
+
+    - I want to book a conference with [Kavya](participants) [in the evening](time)  [via
+    Zoom](platform)
+
+    - Please schedule a meeting for [Alok](participants)
+
+    - Book a conference for [toaster](invalid_participant) [on Friday](time)
+
+    - I want to book a conference with [Nitin](participants) [this afternoon](time)
+    [on 5th November](date)
+
+    - Please arrange a meeting for [Sanjay](participants), [Rekha](participants) [at
+    5 p.m.](time)  [using Webex](platform)
+
+    - Can you schedule a chat with [Kavita](participants) [through Microsoft Teams](platform)?
+
+    - I want to plan a meeting with [Deepak](participants), [Sunita](participants),
+    [Raj](participants)
+
+    - Can you plan a meeting with [myself](invalid_participant) ?
+
+    - Can you set up a meeting with [Karan](participants) [later today](time)?
+
+    - I want to plan a meeting with [Ananya](participants), [Shweta](participants),
+    [Bhavna](participants)
+
+    - organize a discussion with [Neha](participants) [at 5 p.m.](time) [in the evening](date)
+
+    - Organize a discussion for [Ritu](participants), [Manish](participants), [Varun](participants)
+    [next week](time)  [using Webex](platform)
+
+    - Please schedule a meeting for [Meena](participants) [next week](time) [on 5th
+    November](date)
+
+    - Create a session for [Kavya](participants), [Shweta](participants), [Nitin](participants)
+
+    - schedule a meeting with [Sanjay](participants), [Rohan](participants), [Raj](participants)
+    [next Monday](date)
+
+    - I want to arrange a meeting with [Varun](participants) [tomorrow](date) [via
+    Zoom](platform)
+
+    - I want to create a session with [Ashwini](participants), [Anil](participants)
+    [next Monday](time) [on 5th November](date) [on Skype](platform)
+
+    - arrange a meeting with [Anil](participants), [Anju](participants), [Deepak](participants)
+    [next Monday](date) [using Webex](platform)
+
+    - Can you book a conference with [Varun](participants), [Gaurav](participants)
+    [tomorrow](date)?
+
+    - Can you book a conference with [Manish](participants), [Sneha](participants)
+    [next week](time) [in the evening](date) [via Zoom](platform)?
+
+    - Please book a conference for [Amit](participants), [Sameer](participants) [on
+    Friday](time) [on Friday](date)
+
+    - Please plan a meeting for [Rohan](participants) [at 10 a.m.](time)
+
+    - I want to set up a call with [Bhavna](participants), [Manish](participants),
+    [Divya](participants) [at 10 a.m.](time) [on 5th November](date) [using Webex](platform)
+
+    - Can you set up a call with [Rakesh](participants), [Priya](participants), [Sameer](participants)
+    [on Friday](time)?
+
+    - Can you create a session with [Raj](participants) [on Friday](time) [in the
+    morning](date) [through Microsoft Teams](platform)?
+
+    - Please set up a call for [Ankit](participants), [Ritu](participants), [Rohan](participants)
+
+    - Create a session for [Kavya](participants), [Deepak](participants), [Sneha](participants)
+    [in the evening](time) [on Friday](date) [on Google Meet](platform)
+
+    - Please book a call for [chimpanzee](invalid_participant) [next week](time)  [using
+    Webex](platform)
+
+    - I want to schedule a chat with [Kavita](participants) [in the evening](time)
+    [on Friday](date)
+
+    - Can you arrange a meeting with [Vijay](participants), [Rahul](participants)
+    [at 10 a.m.](time)  [through Microsoft Teams](platform)?
+
+    - I want to arrange a meeting with [Karan](participants) [next Monday](time)
+
+    - Please plan a meeting for [Shweta](participants), [Ritu](participants), [Rekha](participants)
+    [tomorrow](date)
+
+    - book a conference with [Varun](participants), [Rakesh](participants), [Deepak](participants)
+    [on 5th November](date)
+
+    - book a conference with [Sanjay](participants), [Rohan](participants) [in the
+    morning](date)
+
+    - Please plan a meeting for [Kavya](participants), [Neha](participants), [Ananya](participants)
+    [tomorrow](time)
+
+    - Organize a discussion for [Ashwini](participants), [Vijay](participants), [Nisha](participants)
+    [tomorrow](time) [in the morning](date)
+
+    - Can you set up a meeting with [Varun](participants) [next Monday](time) [in
+    the evening](date) [via Zoom](platform)?
+
+    - Please arrange a meeting for [Rakesh](participants) [on Friday](time) [in the
+    evening](date) [through Microsoft Teams](platform)
+
+    - I want to book a call with [Rajesh](participants), [Rahul](participants), [Varun](participants)
+    [on Google Meet](platform)
+
+    - Please schedule a meeting for [Nisha](participants), [Rajesh](participants)
+    [next Monday](time) [in the evening](date)
+
+    - Can you schedule a meeting with [Ananya](participants) [next week](time) [next
+    Monday](date) [using Webex](platform)?
+
+    - plan a meeting with [Gaurav](participants) [using Webex](platform)
+
+    - Please book a call for [myself](invalid_participant) [in the morning](date)
+    [using Webex](platform)
+
+    - arrange a meeting with [Divya](participants) [at 10 a.m.](time)  [via Zoom](platform)
+
+    - book a call with [Shweta](participants)
+
+    - Can you book a conference with [Neha](participants), [Rakesh](participants),
+    [Alok](participants) [this afternoon](time)  [on Google Meet](platform)?
+
+    - Please book a conference for [Ritu](participants), [Harsh](participants) [this
+    afternoon](time) [on Friday](date) [through Microsoft Teams](platform)
+
+    - Set up a call for [Amit](participants), [Ashwini](participants) [on 5th November](date)
+
+    - plan a meeting with [Ananya](participants), [Bhavna](participants) [next week](time)
+    [on Friday](date)
+
+    - Can you arrange a meeting with [Vijay](participants) ?
+
+    - Please create a session for [Nitin](participants), [Manish](participants), [Alok](participants)
+    [this afternoon](time) [this afternoon](date) [via Zoom](platform)
+
+    - I want to book a conference with [Divya](participants), [Sameer](participants),
+    [Ananya](participants) [in the evening](date)
+
+    - book a conference with [Sunita](participants), [Neha](participants), [Kavita](participants)
+    [in the evening](time)  [on Skype](platform)
+
+    - Please schedule a chat for [Ankit](participants), [Deepak](participants), [Divya](participants)
+    [next Monday](date) [using Webex](platform)
+
+    - organize a discussion with [Divya](participants), [Rohan](participants), [Shweta](participants)
+    [tomorrow](date)
+
+    - Book a call for [Meena](participants), [Nisha](participants), [Karan](participants)
+    [on Skype](platform)
+
+    - Please arrange a meeting for [Karan](participants), [Ananya](participants) [next
+    Monday](date)
+
+    - Create a session for [Amit](participants), [Bhavna](participants) [next week](time)  [on
+    Skype](platform)
+
+    - Can you organize a discussion with [Priya](participants), [Sameer](participants),
+    [Rekha](participants) [next Monday](time)?
+
+    - Please organize a discussion for [Gaurav](participants)
+
+    - Please schedule a meeting for [Raj](participants), [Rahul](participants), [Suresh](participants)
+    [this afternoon](time) [tomorrow](date)
+
+    - I want to organize a discussion with [Rahul](participants), [Divya](participants),
+    [Suresh](participants) [on 5th November](time)
+
+    - Please schedule a meeting for [Kavya](participants), [Deepak](participants),
+    [Harsh](participants) [later today](time)  [on Skype](platform)
+
+    - Arrange a meeting for [Neha](participants)
+
+    - Please set up a call for [Rajesh](participants) [on Google Meet](platform)
+
+    - Book a conference for [Bhavna](participants), [Rohit](participants), [Sneha](participants)
+    [next week](time)
+
+    - Create a session for [Vijay](participants), [Ankit](participants) [on Google
+    Meet](platform)
+
+    - set up a meeting with [Gaurav](participants), [Nitin](participants) [on 5th
+    November](date)
+
+    - Schedule a chat for [Nisha](participants), [Priyanka](participants) [on Friday](time)
+
+    - Can you organize a discussion with [Karan](participants), [Alok](participants),
+    [Varun](participants) [through Microsoft Teams](platform)?
+
+    - Please schedule a chat for [Meena](participants), [Sunita](participants), [Amit](participants)
+    [next Monday](time) [in the evening](date)
+
+    - Please book a call for [Ananya](participants), [Rohan](participants) [via Zoom](platform)
+
+    - Please plan a meeting for [Divya](participants) [this afternoon](time)  [using
+    Webex](platform)
+
+    - I want to set up a call with [chimpanzee](invalid_participant) [tomorrow](time)
+    [on Friday](date) [through Microsoft Teams](platform)
+
+    - I want to create a session with [Ritu](participants), [Rakesh](participants)
+    [at 10 a.m.](time)  [on Google Meet](platform)
+
+    - Can you set up a call with [cactus](invalid_participant) [this afternoon](time)
+    [in the morning](date)?
+
+    - Can you set up a meeting with [Anju](participants) [this afternoon](time)?
+
+    - Please plan a meeting for [Ankit](participants), [Sanjay](participants), [Sunita](participants)
+    [in the morning](date) [through Microsoft Teams](platform)
+
+    - Can you arrange a meeting with [Rakesh](participants), [Ashwini](participants),
+    [Pooja](participants) [tomorrow](date)?
+
+    - I want to schedule a meeting with [Priya](participants), [Gaurav](participants)
+    [tomorrow](time) [next Monday](date)
+
+    - I want to create a session with [Sanjay](participants), [Priyanka](participants),
+    [Kunal](participants) [in the evening](date)
+
+    - Please book a call for [glue](invalid_participant) [later today](time) [on 5th
+    November](date) [via Zoom](platform)
+
+    - I want to arrange a meeting with [chimpanzee](invalid_participant) [on 5th November](date)
+
+    - Can you book a call with [glue](invalid_participant) [this afternoon](time)
+    [in the evening](date) [on Google Meet](platform)?
+
+    - Please plan a meeting for [Sameer](participants) [in the evening](date)
+
+    - schedule a meeting with [Ritu](participants), [Sameer](participants), [Shweta](participants)
+    [on Skype](platform)
+
+    - Please set up a meeting for [Ashwini](participants), [Neha](participants), [Divya](participants)
+
+    - I want to create a session with [Sanjay](participants), [Anju](participants)
+    [next Monday](time)  [using Webex](platform)
+
+    - Plan a meeting for [Pooja](participants) [on Friday](time) [on 5th November](date)
+
+    - book a call with [Suresh](participants), [Rajesh](participants), [Meena](participants)
+    [in the morning](date) [through Microsoft Teams](platform)
+
+    - I want to book a call with [Amit](participants), [Rohit](participants), [Ritu](participants)
+
+    - Please schedule a meeting for [me](invalid_participant) [tomorrow](time) [this
+    afternoon](date) [via Zoom](platform)
+
+    - Can you schedule a meeting with [you](invalid_participant) ?
+
+    - Book a conference for [Raj](participants), [Priya](participants) [tomorrow](time)  [using
+    Webex](platform)
+
+    - book a call with [Harsh](participants), [Vijay](participants), [Nisha](participants)
+    [next Monday](time)  [on Google Meet](platform)
+
+    - Book a call for [penguin](invalid_participant) [in the evening](date)
+
+    - Can you arrange a meeting with [Alok](participants), [Kavita](participants)
+    [tomorrow](time) [on 5th November](date) [through Microsoft Teams](platform)?
+
+    - Organize a discussion for [Vijay](participants), [Ankit](participants), [Neha](participants)
+    [next Monday](time) [next Monday](date)
+
+    - Can you set up a meeting with [Harsh](participants), [Karan](participants),
+    [Sneha](participants) [on 5th November](date) [via Zoom](platform)?
+
+    - Can you create a session with [Neha](participants), [Gaurav](participants),
+    [Meena](participants) [next Monday](date)?
+
+    - Set up a call for [Raj](participants) [in the evening](time) [this afternoon](date)
+    [via Zoom](platform)
+
+    - Book a conference for [Shweta](participants) [later today](time) [in the morning](date)
+
+    - Create a session for [fork](invalid_participant) [next Monday](time)  [using
+    Webex](platform)
+
+    - book a call with [Raj](participants) [in the evening](time) [on 5th November](date)
+    [on Google Meet](platform)
+
+    - Book a call for [Ananya](participants)
+
+    - Can you schedule a chat with [Shweta](participants) [in the morning](date)?
+
+    - Please plan a meeting for [Sunita](participants) [on Friday](date)
+
+    - Please arrange a meeting for [Kavita](participants), [Raj](participants) [at
+    5 p.m.](time)  [through Microsoft Teams](platform)
+
+    - Can you plan a meeting with [Kiran](participants) [this afternoon](time) [on
+    5th November](date) [using Webex](platform)?
+
+    - Arrange a meeting for [Nitin](participants), [Anil](participants) [this afternoon](date)
+    [using Webex](platform)
+
+    - Can you book a conference with [unicorn](invalid_participant) [at 10 a.m.](time)
+    [tomorrow](date) [on Google Meet](platform)?
+
+    - I want to create a session with [Kunal](participants), [Ashwini](participants)
+    [on 5th November](time) [on 5th November](date) [using Webex](platform)
+
+    - I want to arrange a meeting with [Ankit](participants)
+
+    - I want to set up a meeting with [Nitin](participants) [in the evening](time)  [using
+    Webex](platform)
+
+    - I want to create a session with [Rakesh](participants), [Rohit](participants),
+    [Amit](participants) [tomorrow](time) [in the evening](date)
+
+    - Create a session for [Ananya](participants), [Rakesh](participants), [Harsh](participants)
+    [next Monday](date)
+
+    - Can you book a call with [Harsh](participants), [Manish](participants) [tomorrow](date)?
+
+    - set up a call with [fork](invalid_participant) [in the morning](date)
+
+    - Please set up a call for [Rohan](participants), [Sameer](participants), [Harsh](participants)
+    [in the evening](time)
+
+    - Book a conference for [Rohan](participants), [Priyanka](participants), [Bhavna](participants)
+    [later today](time)
+
+    - I want to book a conference with [Kavya](participants), [Vijay](participants),
+    [Gaurav](participants) [tomorrow](time) [next Monday](date)
+
+    - Please book a call for [me](invalid_participant) [tomorrow](time) [next Monday](date)
+
+    - I want to book a call with [Shweta](participants), [Priya](participants) [at
+    5 p.m.](time)
+
+    - I want to plan a meeting with [Kavya](participants), [Alok](participants) [at
+    5 p.m.](time)
+
+    - I want to create a session with [Pooja](participants), [Ashwini](participants)
+
+    - book a call with [Ritu](participants), [Ananya](participants), [Meena](participants)
+    [next week](time) [in the evening](date) [through Microsoft Teams](platform)
+
+    - Book a call for [Gaurav](participants) [next week](time) [this afternoon](date)
+
+    - set up a call with [Nitin](participants) [on Google Meet](platform)
+
+    - Book a call for [Gaurav](participants) [this afternoon](time)
+
+    - Can you book a call with [Amit](participants), [Pooja](participants), [Raj](participants)
+    [tomorrow](time) [in the evening](date)?
+
+    - set up a call with [Bhavna](participants), [Manish](participants), [Sameer](participants)
+    [at 10 a.m.](time) [in the morning](date) [via Zoom](platform)
+
+    - plan a meeting with [Nisha](participants), [Rekha](participants), [Sneha](participants)
+    [on 5th November](time)  [using Webex](platform)
+
+    - Please set up a meeting for [Amit](participants), [Priya](participants) [tomorrow](time)
+    [in the morning](date)
+
+    - Please set up a call for [Manish](participants) [later today](time)
+
+    - Can you organize a discussion with [Rohit](participants), [Nitin](participants)
+    [at 10 a.m.](time)  [via Zoom](platform)?
+
+    - Book a conference for [Priyanka](participants) [in the evening](date) [on Google
+    Meet](platform)
+
+    - Please organize a discussion for [Rohit](participants), [Ashwini](participants)
+    [tomorrow](time) [in the evening](date)
+
+    - I want to arrange a meeting with [Varun](participants), [Sneha](participants),
+    [Rakesh](participants) [in the evening](date)
+
+    - Please set up a call for [Priya](participants) [at 5 p.m.](time)
+
+    - I want to organize a discussion with [dog](invalid_participant) [on Google Meet](platform)
+
+    - book a call with [Rohan](participants), [Anju](participants), [Bhavna](participants)
+    [this afternoon](time)  [using Webex](platform)
+
+    - Can you arrange a meeting with [Rekha](participants), [Suresh](participants),
+    [Rajesh](participants) [next week](time)  [via Zoom](platform)?
+
+    - I want to schedule a chat with [Varun](participants), [Rohit](participants),
+    [Ashwini](participants) [using Webex](platform)
+
+    - book a conference with [Rohit](participants) [next week](time)
+
+    - I want to book a call with [Ritu](participants), [Neha](participants) [this
+    afternoon](time)
+
+    - Please book a call for [Harsh](participants), [Kunal](participants) [next Monday](time)
+    [on 5th November](date)
+
+    - I want to set up a call with [Ankit](participants), [Rekha](participants) [next
+    Monday](time)
+
+    - I want to book a conference with [Ankit](participants), [Nitin](participants),
+    [Varun](participants)
+
+    - Schedule a chat for [Amit](participants), [Shweta](participants), [Rakesh](participants)
+    [next week](time) [tomorrow](date) [via Zoom](platform)
+
+    - Set up a call for [dog](invalid_participant)
+
+    - Book a call for [Kiran](participants), [Harsh](participants) [on Skype](platform)
+
+    - I want to schedule a meeting with [Vijay](participants) [tomorrow](date)
+
+    - Set up a meeting for [Gaurav](participants) [next Monday](time)
+
+    - Can you organize a discussion with [penguin](invalid_participant) ?
+
+    - organize a discussion with [Rahul](participants) [in the evening](time) [on
+    Friday](date) [on Skype](platform)
+
+    - Can you schedule a chat with [Ashwini](participants), [Gaurav](participants),
+    [Divya](participants) [later today](time)  [through Microsoft Teams](platform)?
+
+    - schedule a meeting with [Harsh](participants), [Raj](participants), [Neha](participants)
+    [in the evening](time)  [through Microsoft Teams](platform)
+
+    - Please book a call for [Nitin](participants), [Meena](participants), [Rajesh](participants)
+    [this afternoon](date)
+
+    - organize a discussion with [Meena](participants), [Priya](participants) [using
+    Webex](platform)
+
+    - I want to schedule a chat with [Varun](participants), [Neha](participants),
+    [Ananya](participants) [on Friday](date) [using Webex](platform)
+
+    - organize a discussion with [Nitin](participants), [Anil](participants), [Amit](participants)
+    [on Friday](time)
+
+    - Arrange a meeting for [fork](invalid_participant) [on Friday](date) [using Webex](platform)
+
+    - schedule a meeting with [Kavya](participants), [Kiran](participants), [Ankit](participants)
+    [later today](time) [in the morning](date)
+
+    - I want to book a conference with [Karan](participants), [Varun](participants),
+    [Ritu](participants)
+
+    - Please book a call for [Deepak](participants), [Rahul](participants) [tomorrow](time)
+    [on Friday](date) [via Zoom](platform)
+
+    - Please organize a discussion for [Rohan](participants) [on 5th November](date)
+    [on Skype](platform)
+
+    - I want to book a conference with [Rakesh](participants), [Sanjay](participants),
+    [Amit](participants) [at 10 a.m.](time)
+
+    - I want to set up a call with [Ankit](participants), [Varun](participants) [in
+    the evening](time)  [through Microsoft Teams](platform)
+
+    - book a conference with [Rajesh](participants), [Nitin](participants) [on 5th
+    November](time) [this afternoon](date) [on Skype](platform)
+
+    - organize a discussion with [Kiran](participants) [on 5th November](date)
+
+    - Please arrange a meeting for [Priya](participants), [Rohan](participants) [on
+    Friday](date)
+
+    - arrange a meeting with [Alok](participants), [Shweta](participants) [on Skype](platform)
+
+    - Can you set up a meeting with [Amit](participants), [Neha](participants) [tomorrow](date)?
+
+    - I want to organize a discussion with [banana](invalid_participant) [later today](time)
+
+    - set up a call with [Sunita](participants), [Bhavna](participants) [this afternoon](date)
+
+    - Please book a call for [Rekha](participants), [Kunal](participants) [on 5th
+    November](time) [on Friday](date)
+
+    - Can you set up a call with [toaster](invalid_participant) ?
+
+    - I want to set up a call with [Karan](participants) [tomorrow](time)  [on Google
+    Meet](platform)
+
+    - Organize a discussion for [Sneha](participants), [Neha](participants) [in the
+    evening](time)
+
+    - Please schedule a meeting for [Rohit](participants), [Rajesh](participants),
+    [Rohan](participants) [on Skype](platform)
+
+    - I want to set up a meeting with [Sunita](participants), [Anil](participants)
+    [this afternoon](time)  [on Skype](platform)
+
+    - Please set up a call for [Sneha](participants), [Pooja](participants), [Gaurav](participants)
+    [at 10 a.m.](time)  [on Google Meet](platform)
+
+    - book a call with [Alok](participants), [Bhavna](participants) [using Webex](platform)
+
+    - set up a call with [Divya](participants), [Alok](participants) [tomorrow](time)  [on
+    Skype](platform)
+
+    - Please schedule a chat for [Neha](participants), [Meena](participants) [this
+    afternoon](time) [on Friday](date)
+
+    - Can you plan a meeting with [Nisha](participants), [Varun](participants), [Shweta](participants)
+    [at 10 a.m.](time) [on Friday](date)?
+
+    - Can you set up a call with [Rajesh](participants), [Sneha](participants) ?
+
+    - I want to create a session with [Rohit](participants), [Sneha](participants)
+    [tomorrow](date)
+
+    - Plan a meeting for [Nisha](participants)
+
+    - Please set up a meeting for [Gaurav](participants), [Rajesh](participants),
+    [Rohan](participants) [in the evening](date) [on Skype](platform)
+
+    - Please schedule a meeting for [Amit](participants), [Rohit](participants) [at
+    5 p.m.](time)  [on Skype](platform)
+
+    - Can you book a conference with [Kunal](participants) [at 5 p.m.](time)?
+
+    - Please plan a meeting for [Ananya](participants), [Anil](participants), [Nitin](participants)
+    [in the evening](time) [in the evening](date)
+
+    - Please schedule a meeting for [Rajesh](participants) [next week](time) [on Friday](date)
+    [on Google Meet](platform)
+
+    - I want to organize a discussion with [Rohan](participants), [Harsh](participants)
+    [on Skype](platform)
+
+    - book a conference with [Suresh](participants), [Sneha](participants) [later
+    today](time) [in the evening](date)
+
+    - arrange a meeting with [Manish](participants), [Rakesh](participants) [in the
+    evening](date) [using Webex](platform)
+
+    - I want to organize a discussion with [Ritu](participants), [Divya](participants)
+    [on Friday](time)  [on Skype](platform)
+
+    - Organize a discussion for [Kiran](participants), [Rajesh](participants) [this
+    afternoon](time) [tomorrow](date)
+
+    - schedule a meeting with [Ashwini](participants), [Rohit](participants), [Priya](participants)
+    [next week](time)  [through Microsoft Teams](platform)
+
+    - schedule a chat with [Anil](participants) [on 5th November](date) [using Webex](platform)
+
+    - Please organize a discussion for [me](invalid_participant) [on Skype](platform)
+
+    - Arrange a meeting for [Anil](participants) [at 10 a.m.](time)
+
+    - Please plan a meeting for [Kavita](participants), [Rohan](participants) [at
+    10 a.m.](time)  [through Microsoft Teams](platform)
+
+    - Please plan a meeting for [Kunal](participants), [Sameer](participants) [this
+    afternoon](date) [on Skype](platform)
+
+    - Can you schedule a chat with [Ankit](participants), [Nisha](participants), [Neha](participants)
+    [next week](time)  [through Microsoft Teams](platform)?
+
+    - Can you book a call with [Deepak](participants), [Vijay](participants) [tomorrow](time)  [via
+    Zoom](platform)?
+
+    - I want to book a call with [Nitin](participants), [Pooja](participants)
+
+    - I want to schedule a chat with [Varun](participants), [Karan](participants),
+    [Ashwini](participants) [using Webex](platform)
+
+    - I want to schedule a meeting with [Ankit](participants) [in the evening](time)
+    [tomorrow](date) [using Webex](platform)
+
+    - book a conference with [Rohit](participants), [Rohan](participants) [on Google
+    Meet](platform)
+
+    - Schedule a meeting for [myself](invalid_participant) [at 10 a.m.](time) [this
+    afternoon](date) [on Google Meet](platform)
+
+    - I want to book a call with [Bhavna](participants) [tomorrow](time)  [through
+    Microsoft Teams](platform)
+
+    - I want to set up a call with [Sunita](participants), [Manish](participants),
+    [Nisha](participants) [at 10 a.m.](time) [in the evening](date)
+
+    - I want to plan a meeting with [Anil](participants), [Rohan](participants) [later
+    today](time) [on 5th November](date)
+
+    - Please create a session for [Amit](participants) [at 5 p.m.](time) [this afternoon](date)
+
+    - Please plan a meeting for [Anil](participants), [Kunal](participants)
+
+    - schedule a meeting with [Ashwini](participants), [Rahul](participants), [Harsh](participants)
+    [at 5 p.m.](time) [this afternoon](date)
+
+    - Can you book a conference with [Rohan](participants) [on Friday](time)?
+
+    - Please create a session for [Harsh](participants), [Neha](participants) [in
+    the evening](time)  [through Microsoft Teams](platform)
+
+    - Can you schedule a meeting with [Ashwini](participants), [Priyanka](participants)
+    [at 10 a.m.](time)?
+
+    - Please set up a meeting for [Kavita](participants) [later today](time) [in the
+    evening](date)
+
+    - Please plan a meeting for [glue](invalid_participant) [this afternoon](date)
+    [via Zoom](platform)
+
+    - Please schedule a meeting for [Ritu](participants), [Kiran](participants), [Sanjay](participants)
+    [in the evening](date) [on Google Meet](platform)
+
+    - Can you create a session with [Raj](participants), [Kiran](participants), [Ankit](participants)
+    [tomorrow](time)?
+
+    - Schedule a chat for [Nisha](participants) [this afternoon](time)
+
+    - I want to set up a meeting with [Amit](participants) [later today](time) [on
+    5th November](date)
+
+    - Please arrange a meeting for [Suresh](participants), [Rohan](participants),
+    [Sameer](participants) [on Skype](platform)
+
+    - Can you arrange a meeting with [Amit](participants), [Karan](participants),
+    [Rohan](participants) [at 10 a.m.](time)  [through Microsoft Teams](platform)?
+
+    - set up a call with [Harsh](participants), [Ritu](participants) [this afternoon](date)
+
+    - Can you plan a meeting with [Rajesh](participants) [in the evening](date)?
+
+    - set up a call with [Rahul](participants), [Anju](participants) [in the evening](time)  [on
+    Skype](platform)
+
+    - Please plan a meeting for [Bhavna](participants), [Rekha](participants) [in
+    the evening](date) [using Webex](platform)
+
+    - Can you create a session with [Deepak](participants), [Varun](participants),
+    [Meena](participants) ?
+
+    - Please book a call for [Meena](participants) [in the evening](time)
+
+    - I want to organize a discussion with [Varun](participants), [Nisha](participants),
+    [Amit](participants) [later today](time) [next Monday](date)
+
+    - Create a session for [Karan](participants), [Rahul](participants) [next Monday](date)
+
+    - schedule a meeting with [Raj](participants) [this afternoon](date)
+
+    - Can you plan a meeting with [Deepak](participants), [Rohit](participants), [Vijay](participants)
+    ?
+
+    - Set up a meeting for [you](invalid_participant) [on Friday](date) [using Webex](platform)
+
+    - Can you plan a meeting with [Deepak](participants) [next Monday](date) [via
+    Zoom](platform)?
+
+    - Can you create a session with [Ritu](participants) [at 5 p.m.](time)?
+
+    - plan a meeting with [fork](invalid_participant) [on 5th November](date)
+
+    - arrange a meeting with [Priyanka](participants), [Sanjay](participants)
+
+    - I want to arrange a meeting with [Sneha](participants) [on Friday](time)
+
+    - Can you organize a discussion with [Sneha](participants) [next Monday](time)
+    [on 5th November](date)?
+
+    - I want to organize a discussion with [Ankit](participants), [Suresh](participants)
+    [at 10 a.m.](time) [this afternoon](date) [on Skype](platform)
+
+    - Organize a discussion for [Rohan](participants), [Rekha](participants) [next
+    Monday](date) [using Webex](platform)
+
+    - book a conference with [Rohit](participants) [in the evening](time) [this afternoon](date)
+
+    - set up a meeting with [Rekha](participants) [through Microsoft Teams](platform)
+
+    - I want to book a call with [Bhavna](participants), [Karan](participants)
+
+    - create a session with [Deepak](participants), [Sameer](participants) [later
+    today](time)
+
+    - Schedule a meeting for [Sameer](participants) [next Monday](time) [tomorrow](date)
+    [via Zoom](platform)
+
+    - Please schedule a chat for [Neha](participants), [Priyanka](participants) [on
+    5th November](time)  [on Skype](platform)
+
+    - arrange a meeting with [Amit](participants)
+
+    - Can you set up a call with [Suresh](participants) [via Zoom](platform)?
+
+    - book a conference with [Anil](participants), [Rohan](participants), [Rakesh](participants)
+    [on 5th November](date)
+
+    - I want to set up a call with [unicorn](invalid_participant) [this afternoon](date)
+    [on Google Meet](platform)
+
+    - plan a meeting with [Karan](participants), [Rohan](participants), [Raj](participants)
+    [in the evening](time) [tomorrow](date)
+
+    - I want to set up a meeting with [Nitin](participants) [in the evening](date)
+
+    - I want to book a conference with [Rohan](participants) [this afternoon](time)
+    [on 5th November](date) [via Zoom](platform)
+
+    - I want to plan a meeting with [Karan](participants) [on Friday](time)
+
+    - I want to schedule a meeting with [Bhavna](participants), [Kunal](participants),
+    [Ashwini](participants) [on Google Meet](platform)
+
+    - I want to arrange a meeting with [Suresh](participants), [Sunita](participants)
+    [this afternoon](time)  [on Skype](platform)
+
+    - Please arrange a meeting for [Priya](participants), [Ananya](participants) [at
+    10 a.m.](time)
+
+    - Please schedule a chat for [Nitin](participants), [Rahul](participants), [Rohan](participants)
+    [on 5th November](date) [on Skype](platform)
+
+    - Please book a call for [Amit](participants), [Amit](participants) [using Webex](platform)
+
+    - Please arrange a meeting for [Ashwini](participants), [Kavita](participants)
+
+    - Schedule a chat for [Priya](participants), [Sameer](participants), [Ankit](participants)
+    [on 5th November](time)
+
+    - Can you book a call with [Neha](participants) [this afternoon](date)?
+
+    - I want to organize a discussion with [Meena](participants), [Alok](participants)
+    [next week](time) [in the morning](date) [via Zoom](platform)
+
+    - schedule a chat with [Anil](participants)
+
+    - create a session with [Suresh](participants), [Kavya](participants) [via Zoom](platform)
+
+    - schedule a chat with [Priyanka](participants), [Ankit](participants) [on Google
+    Meet](platform)
+
+    - Please schedule a chat for [Ankit](participants) [at 10 a.m.](time)
+
+    - Can you schedule a meeting with [Priya](participants) [on Skype](platform)?
+
+    - Can you arrange a meeting with [Bhavna](participants), [Anil](participants)
+    [in the morning](date) [on Google Meet](platform)?
+
+    - Can you arrange a meeting with [Karan](participants), [Sneha](participants)
+    [next Monday](date)?
+
+    - plan a meeting with [Anil](participants) [at 5 p.m.](time)
+
+    - Can you create a session with [Meena](participants) [next Monday](time) [on
+    Friday](date)?
+
+    - I want to plan a meeting with [Alok](participants), [Sanjay](participants),
+    [Kavita](participants) [later today](time)  [on Skype](platform)
+
+    - Can you set up a meeting with [Amit](participants), [Amit](participants) [on
+    Friday](time)  [through Microsoft Teams](platform)?
+
+    - Please book a conference for [Amit](participants), [Ananya](participants), [Nitin](participants)
+    [in the evening](time) [this afternoon](date) [on Google Meet](platform)
+
+    - Can you schedule a meeting with [Amit](participants), [Anju](participants) [on
+    Friday](time) [tomorrow](date)?
+
+    - Can you set up a call with [Suresh](participants), [Deepak](participants) [tomorrow](date)
+    [on Google Meet](platform)?
+
+    - Please arrange a meeting for [Harsh](participants), [Priyanka](participants),
+    [Kavya](participants) [at 10 a.m.](time) [next Monday](date)
+
+    - Please plan a meeting for [Kiran](participants), [Amit](participants), [Deepak](participants)
+    [tomorrow](time) [in the evening](date)
+
+    - arrange a meeting with [Raj](participants), [Rekha](participants) [tomorrow](time)
+    [in the morning](date)
+
+    - Can you schedule a chat with [Ritu](participants) [in the morning](date)?
+
+    - I want to book a call with [Neha](participants) [tomorrow](date) [via Zoom](platform)
+
+    - I want to schedule a chat with [Nisha](participants), [Manish](participants),
+    [Pooja](participants) [next Monday](time) [in the morning](date)
+
+    - Set up a meeting for [Suresh](participants) [tomorrow](date) [on Google Meet](platform)
+
+    - Can you book a call with [Rajesh](participants), [Kiran](participants), [Kavya](participants)
+    [via Zoom](platform)?
+
+    - Set up a call for [Nitin](participants), [Kavita](participants), [Sneha](participants)
+    [next Monday](time)
+
+    - I want to arrange a meeting with [Rakesh](participants), [Raj](participants),
+    [Meena](participants) [in the evening](time) [in the morning](date)
+
+    - Please book a conference for [Kavita](participants) [on Friday](date) [using
+    Webex](platform)
+
+    - I want to set up a call with [Pooja](participants), [Manish](participants) [at
+    5 p.m.](time) [this afternoon](date)
+
+    - Please organize a discussion for [Alok](participants), [Rekha](participants),
+    [Nisha](participants) [in the morning](date)
+
+    - Can you schedule a meeting with [Priyanka](participants) [on Skype](platform)?
+
+    - Please book a call for [Priyanka](participants) [later today](time)
+
+    - Book a conference for [Varun](participants), [Priyanka](participants), [Alok](participants)
+
+    - Can you create a session with [Sameer](participants), [Ashwini](participants),
+    [Neha](participants) ?
+
+    - I want to create a session with [glue](invalid_participant) [next week](time)
+
+    - Organize a discussion for [dog](invalid_participant) [at 10 a.m.](time) [next
+    Monday](date) [using Webex](platform)
+
+    - Book a conference for [Alok](participants), [Divya](participants), [Anju](participants)
+    [on Friday](date) [on Google Meet](platform)
+
+    - I want to organize a discussion with [Rahul](participants), [Meena](participants)
+    [on Friday](time)  [on Google Meet](platform)
+
+    - Can you set up a meeting with [Ananya](participants), [Karan](participants),
+    [Rekha](participants) [next Monday](time) [next Monday](date) [using Webex](platform)?
+
+    - I want to book a conference with [Karan](participants), [Suresh](participants)
+    [on 5th November](time)  [on Skype](platform)
+
+    - organize a discussion with [Priyanka](participants), [Karan](participants) [on
+    Skype](platform)
+
+    - Can you schedule a meeting with [Ritu](participants), [Gaurav](participants)
+    [next week](time)  [on Google Meet](platform)?
+
+    - Organize a discussion for [Rakesh](participants) [tomorrow](date) [through Microsoft
+    Teams](platform)
+
+    - set up a call with [Suresh](participants), [Alok](participants), [Anju](participants)
+    [tomorrow](time)
+
+    - I want to plan a meeting with [banana](invalid_participant) [next Monday](time)
+
+    - Can you set up a meeting with [cactus](invalid_participant) [using Webex](platform)?
+
+    - Please schedule a chat for [Anju](participants), [Priya](participants) [on Friday](time)
+    [tomorrow](date)
+
+    - Please arrange a meeting for [Meena](participants), [Rakesh](participants),
+    [Varun](participants) [on Friday](date)
+
+    - I want to set up a call with [Kavya](participants) [tomorrow](time) [next Monday](date)
+
+    - Can you book a conference with [Anil](participants), [Rohit](participants) ?
+
+    - I want to create a session with [Harsh](participants) [in the evening](date)
+
+    - Can you schedule a meeting with [Rohit](participants), [Priyanka](participants),
+    [Nisha](participants) [later today](time)?
+
+    - Can you set up a meeting with [Raj](participants) ?
+
+    - arrange a meeting with [Karan](participants) [at 5 p.m.](time) [on Friday](date)
+
+    - Organize a discussion for [Bhavna](participants), [Amit](participants), [Harsh](participants)
+    [at 10 a.m.](time) [this afternoon](date)
+
+    - Set up a meeting for [me](invalid_participant) [in the evening](date)
+
+    - Please book a call for [Shweta](participants), [Divya](participants) [next Monday](date)
+
+    - I want to schedule a meeting with [Sanjay](participants), [Ritu](participants)
+    [later today](time) [this afternoon](date) [through Microsoft Teams](platform)
+
+    - Book a call for [Priyanka](participants), [Deepak](participants), [Ananya](participants)
+    [in the morning](date) [on Skype](platform)
+
+    - Plan a meeting for [Ankit](participants) [next Monday](time) [on 5th November](date)
+    [on Google Meet](platform)
+
+    - Please schedule a meeting for [Kavya](participants) [at 5 p.m.](time)  [using
+    Webex](platform)
+
+    - Please plan a meeting for [fork](invalid_participant) [on Friday](time) [on
+    5th November](date) [through Microsoft Teams](platform)
+
+    - Set up a meeting for [Amit](participants), [Karan](participants), [Sameer](participants)
+    [on Friday](time)
+
+    - Can you set up a call with [Kavya](participants) [in the evening](date) [on
+    Google Meet](platform)?
+
+    - Arrange a meeting for [Varun](participants) [in the evening](time)
+
+    - Can you arrange a meeting with [Harsh](participants) [tomorrow](date) [through
+    Microsoft Teams](platform)?
+
+    - set up a meeting with [Sneha](participants), [Ankit](participants), [Rakesh](participants)
+    [using Webex](platform)
+
+    - Schedule a chat for [Sunita](participants) [later today](time) [tomorrow](date)
+
+    - arrange a meeting with [Shweta](participants), [Raj](participants) [next week](time)  [through
+    Microsoft Teams](platform)
+
+    - Please book a call for [Anil](participants) [in the evening](time) [tomorrow](date)
+    [through Microsoft Teams](platform)
+
+    - Set up a meeting for [Pooja](participants), [Deepak](participants) [next Monday](date)
+
+    - I want to book a call with [Suresh](participants), [Amit](participants) [in
+    the evening](date) [via Zoom](platform)
+
+    - I want to plan a meeting with [Rohan](participants), [Anil](participants), [Kiran](participants)
+    [in the evening](date)
+
+    - Arrange a meeting for [Gaurav](participants), [Kiran](participants), [Shweta](participants)
+    [via Zoom](platform)
+
+    - Please arrange a meeting for [Ritu](participants), [Rahul](participants) [at
+    10 a.m.](time)  [on Skype](platform)
+
+    - I want to schedule a chat with [Nitin](participants), [Deepak](participants)
+    [on Friday](time)  [on Google Meet](platform)
+
+    - Please organize a discussion for [Anil](participants), [Sneha](participants)
+    [this afternoon](time)
+
+    - arrange a meeting with [Meena](participants)
+
+    - Please plan a meeting for [Ankit](participants), [Bhavna](participants), [Nitin](participants)
+    [on 5th November](time) [tomorrow](date) [on Google Meet](platform)
+
+    - Can you organize a discussion with [Alok](participants), [Amit](participants),
+    [Suresh](participants) [next week](time) [in the morning](date) [via Zoom](platform)?
+
+    - Can you book a conference with [me](invalid_participant) ?
+
+    - Arrange a meeting for [Kavya](participants), [Kunal](participants) [at 5 p.m.](time)
+
+    - create a session with [Ankit](participants) [on Friday](date)
+
+    - I want to set up a meeting with [Priya](participants), [Pooja](participants),
+    [Sanjay](participants) [next Monday](date)
+
+    - I want to schedule a chat with [Ankit](participants) [later today](time)  [on
+    Skype](platform)
+
+    - schedule a chat with [Meena](participants), [Kavya](participants) [in the evening](date)
+    [through Microsoft Teams](platform)
+
+    - Can you plan a meeting with [Ashwini](participants), [Shweta](participants)
+    [this afternoon](time)  [through Microsoft Teams](platform)?
+
+    - Book a conference for [Rohit](participants) [on Friday](time)
+
+    - Please book a call for [Manish](participants), [Vijay](participants), [Varun](participants)
+    [on 5th November](time) [this afternoon](date) [via Zoom](platform)
+
+    - I want to organize a discussion with [Ritu](participants), [Suresh](participants),
+    [Manish](participants) [on 5th November](date)
+
+    - Please book a conference for [Nitin](participants), [Kavita](participants) [at
+    5 p.m.](time) [on Friday](date) [using Webex](platform)
+
+    - plan a meeting with [Rekha](participants), [Meena](participants), [Kavita](participants)
+
+    - Organize a discussion for [Rajesh](participants), [Varun](participants), [Meena](participants)
+
+    - I want to arrange a meeting with [Alok](participants) [next week](time)
+
+    - create a session with [Ankit](participants) [via Zoom](platform)
+
+    - I want to set up a call with [Neha](participants), [Vijay](participants) [in
+    the morning](date) [via Zoom](platform)
+
+    - Please set up a call for [Bhavna](participants), [Sunita](participants) [next
+    Monday](time)
+
+    - I want to organize a discussion with [Manish](participants), [Shweta](participants)
+    [this afternoon](date) [through Microsoft Teams](platform)
+
+    - book a conference with [Pooja](participants), [Rahul](participants), [Priya](participants)
+    [in the evening](time) [tomorrow](date)
+
+    - Please organize a discussion for [cactus](invalid_participant)
+
+    - set up a call with [toaster](invalid_participant) [tomorrow](time) [on Friday](date)
+    [on Skype](platform)
+
+    - Can you plan a meeting with [Suresh](participants) [at 5 p.m.](time) [next Monday](date)?
+
+    - Book a conference for [Pooja](participants) [tomorrow](date) [using Webex](platform)
+
+    - book a call with [Ritu](participants), [Kavya](participants), [Bhavna](participants)
+    [via Zoom](platform)
+
+    - I want to arrange a meeting with [Rohit](participants), [Vijay](participants)
+    [using Webex](platform)
+
+    - I want to organize a discussion with [cactus](invalid_participant) [tomorrow](time)  [through
+    Microsoft Teams](platform)
+
+    - I want to set up a call with [Kiran](participants)
+
+    - Schedule a chat for [Priyanka](participants), [Alok](participants), [Kavita](participants)
+    [later today](time)
+
+    - I want to set up a meeting with [Rohit](participants), [Amit](participants),
+    [Meena](participants) [in the evening](date)
+
+    - Can you set up a meeting with [Nitin](participants), [Amit](participants) ?
+
+    - Please book a conference for [Kavita](participants), [Deepak](participants),
+    [Priya](participants) [on 5th November](time) [next Monday](date)
+
+    - schedule a meeting with [Kavita](participants), [Deepak](participants), [Gaurav](participants)
+
+    - schedule a chat with [Karan](participants), [Gaurav](participants), [Anju](participants)
+    [in the evening](time) [this afternoon](date)
+
+    - I want to create a session with [Kavita](participants), [Divya](participants)
+    [at 5 p.m.](time)
+
+    - I want to schedule a chat with [Raj](participants), [Ashwini](participants),
+    [Harsh](participants) [tomorrow](time)
+
+    - Can you organize a discussion with [Divya](participants) ?
+
+    - Please schedule a chat for [Kavya](participants), [Kunal](participants) [next
+    Monday](time) [in the morning](date) [on Skype](platform)
+
+    - I want to schedule a meeting with [Rekha](participants), [Anju](participants),
+    [Rohan](participants) [in the evening](date) [on Google Meet](platform)
+
+    - Please plan a meeting for [penguin](invalid_participant)
+
+    - I want to schedule a chat with [me](invalid_participant) [next week](time)
+
+    - Can you set up a call with [dog](invalid_participant) [next Monday](date)?
+
+    - Schedule a meeting for [Karan](participants), [Priya](participants) [via Zoom](platform)
+
+    - I want to create a session with [Pooja](participants), [Ritu](participants),
+    [Ankit](participants) [later today](time) [on 5th November](date) [using Webex](platform)
+
+    - Schedule a meeting for [chimpanzee](invalid_participant)
+
+    - Plan a meeting for [Pooja](participants) [later today](time)
+
+    - Book a conference for [Rakesh](participants), [Rajesh](participants) [tomorrow](date)
+    [through Microsoft Teams](platform)
+
+    - Can you set up a meeting with [Kunal](participants), [Sanjay](participants)
+    [next Monday](time)?
+
+    - book a call with [Sunita](participants), [Sameer](participants), [Ananya](participants)
+    [through Microsoft Teams](platform)
+
+    - Please arrange a meeting for [me](invalid_participant) [at 5 p.m.](time)
+
+    - I want to create a session with [Ritu](participants), [Rakesh](participants)
+    [on 5th November](date)
+
+    - I want to plan a meeting with [Kunal](participants) [next week](time) [on Friday](date)
+    [on Skype](platform)
+
+    - Set up a call for [Neha](participants), [Rahul](participants)
+
+    - Schedule a chat for [Shweta](participants), [Gaurav](participants) [tomorrow](date)
+    [on Google Meet](platform)
+
+    - I want to create a session with [Harsh](participants), [Sanjay](participants)
+    [in the evening](time) [this afternoon](date)
+
+    - set up a call with [Suresh](participants), [Kiran](participants) [tomorrow](date)
+    [on Skype](platform)
+
+    - Please organize a discussion for [Vijay](participants) [tomorrow](time)
+
+    - Please book a conference for [Rekha](participants), [Raj](participants)
+
+    - Can you set up a meeting with [Priya](participants), [Sameer](participants)
+    [in the evening](time) [next Monday](date)?
+
+    - book a call with [Ankit](participants), [Rohit](participants), [Kiran](participants)
+    [using Webex](platform)
+
+    - Book a conference for [Priyanka](participants), [Anju](participants) [through
+    Microsoft Teams](platform)
+
+    - set up a meeting with [Divya](participants), [Priyanka](participants) [on Friday](date)
+
+    - Please arrange a meeting for [Nisha](participants) [in the evening](time)
+
+    - Please create a session for [Deepak](participants), [Raj](participants) [this
+    afternoon](date) [via Zoom](platform)
+
+    - organize a discussion with [Shweta](participants), [Nisha](participants), [Raj](participants)
+    [next week](time) [tomorrow](date) [on Google Meet](platform)
+
+    - Set up a call for [Neha](participants) [next week](time)
+
+    - Please set up a meeting for [Kunal](participants), [Sanjay](participants), [Rakesh](participants)
+    [later today](time) [in the morning](date)
+
+    - I want to set up a meeting with [Ananya](participants), [Kiran](participants)
+    [later today](time) [in the evening](date) [on Skype](platform)
+
+    - I want to book a conference with [glue](invalid_participant)
+
+    - Set up a call for [glue](invalid_participant) [on Skype](platform)
+
+    - plan a meeting with [Vijay](participants), [Kunal](participants), [Kiran](participants)
+    [in the morning](date) [through Microsoft Teams](platform)
+
+    - I want to book a call with [Sameer](participants), [Rohit](participants), [Neha](participants)
+    [this afternoon](date) [on Skype](platform)
+
+    - Please arrange a meeting for [Gaurav](participants), [Meena](participants) [next
+    week](time)
+
+    - Please set up a meeting for [fork](invalid_participant) [later today](time)
+    [on Friday](date) [on Google Meet](platform)
+
+    - Can you schedule a chat with [Shweta](participants), [Pooja](participants) [via
+    Zoom](platform)?
+
+    - plan a meeting with [Kavya](participants), [Gaurav](participants) [later today](time)
+
+    - Can you schedule a meeting with [Anil](participants), [Bhavna](participants),
+    [Ritu](participants) [in the morning](date)?
+
+    - Can you organize a discussion with [Kunal](participants), [Pooja](participants),
+    [Raj](participants) [via Zoom](platform)?
+
+    - create a session with [Alok](participants) [on 5th November](time) [on Friday](date)
+    [on Skype](platform)
+
+    - Can you create a session with [Priya](participants), [Kiran](participants),
+    [Varun](participants) [at 5 p.m.](time) [in the evening](date) [on Skype](platform)?
+
+    - Can you organize a discussion with [Priya](participants), [Shweta](participants)
+    ?
+
+    - Can you schedule a chat with [Pooja](participants), [Raj](participants) [on
+    Google Meet](platform)?
+
+    - Organize a discussion for [Suresh](participants) [next Monday](time) [next Monday](date)
+
+    - Please set up a meeting for [glue](invalid_participant) [in the evening](date)
+
+    - book a conference with [Shweta](participants), [Pooja](participants) [on Friday](time)
+    [on 5th November](date)
+
+    - Book a call for [Anju](participants), [Varun](participants), [Priyanka](participants)
+    [on 5th November](date)
+
+    - create a session with [Neha](participants), [Nitin](participants) [next Monday](date)
+
+    - Organize a discussion for [Anju](participants)
+
+    - Create a session for [Nitin](participants), [Rahul](participants), [Rakesh](participants)
+    [on Google Meet](platform)
+
+    - Set up a call for [Priya](participants)
+
+    - Please schedule a chat for [Amit](participants), [Rajesh](participants) [on
+    Friday](date)
+
+    - Can you set up a call with [dog](invalid_participant) ?
+
+    - Can you create a session with [Nitin](participants), [Gaurav](participants),
+    [Neha](participants) [on 5th November](time)?
+
+    - Can you schedule a chat with [Ankit](participants), [Divya](participants) [via
+    Zoom](platform)?
+
+    - Please set up a call for [Raj](participants), [Deepak](participants), [Harsh](participants)
+
+    - Can you set up a meeting with [Rahul](participants), [Deepak](participants),
+    [Bhavna](participants) [on 5th November](time)  [through Microsoft Teams](platform)?
+
+    - Please create a session for [Anil](participants) [on Friday](date) [using Webex](platform)
+
+    - Can you book a call with [Sameer](participants), [Amit](participants) [at 5
+    p.m.](time) [in the morning](date)?
+
+    - Arrange a meeting for [Kunal](participants), [Bhavna](participants) [this afternoon](time)
+    [this afternoon](date) [using Webex](platform)
+
+    - I want to set up a meeting with [Karan](participants), [Anju](participants),
+    [Priya](participants) [through Microsoft Teams](platform)
+
+    - Please arrange a meeting for [Rahul](participants), [Neha](participants), [Divya](participants)
+
+    - Please organize a discussion for [Rakesh](participants), [Ashwini](participants)
+    [tomorrow](time) [in the evening](date)
+
+    - Organize a discussion for [Rohan](participants) [next Monday](date)
+
+    - create a session with [Divya](participants), [Amit](participants), [Rohan](participants)
+
+    - Can you create a session with [Gaurav](participants) [next week](time)  [on
+    Skype](platform)?
+
+    - Can you create a session with [Amit](participants), [Sunita](participants) [at
+    5 p.m.](time) [in the morning](date)?
+
+    - book a conference with [Vijay](participants), [Sneha](participants) [in the
+    evening](date)
+
+    - I want to schedule a chat with [fork](invalid_participant) [on Friday](time)
+    [tomorrow](date) [through Microsoft Teams](platform)
+
+    - schedule a chat with [Shweta](participants), [Anju](participants) [in the evening](date)
+    [on Google Meet](platform)
+
+    - Can you schedule a chat with [Shweta](participants), [Amit](participants), [Manish](participants)
+    [through Microsoft Teams](platform)?
+
+    - Please arrange a meeting for [Varun](participants), [Anju](participants) [on
+    Friday](date)
+
+    - plan a meeting with [dog](invalid_participant) [in the evening](date) [on Skype](platform)
+
+    - I want to book a call with [Rohan](participants) [on 5th November](time) [on
+    5th November](date)
+
+    - I want to arrange a meeting with [Neha](participants), [Deepak](participants)
+    [in the morning](date) [on Skype](platform)
+
+    - Can you organize a discussion with [Rahul](participants), [Anil](participants)
+    [later today](time)?
+
+    - I want to book a conference with [fork](invalid_participant) [this afternoon](time)
+    [on Friday](date) [on Skype](platform)
+
+    - Please book a call for [Alok](participants), [Priya](participants) [on 5th November](date)
+    [on Skype](platform)
+
+    - Please set up a meeting for [Vijay](participants) [this afternoon](date) [on
+    Google Meet](platform)
+
+    - Schedule a meeting for [Varun](participants) [next Monday](date)
+
+    - Schedule a chat for [Shweta](participants), [Harsh](participants) [later today](time)
+
+    - Please set up a meeting for [unicorn](invalid_participant) [this afternoon](time)
+    [on 5th November](date)
+
+    - Can you schedule a chat with [Pooja](participants), [Gaurav](participants) [next
+    Monday](time)?
+
+    - Can you plan a meeting with [Gaurav](participants), [Priyanka](participants),
+    [Amit](participants) [through Microsoft Teams](platform)?
+
+    - Organize a discussion for [Vijay](participants), [Rakesh](participants) [in
+    the evening](time)
+
+    - Book a call for [Bhavna](participants), [Manish](participants)
+
+    - I want to set up a meeting with [Amit](participants), [Harsh](participants)
+    [in the morning](date)
+
+    - Please set up a meeting for [Rohan](participants) [next week](time) [on Friday](date)
+    [via Zoom](platform)
+
+    - schedule a chat with [Varun](participants), [Kiran](participants), [Bhavna](participants)
+    [at 10 a.m.](time)  [via Zoom](platform)
+
+    - Please set up a meeting for [Ashwini](participants), [Neha](participants) [this
+    afternoon](time)  [on Google Meet](platform)
+
+    - I want to book a conference with [Rajesh](participants), [Pooja](participants)
+
+    - Can you book a conference with [Amit](participants), [Meena](participants) [on
+    5th November](time)?
+
+    - Can you arrange a meeting with [Sneha](participants) [in the evening](date)?
+
+    - Schedule a meeting for [me](invalid_participant) [next week](time)
+
+    - I want to arrange a meeting with [Kavita](participants) [in the evening](time)  [on
+    Skype](platform)
+
+    - Arrange a meeting for [Raj](participants), [Shweta](participants), [Pooja](participants)
+    [tomorrow](date)
+
+    - Please plan a meeting for [Rajesh](participants), [Kavita](participants) [in
+    the morning](date) [through Microsoft Teams](platform)
+
+    - I want to create a session with [cactus](invalid_participant) [on 5th November](date)
+
+    - Can you schedule a chat with [Deepak](participants), [Kavita](participants),
+    [Sameer](participants) [on Friday](time) [tomorrow](date)?
+
+    - Set up a meeting for [Priya](participants), [Priyanka](participants), [Nitin](participants)
+    [this afternoon](date) [using Webex](platform)
+
+    - book a conference with [Rohan](participants), [Sunita](participants) [in the
+    evening](time)
+
+    - I want to schedule a chat with [Amit](participants), [Sunita](participants),
+    [Amit](participants)
+
+    - plan a meeting with [Rohan](participants), [Varun](participants) [on 5th November](time)
+
+    - Please arrange a meeting for [Neha](participants), [Amit](participants), [Sameer](participants)
+    [on Friday](date)
+
+    - organize a discussion with [Rajesh](participants) [through Microsoft Teams](platform)
+
+    - schedule a chat with [Deepak](participants) [at 5 p.m.](time) [this afternoon](date)
+
+    - Schedule a meeting for [Anil](participants), [Raj](participants) [on 5th November](time)  [using
+    Webex](platform)
+
+    - Can you book a conference with [Kunal](participants), [Rajesh](participants)
+    [in the morning](date) [through Microsoft Teams](platform)?
+
+    - Please arrange a meeting for [Ashwini](participants) [via Zoom](platform)
+
+    - Please schedule a chat for [Nisha](participants), [Gaurav](participants), [Rahul](participants)
+    [on Friday](time)
+
+    - Arrange a meeting for [Raj](participants), [Nisha](participants) [this afternoon](time)
+    [next Monday](date) [on Google Meet](platform)
+
+    - I want to schedule a meeting with [Alok](participants) [in the morning](date)
+    [on Google Meet](platform)
+
+    - I want to arrange a meeting with [Sameer](participants) [through Microsoft Teams](platform)
+
+    - set up a meeting with [Rahul](participants), [Rohit](participants), [Shweta](participants)
+    [next week](time) [on Friday](date) [via Zoom](platform)
+
+    - Organize a discussion for [Rohan](participants), [Sunita](participants) [in
+    the evening](time) [in the morning](date) [using Webex](platform)
+
+    - I want to set up a meeting with [Deepak](participants), [Manish](participants),
+    [Amit](participants) [on Friday](time)  [using Webex](platform)
+
+    - I want to schedule a chat with [you](invalid_participant) [tomorrow](date)
+
+    - Can you book a conference with [Amit](participants), [Ankit](participants),
+    [Nitin](participants) [next Monday](time)?
+
+    - Please plan a meeting for [Ananya](participants) [on 5th November](time)
+
+    - Please schedule a meeting for [myself](invalid_participant) [on Friday](time)
+    [this afternoon](date)
+
+    - I want to plan a meeting with [Sanjay](participants), [Kavita](participants),
+    [Sameer](participants) [tomorrow](date)
+
+    - I want to schedule a meeting with [Raj](participants) [this afternoon](time)
+
+    - book a call with [Sameer](participants), [Anju](participants) [tomorrow](time)
+    [in the morning](date)
+
+    - Arrange a meeting for [Ritu](participants), [Amit](participants), [Rakesh](participants)
+    [in the evening](time) [in the evening](date) [using Webex](platform)
+
+    - I want to schedule a chat with [Priyanka](participants), [Anil](participants)
+    [on 5th November](date)
+
+    - Can you book a conference with [Kunal](participants), [Nitin](participants)
+    [on 5th November](time) [this afternoon](date) [through Microsoft Teams](platform)?
+
+    - Can you arrange a meeting with [Rakesh](participants) ?
+
+    - Set up a call for [Sanjay](participants), [Divya](participants), [Bhavna](participants)
+    [on 5th November](time) [next Monday](date) [on Google Meet](platform)
+
+    - Create a session for [Anil](participants), [Ritu](participants), [Pooja](participants)
+    [tomorrow](time) [on Friday](date) [using Webex](platform)
+
+    - Please arrange a meeting for [Rajesh](participants), [Priya](participants),
+    [Nisha](participants) [on Friday](time)
+
+    - I want to schedule a chat with [Raj](participants) [tomorrow](time) [in the
+    morning](date)
+
+    - I want to schedule a meeting with [Sanjay](participants), [Raj](participants),
+    [Manish](participants) [on Google Meet](platform)
+
+    - Please book a call for [Alok](participants) [next Monday](date) [on Google Meet](platform)
+
+    - I want to set up a meeting with [Amit](participants), [Neha](participants) [on
+    Google Meet](platform)
+
+    - plan a meeting with [Suresh](participants), [Raj](participants) [this afternoon](date)
+
+    - I want to book a conference with [Amit](participants), [Priya](participants),
+    [Priyanka](participants) [tomorrow](time)
+
+    - I want to schedule a chat with [Rakesh](participants), [Shweta](participants),
+    [Rekha](participants) [using Webex](platform)
+
+    - I want to schedule a chat with [Anil](participants), [Deepak](participants),
+    [Kiran](participants) [on 5th November](date) [via Zoom](platform)
+
+    - book a conference with [Rohit](participants) [at 5 p.m.](time) [next Monday](date)
+    [on Google Meet](platform)
+
+    - plan a meeting with [Sneha](participants), [Varun](participants), [Rekha](participants)
+    [tomorrow](date)
+
+    - set up a call with [Rakesh](participants), [Nisha](participants), [Sneha](participants)
+
+    - Can you book a conference with [Ananya](participants), [Rohit](participants)
+    ?
+
+    - create a session with [Shweta](participants), [Harsh](participants) [on Friday](date)
+
+    - Book a call for [Nisha](participants) [on Friday](date)
+
+    - I want to arrange a meeting with [Kavita](participants), [Priya](participants),
+    [Sneha](participants) [later today](time)
+
+    - organize a discussion with [Suresh](participants), [Shweta](participants) [next
+    week](time) [next Monday](date) [via Zoom](platform)
+
+    - Book a conference for [Ananya](participants), [Ritu](participants), [Priyanka](participants)
+    [on 5th November](date) [using Webex](platform)
+
+    - set up a meeting with [Meena](participants), [Priyanka](participants) [on Friday](time)
+    [in the evening](date) [on Skype](platform)
+
+    - Can you schedule a meeting with [Rahul](participants) [in the morning](date)
+    [using Webex](platform)?
+
+    - set up a call with [Suresh](participants), [Anju](participants), [Rahul](participants)
+    [at 5 p.m.](time) [on Friday](date)
+
+    - set up a meeting with [me](invalid_participant) [this afternoon](date)
+
+    - Book a conference for [glue](invalid_participant)
+
+    - I want to set up a meeting with [Priyanka](participants), [Gaurav](participants),
+    [Anju](participants) [in the evening](date)
+
+    - Please create a session for [Kavita](participants), [Rahul](participants), [Amit](participants)
+    [in the evening](date)
+
+    - Please book a call for [Priyanka](participants), [Harsh](participants), [Amit](participants)
+
+    - Please schedule a meeting for [toaster](invalid_participant)
+
+    - arrange a meeting with [Anju](participants) [via Zoom](platform)
+
+    - Set up a call for [Sanjay](participants), [Priya](participants) [in the evening](date)
+    [using Webex](platform)
+
+    - Please create a session for [Rakesh](participants), [Sneha](participants), [Amit](participants)
+    [at 10 a.m.](time)  [on Skype](platform)
+
+    - Please book a conference for [Anju](participants) [at 5 p.m.](time)
+
+    - Set up a meeting for [Priyanka](participants), [Vijay](participants), [Ananya](participants)
+    [next Monday](date)
+
+    - Schedule a chat for [Pooja](participants) [at 5 p.m.](time)  [on Skype](platform)
+
+    - I want to schedule a chat with [Kavita](participants)
+
+    - Organize a discussion for [Ritu](participants), [Vijay](participants) [next
+    Monday](time) [on Friday](date)
+
+    - set up a meeting with [Ritu](participants), [Rekha](participants)
+
+    - I want to organize a discussion with [Ritu](participants), [Anil](participants)
+    [on Google Meet](platform)
+
+    - book a call with [banana](invalid_participant) [tomorrow](time)  [on Google
+    Meet](platform)
+
+    - I want to plan a meeting with [Deepak](participants), [Raj](participants), [Meena](participants)
+    [tomorrow](date) [through Microsoft Teams](platform)
+
+    - I want to book a conference with [Vijay](participants), [Nitin](participants)
+    [next Monday](date)
+
+    - Plan a meeting for [Deepak](participants) [in the evening](date) [using Webex](platform)
+
+    - set up a meeting with [fork](invalid_participant) [at 5 p.m.](time)  [through
+    Microsoft Teams](platform)
+
+    - Can you set up a meeting with [Alok](participants), [Sneha](participants) [later
+    today](time) [next Monday](date) [on Google Meet](platform)?
+
+    - Please set up a meeting for [Priya](participants), [Shweta](participants), [Suresh](participants)
+    [in the evening](date)
+
+    - I want to arrange a meeting with [toaster](invalid_participant) [on 5th November](time)
+    [on 5th November](date)
+
+    - Please create a session for [Suresh](participants), [Kavita](participants),
+    [Rohit](participants) [at 10 a.m.](time)  [via Zoom](platform)
+
+    - Arrange a meeting for [Rakesh](participants), [Sameer](participants) [at 10
+    a.m.](time)
+
+    - Please set up a meeting for [Priya](participants), [Rohit](participants)
+
+    - I want to schedule a meeting with [Rakesh](participants), [Ankit](participants)
+
+    - Can you book a call with [Gaurav](participants), [Harsh](participants), [Kavya](participants)
+    ?
+
+    - Set up a call for [Divya](participants), [Karan](participants) [in the evening](date)
+
+    - I want to schedule a meeting with [Sameer](participants), [Priyanka](participants)
+    [this afternoon](date)
+
+    - Can you arrange a meeting with [Manish](participants) [in the evening](time)?
+
+    - set up a meeting with [Nisha](participants)
+
+    - Can you create a session with [Nitin](participants) ?
+
+    - Please arrange a meeting for [Karan](participants)
+
+    - Please arrange a meeting for [unicorn](invalid_participant) [tomorrow](time)
+    [on 5th November](date)
+
+    - set up a meeting with [Rohit](participants) [through Microsoft Teams](platform)
+
+    - Set up a meeting for [Suresh](participants) [at 10 a.m.](time)
+
+    - I want to schedule a meeting with [Rohan](participants) [at 5 p.m.](time)  [using
+    Webex](platform)
+
+    - Schedule a chat for [Nisha](participants)
+
+    - Set up a call for [Nitin](participants) [on Google Meet](platform)
+
+    - schedule a chat with [Pooja](participants), [Sameer](participants), [Rakesh](participants)
+    [next Monday](time)
+
+    - arrange a meeting with [Amit](participants), [Rakesh](participants) [on 5th
+    November](time)  [via Zoom](platform)
+
+    - Book a conference for [Gaurav](participants), [Deepak](participants) [at 5 p.m.](time)
+    [on Friday](date)
+
+    - organize a discussion with [Vijay](participants), [Ritu](participants), [Suresh](participants)
+    [next Monday](time) [in the morning](date)
+
+    - set up a call with [Sameer](participants) [at 10 a.m.](time) [next Monday](date)
+    [on Skype](platform)
+
+    - Can you book a call with [Nitin](participants) [on 5th November](time)  [on
+    Google Meet](platform)?
+
+    - I want to create a session with [toaster](invalid_participant) [in the evening](time)
+
+    - Please schedule a meeting for [Karan](participants), [Rohit](participants),
+    [Neha](participants) [through Microsoft Teams](platform)
+
+    - I want to book a conference with [Ankit](participants), [Anju](participants),
+    [Kiran](participants) [later today](time)
+
+    - I want to plan a meeting with [Deepak](participants), [Neha](participants),
+    [Meena](participants) [next week](time) [in the morning](date)
+
+    - book a conference with [Sunita](participants), [Suresh](participants) [this
+    afternoon](time)  [via Zoom](platform)
+
+    - I want to book a call with [Vijay](participants) [in the evening](date) [through
+    Microsoft Teams](platform)
+
+    - Please plan a meeting for [Rakesh](participants) [on Google Meet](platform)
+
+    - Schedule a chat for [Sunita](participants) [next Monday](date)
+
+    - Please schedule a meeting for [Manish](participants) [tomorrow](time) [on 5th
+    November](date)
+
+    - I want to set up a call with [Manish](participants), [Pooja](participants),
+    [Rohan](participants)
+
+    - Book a conference for [Ashwini](participants) [this afternoon](date)
+
+    - set up a meeting with [Varun](participants), [Karan](participants) [in the morning](date)
+    [on Skype](platform)
+
+    - Can you schedule a meeting with [Divya](participants), [Varun](participants)
+    ?
+
+    - I want to plan a meeting with [Sanjay](participants), [Sneha](participants),
+    [Priyanka](participants) [next week](time)  [using Webex](platform)
+
+    - Can you schedule a meeting with [Kunal](participants), [Amit](participants),
+    [Vijay](participants) [later today](time) [next Monday](date)?
+
+    - Can you schedule a chat with [glue](invalid_participant) [on Friday](time)?
+
+    - I want to create a session with [Anil](participants), [Ananya](participants),
+    [Meena](participants) [next Monday](time)  [through Microsoft Teams](platform)
+
+    - book a call with [Rohit](participants), [Karan](participants), [Meena](participants)
+    [on Google Meet](platform)
+
+    - Please arrange a meeting for [Gaurav](participants), [Suresh](participants)
+    [at 10 a.m.](time) [in the morning](date)
+
+    - Please book a conference for [Kiran](participants) [tomorrow](time)
+
+    - Create a session for [Rohit](participants), [Varun](participants) [using Webex](platform)
+
+    - I want to book a call with [Harsh](participants), [Sunita](participants), [Raj](participants)
+    [in the evening](time)
+
+    - I want to book a call with [Rohan](participants), [Rohit](participants), [Priyanka](participants)
+    [next Monday](time) [on 5th November](date)
+
+    - arrange a meeting with [Ashwini](participants), [Ankit](participants) [on 5th
+    November](date) [on Skype](platform)
+
+    - I want to plan a meeting with [Gaurav](participants), [Amit](participants),
+    [Ankit](participants) [on 5th November](time)
+
+    - I want to create a session with [Ashwini](participants) [this afternoon](time)
+    [on 5th November](date) [on Google Meet](platform)
+
+    - I want to schedule a meeting with [Gaurav](participants), [Priya](participants)
+    [next week](time)  [on Google Meet](platform)
+
+    - Please schedule a chat for [Manish](participants)
+
+    - Please book a call for [you](invalid_participant)
+
+    - Can you schedule a meeting with [Raj](participants), [Neha](participants), [Kunal](participants)
+    [next week](time) [in the morning](date) [using Webex](platform)?
+
+    - Book a call for [me](invalid_participant) [at 10 a.m.](time) [next Monday](date)
+
+    - Can you book a call with [Alok](participants), [Gaurav](participants) [via Zoom](platform)?
+
+    - Can you schedule a meeting with [Rekha](participants), [Priya](participants),
+    [Sanjay](participants) [on Google Meet](platform)?
+
+    - I want to arrange a meeting with [Ankit](participants) [this afternoon](time)  [via
+    Zoom](platform)
+
+    - Please organize a discussion for [Kavita](participants), [Ritu](participants),
+    [Divya](participants) [in the evening](date) [on Skype](platform)
+
+    - I want to set up a call with [Ashwini](participants), [Sameer](participants),
+    [Bhavna](participants) [at 5 p.m.](time)
+
+    - Book a conference for [Nisha](participants), [Karan](participants), [Rohan](participants)
+
+    - Please schedule a chat for [Ankit](participants), [Rekha](participants) [in
+    the evening](date)
+
+    - plan a meeting with [Gaurav](participants), [Harsh](participants) [in the evening](date)
+    [via Zoom](platform)
+
+    - I want to book a conference with [Amit](participants), [Rahul](participants),
+    [Ashwini](participants) [next Monday](date)
+
+    - I want to schedule a chat with [Rohan](participants) [on Skype](platform)
+
+    - schedule a meeting with [Rajesh](participants), [Rohit](participants) [on Google
+    Meet](platform)
+
+    - I want to arrange a meeting with [Ananya](participants), [Vijay](participants),
+    [Priya](participants) [on Google Meet](platform)
+
+    - Please schedule a meeting for [Ananya](participants), [Kavita](participants)
+    [later today](time)  [on Google Meet](platform)
+
+    - I want to book a conference with [Suresh](participants), [Priya](participants)
+    [on 5th November](time) [this afternoon](date)
+
+    - book a conference with [Priya](participants), [Pooja](participants) [in the
+    evening](time) [in the morning](date)
+
+    - Book a call for [Rajesh](participants), [Sneha](participants), [Alok](participants)
+    [next Monday](time)
+
+    - Please schedule a meeting for [Suresh](participants) [via Zoom](platform)
+
+    - Create a session for [unicorn](invalid_participant) [on Friday](time)  [via
+    Zoom](platform)
+
+    - schedule a meeting with [chimpanzee](invalid_participant) [this afternoon](time)  [on
+    Google Meet](platform)
+
+    - Can you book a conference with [Neha](participants), [Raj](participants), [Priya](participants)
+    [next week](time) [tomorrow](date) [via Zoom](platform)?
+
+    - Please set up a call for [Karan](participants) [at 10 a.m.](time)
+
+    - Organize a discussion for [Bhavna](participants), [Alok](participants), [Priya](participants)
+
+    - Book a conference for [Kunal](participants), [Amit](participants)
+
+    - Create a session for [Anju](participants), [Sameer](participants) [later today](time)
+
+    - Please arrange a meeting for [me](invalid_participant) [using Webex](platform)
+
+    - I want to schedule a chat with [Kunal](participants), [Varun](participants),
+    [Gaurav](participants) [next week](time) [tomorrow](date)
+
+    - Please schedule a meeting for [Ankit](participants), [Kavya](participants) [on
+    Friday](date)
+
+    - arrange a meeting with [Ananya](participants), [Deepak](participants), [Harsh](participants)
+    [later today](time)  [through Microsoft Teams](platform)
+
+    - book a call with [Suresh](participants), [Anil](participants) [next Monday](date)
+    [using Webex](platform)
+
+    - Book a call for [Priya](participants), [Nitin](participants), [Sneha](participants)
+    [on Google Meet](platform)
+
+    - Plan a meeting for [Sameer](participants) [in the morning](date)
+
+    - I want to book a call with [Ashwini](participants), [Rohit](participants) [this
+    afternoon](date)
+
+    - Can you organize a discussion with [Suresh](participants), [Karan](participants)
+    [at 5 p.m.](time)?
+
+    - Can you set up a meeting with [Rohit](participants) [next Monday](date) [on
+    Skype](platform)?
+
+    - Please schedule a meeting for [Sameer](participants) [through Microsoft Teams](platform)
+
+    - schedule a meeting with [Harsh](participants), [Kavya](participants)
+
+    - Please plan a meeting for [Rajesh](participants) [next Monday](time)
+
+    - Can you book a call with [Pooja](participants), [Nisha](participants) [this
+    afternoon](time)  [on Skype](platform)?
+
+    - book a call with [me](invalid_participant) [on Google Meet](platform)
+
+    - Book a conference for [Manish](participants), [Rohan](participants), [Amit](participants)
+    [later today](time) [on 5th November](date)
+
+    - I want to set up a call with [Kiran](participants), [Ankit](participants)
+
+    - book a conference with [Raj](participants) [on Friday](time)
+
+    - I want to set up a call with [Divya](participants), [Sanjay](participants) [through
+    Microsoft Teams](platform)
+
+    - create a session with [Shweta](participants) [on Friday](date) [on Google Meet](platform)
+
+    - Arrange a meeting for [Manish](participants), [Kiran](participants), [Varun](participants)
+    [next Monday](date)
+
+    - create a session with [Anil](participants), [Priyanka](participants), [Sameer](participants)
+    [on Google Meet](platform)
+
+    - plan a meeting with [Ananya](participants) [tomorrow](time) [in the evening](date)
+    [via Zoom](platform)
+
+    - create a session with [Ankit](participants) [on Friday](date)
+
+    - schedule a chat with [Rahul](participants), [Rajesh](participants) [next week](time)
+    [on Friday](date) [on Google Meet](platform)
+
+    - set up a meeting with [Kiran](participants), [Meena](participants) [tomorrow](time)  [on
+    Google Meet](platform)
+
+    - Can you book a conference with [Bhavna](participants) [using Webex](platform)?
+
+    - Please create a session for [Kavya](participants), [Sanjay](participants), [Kavita](participants)
+    [later today](time)
+
+    - Book a call for [Ankit](participants), [Harsh](participants) [next week](time)
+    [next Monday](date) [on Skype](platform)
+
+    - Please book a conference for [Rekha](participants), [Kiran](participants), [Amit](participants)
+    [on 5th November](date)
+
+    - I want to arrange a meeting with [Vijay](participants), [Amit](participants)
+    [on Friday](time) [in the evening](date) [on Google Meet](platform)
+
+    - Please arrange a meeting for [Priyanka](participants), [Meena](participants),
+    [Kiran](participants) [on 5th November](time)  [through Microsoft Teams](platform)
+
+    - Please set up a call for [Kiran](participants), [Sanjay](participants) [this
+    afternoon](time)  [on Google Meet](platform)
+
+    - Book a call for [penguin](invalid_participant) [at 10 a.m.](time)
+
+    - I want to set up a call with [dog](invalid_participant) [at 5 p.m.](time) [in
+    the evening](date) [using Webex](platform)
+
+    - Please create a session for [Kunal](participants), [Neha](participants), [Rajesh](participants)
+    [tomorrow](time)  [using Webex](platform)
+
+    - Can you set up a call with [Rohan](participants) [in the evening](date) [on
+    Google Meet](platform)?
+
+    - arrange a meeting with [Gaurav](participants), [Rakesh](participants) [on 5th
+    November](date) [via Zoom](platform)
+
+    - Can you organize a discussion with [Divya](participants), [Rekha](participants),
+    [Sanjay](participants) [on 5th November](time) [in the evening](date)?
+
+    - arrange a meeting with [Rohit](participants), [Karan](participants) [on Friday](date)
+
+    - Can you create a session with [Anju](participants), [Priyanka](participants)
+    [through Microsoft Teams](platform)?
+
+    - Can you plan a meeting with [Ananya](participants), [Gaurav](participants) [in
+    the morning](date)?
+
+    - Schedule a chat for [Manish](participants) [on 5th November](time)
+
+    - I want to organize a discussion with [Nitin](participants) [on Google Meet](platform)
+
+    - organize a discussion with [Nitin](participants), [Bhavna](participants) [on
+    Skype](platform)
+
+    - I want to book a conference with [Pooja](participants) [next Monday](time) [tomorrow](date)
+    [using Webex](platform)
+
+    - set up a meeting with [Raj](participants), [Amit](participants), [Rakesh](participants)
+
+    - Arrange a meeting for [Priyanka](participants), [Manish](participants), [Kiran](participants)
+    [next Monday](time) [in the morning](date) [through Microsoft Teams](platform)
+
+    - Create a session for [Sanjay](participants), [Divya](participants) [on Friday](time)
+
+    - Can you book a call with [Sneha](participants), [Kiran](participants), [Raj](participants)
+    [on 5th November](time) [on 5th November](date)?
+
+    - set up a meeting with [Deepak](participants), [Kavita](participants) [in the
+    evening](date) [using Webex](platform)
+
+    - I want to plan a meeting with [Karan](participants) [on Friday](date)
+
+    - create a session with [Priyanka](participants), [Nisha](participants) [on 5th
+    November](time) [in the morning](date) [via Zoom](platform)
+
+    - Please book a call for [Ashwini](participants), [Rohit](participants) [in the
+    morning](date) [through Microsoft Teams](platform)
+
+    - Can you create a session with [Kavita](participants), [Amit](participants),
+    [Harsh](participants) [next Monday](time) [on Friday](date) [through Microsoft
+    Teams](platform)?
+
+    - Please plan a meeting for [Deepak](participants), [Alok](participants), [Rahul](participants)
+    [on Friday](time)  [via Zoom](platform)
+
+    - Book a call for [Vijay](participants), [Anil](participants)
+
+    - Arrange a meeting for [Gaurav](participants)
+
+    - I want to create a session with [Raj](participants), [Karan](participants),
+    [Kavya](participants) [at 5 p.m.](time) [on Friday](date) [through Microsoft Teams](platform)
+
+    - create a session with [Karan](participants), [Raj](participants) [on 5th November](date)
+
+    - organize a discussion with [dog](invalid_participant) [next week](time)
+
+    - I want to book a call with [Bhavna](participants) [on Google Meet](platform)
+
+    - Set up a meeting for [Varun](participants), [Rakesh](participants)
+
+    - Set up a meeting for [Kiran](participants), [Neha](participants) [at 10 a.m.](time)
+
+    - Please set up a call for [cactus](invalid_participant) [on 5th November](date)
+    [on Google Meet](platform)
+
+    - Organize a discussion for [Anju](participants), [Nisha](participants), [Deepak](participants)
+    [next week](time)  [on Skype](platform)
+
+    - Please create a session for [Raj](participants), [Meena](participants) [next
+    week](time) [tomorrow](date)
+
+    - Please organize a discussion for [Nitin](participants), [Harsh](participants)
+    [next Monday](time) [in the morning](date)
+
+    - Book a conference for [Gaurav](participants), [Manish](participants) [in the
+    morning](date) [through Microsoft Teams](platform)
+
+    - Please set up a call for [Priyanka](participants) [this afternoon](date)
+
+    - I want to set up a call with [Rohan](participants), [Sunita](participants) [in
+    the evening](date)
+
+    - I want to schedule a chat with [you](invalid_participant) [at 10 a.m.](time)
+    [next Monday](date) [through Microsoft Teams](platform)
+
+    - Schedule a chat for [Kiran](participants), [Suresh](participants), [Pooja](participants)
+    [on 5th November](time) [in the evening](date)
+
+    - Can you organize a discussion with [Varun](participants), [Raj](participants),
+    [Suresh](participants) [next Monday](time) [on Friday](date)?
+
+    - Can you plan a meeting with [Karan](participants) [in the evening](time) [in
+    the evening](date) [via Zoom](platform)?
+
+    - plan a meeting with [Rekha](participants), [Amit](participants), [Harsh](participants)
+    [next week](time) [in the evening](date) [on Google Meet](platform)
+
+    - Please arrange a meeting for [Rekha](participants), [Vijay](participants) [tomorrow](time)
+
+    - Please book a conference for [Ashwini](participants) [this afternoon](time)
+
+    - Can you book a conference with [Anil](participants) ?
+
+    - arrange a meeting with [Kiran](participants) [this afternoon](date)
+
+    - I want to book a conference with [Rakesh](participants), [Vijay](participants)
+    [on Google Meet](platform)
+
+    - arrange a meeting with [Sameer](participants), [Kavita](participants), [Rahul](participants)
+    [tomorrow](time) [in the evening](date)
+
+    - Organize a discussion for [Amit](participants), [Kiran](participants) [in the
+    morning](date)
+
+    - Can you book a call with [Varun](participants) [this afternoon](date) [on Skype](platform)?
+
+    - organize a discussion with [me](invalid_participant) [tomorrow](date) [through
+    Microsoft Teams](platform)
+
+    - Set up a call for [Anju](participants) [tomorrow](date)
+
+    - Book a call for [Gaurav](participants), [Raj](participants) [using Webex](platform)
+
+    - Please set up a meeting for [Amit](participants)
+
+    - Can you book a conference with [Sanjay](participants), [Kavya](participants),
+    [Anil](participants) [in the morning](date) [on Google Meet](platform)?
+
+    - schedule a meeting with [Vijay](participants) [next Monday](time)  [through
+    Microsoft Teams](platform)
+
+    - I want to organize a discussion with [myself](invalid_participant) [later today](time)
+
+    - Set up a call for [Rohit](participants) [via Zoom](platform)
+
+    - arrange a meeting with [Rohit](participants) [on Friday](time)  [through Microsoft
+    Teams](platform)
+
+    - arrange a meeting with [Ritu](participants)
+
+    - Schedule a chat for [Vijay](participants) [on 5th November](date)
+
+    - Schedule a chat for [Kavita](participants), [Shweta](participants), [Deepak](participants)
+    [on 5th November](time)  [on Skype](platform)
+
+    - I want to plan a meeting with [Alok](participants) [tomorrow](time) [on Friday](date)
+    [via Zoom](platform)
+
+    - I want to plan a meeting with [Rajesh](participants), [Bhavna](participants)
+    [next week](time) [on 5th November](date) [on Google Meet](platform)
+
+    - Please create a session for [Rahul](participants) [on Skype](platform)
+
+    - Can you schedule a meeting with [Kiran](participants), [Sneha](participants),
+    [Pooja](participants) ?
+
+    - Please organize a discussion for [Bhavna](participants), [Rekha](participants)
+    [tomorrow](time) [on 5th November](date) [via Zoom](platform)
+
+    - Please schedule a chat for [Meena](participants) [tomorrow](time)
+
+    - Set up a meeting for [Rekha](participants), [Varun](participants), [Meena](participants)
+    [next Monday](time)
+
+    - book a call with [Ritu](participants), [Shweta](participants), [Alok](participants)
+
+    - Can you set up a call with [Shweta](participants), [Pooja](participants) [tomorrow](date)?
+
+    - I want to book a call with [dog](invalid_participant) [next week](time)  [through
+    Microsoft Teams](platform)
+
+    - Book a conference for [Divya](participants), [Kavya](participants) [tomorrow](date)
+
+    - I want to book a conference with [Kavita](participants) [in the morning](date)
+    [using Webex](platform)
+
+    - Organize a discussion for [Pooja](participants), [Ankit](participants) [on 5th
+    November](time)  [on Skype](platform)
+
+    - I want to set up a meeting with [Rohan](participants), [Bhavna](participants),
+    [Kavya](participants)
+
+    - Please schedule a meeting for [Nitin](participants) [on Friday](date)
+
+    - I want to set up a call with [Kiran](participants) [at 10 a.m.](time) [tomorrow](date)
+    [on Google Meet](platform)
+
+    - Can you set up a call with [Manish](participants), [Rohit](participants), [Neha](participants)
+    [this afternoon](date)?
+
+    - Create a session for [Kavita](participants), [Amit](participants) [in the evening](date)
+    [on Skype](platform)
+
+    - Can you arrange a meeting with [Bhavna](participants), [Rajesh](participants)
+    [next week](time) [in the evening](date) [via Zoom](platform)?
+
+    - Set up a call for [Sanjay](participants), [Bhavna](participants), [Karan](participants)
+    [in the evening](date)
+
+    - Plan a meeting for [Amit](participants) [through Microsoft Teams](platform)
+
+    - set up a call with [Sanjay](participants), [Ashwini](participants), [Rahul](participants)
+
+    - I want to create a session with [Manish](participants), [Ankit](participants)
+
+    - Please arrange a meeting for [Manish](participants) [on Google Meet](platform)
+
+    - Please set up a meeting for [Rekha](participants) [this afternoon](date) [on
+    Skype](platform)
+
+    - Please arrange a meeting for [Sneha](participants), [Meena](participants) [at
+    5 p.m.](time) [tomorrow](date) [via Zoom](platform)
+
+    - I want to set up a meeting with [Rohan](participants), [Gaurav](participants),
+    [Sneha](participants)
+
+    - book a call with [Suresh](participants), [Priya](participants) [in the evening](time)
+
+    - Can you set up a meeting with [Sneha](participants), [Ashwini](participants),
+    [Ankit](participants) [on 5th November](date) [via Zoom](platform)?
+
+    - Can you book a call with [Sameer](participants), [Ananya](participants) [in
+    the evening](date)?
+
+    - Please schedule a chat for [Ankit](participants)
+
+    - Can you organize a discussion with [Bhavna](participants), [Amit](participants)
+    [next week](time) [in the morning](date)?
+
+    - set up a call with [Suresh](participants), [Divya](participants) [next Monday](date)
+    [through Microsoft Teams](platform)
+
+    - Book a call for [Harsh](participants), [Nitin](participants)
+
+    - Can you book a conference with [Kavya](participants) [this afternoon](date)?
+
+    - Plan a meeting for [Priyanka](participants) [tomorrow](time)
+
+    - Please set up a call for [Harsh](participants), [Shweta](participants), [Divya](participants)
+    [next week](time)  [on Google Meet](platform)
+
+    - Schedule a chat for [Rekha](participants), [Kiran](participants) [at 5 p.m.](time)
+    [this afternoon](date)
+
+    - book a conference with [Shweta](participants), [Pooja](participants) [later
+    today](time) [next Monday](date)
+
+    - Can you arrange a meeting with [Ananya](participants), [Deepak](participants)
+    [using Webex](platform)?
+
+    - Set up a call for [Sanjay](participants) [on Friday](time)  [on Skype](platform)
+
+    - Set up a call for [Kiran](participants), [Anil](participants) [later today](time)
+
+    - Please plan a meeting for [Priya](participants) [at 5 p.m.](time) [in the evening](date)
+
+    - Can you schedule a meeting with [Sanjay](participants) ?
+
+    - book a call with [Sameer](participants), [Rohit](participants), [Sanjay](participants)
+    [on 5th November](time) [in the morning](date) [on Skype](platform)
+
+    - Can you set up a call with [Kavita](participants) [on Google Meet](platform)?
+
+    - arrange a meeting with [Priya](participants), [Deepak](participants), [Sameer](participants)
+    [this afternoon](time) [on 5th November](date) [using Webex](platform)
+
+    - Can you plan a meeting with [Amit](participants), [Rajesh](participants), [Kavya](participants)
+    [this afternoon](date)?
+
+    - Please create a session for [Raj](participants), [Rekha](participants) [on Google
+    Meet](platform)
+
+    - Please schedule a chat for [Ashwini](participants) [tomorrow](time)  [using
+    Webex](platform)
+
+    - schedule a chat with [Kavita](participants), [Priya](participants), [Ashwini](participants)
+    [at 5 p.m.](time)
+
+    - organize a discussion with [Rajesh](participants), [Kunal](participants), [Sanjay](participants)
+    [in the evening](date)
+
+    - Please book a conference for [Rekha](participants), [Nitin](participants), [Vijay](participants)
+    [tomorrow](date)
+
+    - Set up a call for [Sameer](participants), [Harsh](participants), [Ashwini](participants)
+    [in the evening](date)
+
+    - Can you arrange a meeting with [Suresh](participants), [Rohan](participants)
+    [on Friday](time)?
+
+    - I want to book a conference with [Rohit](participants), [Karan](participants)
+    [next Monday](time) [next Monday](date)
+
+    - create a session with [Sneha](participants), [Rekha](participants), [Rajesh](participants)
+    [next Monday](time) [in the morning](date) [on Skype](platform)
+
+    - I want to set up a meeting with [Gaurav](participants), [Vijay](participants),
+    [Deepak](participants) [this afternoon](date)
+
+    - Book a call for [Rakesh](participants), [Vijay](participants), [Kavya](participants)
+    [on Google Meet](platform)
+
+    - I want to schedule a meeting with [Rohan](participants), [Vijay](participants),
+    [Priyanka](participants) [on Friday](time) [next Monday](date) [through Microsoft
+    Teams](platform)
+
+    - I want to set up a call with [Sunita](participants), [Rohit](participants),
+    [Shweta](participants) [in the evening](time) [tomorrow](date) [using Webex](platform)
+
+    - Please book a conference for [dog](invalid_participant) [this afternoon](time)
+
+    - I want to book a call with [Kavita](participants), [Meena](participants) [at
+    10 a.m.](time)
+
+    - Can you arrange a meeting with [Priya](participants), [Priyanka](participants)
+    [this afternoon](time)  [on Google Meet](platform)?
+
+    - Please schedule a meeting for [Divya](participants) [later today](time) [on
+    Friday](date) [via Zoom](platform)
+
+    - Please set up a call for [fork](invalid_participant) [later today](time)  [on
+    Google Meet](platform)
+
+    - Please schedule a chat for [Ritu](participants), [Deepak](participants) [tomorrow](time)
+    [this afternoon](date) [through Microsoft Teams](platform)
+
+    - Please organize a discussion for [Neha](participants), [Rajesh](participants),
+    [Priyanka](participants) [this afternoon](date)
+
+    - Please set up a call for [Rohan](participants) [at 5 p.m.](time) [in the morning](date)
+    [through Microsoft Teams](platform)
+
+    - Can you plan a meeting with [Ananya](participants) [next week](time)?
+
+    - create a session with [Karan](participants), [Rakesh](participants) [in the
+    evening](time) [on Friday](date)
+
+    - I want to schedule a meeting with [Priyanka](participants), [Manish](participants),
+    [Nitin](participants) [on Friday](date)
+
+    - I want to arrange a meeting with [Kunal](participants) [this afternoon](time)
+    [in the morning](date)
+
+    - Arrange a meeting for [Kavita](participants), [Suresh](participants), [Vijay](participants)
+
+    - Book a conference for [Ankit](participants) [this afternoon](date) [using Webex](platform)
+
+    - Can you arrange a meeting with [Sameer](participants) [on Friday](date) [via
+    Zoom](platform)?
+
+    - I want to arrange a meeting with [Neha](participants), [Deepak](participants)
+    [on Friday](time) [on 5th November](date)
+
+    - Can you set up a call with [Ankit](participants), [Nisha](participants), [Amit](participants)
+    [in the evening](time) [this afternoon](date) [using Webex](platform)?
+
+    - Please book a call for [toaster](invalid_participant) [on Skype](platform)
+
+    - schedule a meeting with [Sunita](participants), [Ashwini](participants) [at
+    5 p.m.](time)
+
+    - Can you organize a discussion with [Anil](participants), [Sneha](participants)
+    [via Zoom](platform)?
+
+    - schedule a chat with [Sameer](participants), [Shweta](participants) [on 5th
+    November](time) [in the morning](date) [on Google Meet](platform)
+
+    - Can you set up a meeting with [Anju](participants) [next week](time)  [on Skype](platform)?
+
+    - I want to organize a discussion with [Sanjay](participants), [Shweta](participants),
+    [Kavita](participants) [in the evening](date)
+
+    - Book a call for [Rahul](participants), [Kavya](participants), [Rekha](participants)
+    [at 5 p.m.](time) [on 5th November](date) [using Webex](platform)
+
+    - Schedule a chat for [Pooja](participants), [Kavya](participants), [Suresh](participants)
+    [next Monday](date) [via Zoom](platform)
+
+    - organize a discussion with [Sameer](participants) [on Friday](time)
+
+    - I want to plan a meeting with [Amit](participants), [Gaurav](participants),
+    [Karan](participants) [this afternoon](time)
+
+    - schedule a meeting with [Amit](participants) [tomorrow](date)
+
+    - I want to book a conference with [Anil](participants), [Sameer](participants),
+    [Rohit](participants) [on Google Meet](platform)
+
+    - arrange a meeting with [Meena](participants), [Sameer](participants) [on 5th
+    November](date)
+
+    - Can you schedule a meeting with [Raj](participants), [Karan](participants) ?
+
+    - Can you book a conference with [toaster](invalid_participant) [via Zoom](platform)?
+
+    - set up a call with [Rakesh](participants), [Alok](participants) [on Friday](time)
+    [on Friday](date) [via Zoom](platform)
+
+    - I want to book a call with [Sanjay](participants), [Suresh](participants) [next
+    week](time) [in the evening](date)
+
+    - Please plan a meeting for [Sneha](participants), [Vijay](participants), [Rohan](participants)
+    [next Monday](time)  [on Google Meet](platform)
+
+    - Can you create a session with [Harsh](participants), [Alok](participants), [Varun](participants)
+    ?
+
+    - I want to schedule a chat with [Amit](participants) [next Monday](time) [next
+    Monday](date)
+
+    - arrange a meeting with [Harsh](participants) [next Monday](time) [tomorrow](date)
+
+    - I want to organize a discussion with [Meena](participants) [on Google Meet](platform)
+
+    - Can you book a conference with [glue](invalid_participant) [next Monday](time)
+    [tomorrow](date) [via Zoom](platform)?
+
+    - Set up a meeting for [Raj](participants), [Anju](participants), [Ritu](participants)
+    [in the morning](date) [using Webex](platform)
+
+    - Can you organize a discussion with [Divya](participants), [Kiran](participants)
+    [next Monday](date)?
+
+    - book a conference with [Priyanka](participants), [Bhavna](participants)
+
+    - I want to arrange a meeting with [Ankit](participants) [next Monday](time)  [using
+    Webex](platform)
+
+    - Create a session for [Rekha](participants), [Bhavna](participants) [on 5th November](date)
+    [on Skype](platform)
+
+    - Set up a meeting for [Pooja](participants), [Kiran](participants) [on Friday](time)
+
+    - I want to book a call with [cactus](invalid_participant) [next week](time) [next
+    Monday](date)
+
+    - Can you set up a meeting with [Amit](participants), [Sameer](participants),
+    [Meena](participants) [using Webex](platform)?
+
+    - Can you arrange a meeting with [Amit](participants), [Kavita](participants)
+    [on 5th November](time)?
+
+    - Book a conference for [Bhavna](participants), [Gaurav](participants), [Amit](participants)
+    [next week](time) [this afternoon](date) [through Microsoft Teams](platform)
+
+    - Please set up a call for [Harsh](participants) [on 5th November](time) [on 5th
+    November](date)
+
+    - I want to schedule a meeting with [Priya](participants) [on 5th November](time)  [through
+    Microsoft Teams](platform)
+
+    - Please organize a discussion for [chimpanzee](invalid_participant) [next Monday](date)
+    [using Webex](platform)
+
+    - Can you set up a meeting with [Rekha](participants) [at 5 p.m.](time) [in the
+    morning](date) [on Skype](platform)?
+
+    - book a call with [Nitin](participants), [Karan](participants), [Rohit](participants)
+    [tomorrow](time) [on Friday](date)
+
+    - I want to set up a call with [Ritu](participants), [Neha](participants) [at
+    5 p.m.](time)  [using Webex](platform)
+
+    - I want to arrange a meeting with [Sunita](participants)
+
+    - Can you schedule a meeting with [Anil](participants) [through Microsoft Teams](platform)?
+
+    - set up a call with [Harsh](participants) [at 5 p.m.](time) [in the evening](date)
+
+    - Please organize a discussion for [penguin](invalid_participant) [on Friday](time)
+    [next Monday](date)
+
+    - Please set up a meeting for [Sameer](participants), [Alok](participants), [Divya](participants)
+    [using Webex](platform)
+
+    - Schedule a chat for [fork](invalid_participant) [on 5th November](time)  [using
+    Webex](platform)
+
+    - Schedule a meeting for [Kiran](participants), [Priyanka](participants)
+
+    - plan a meeting with [Anil](participants)
+
+    - Can you schedule a chat with [Priya](participants), [Meena](participants) [tomorrow](time)
+    [this afternoon](date)?
+
+    - Can you book a call with [Deepak](participants), [Anil](participants) [in the
+    morning](date)?
+
+    - I want to book a call with [Kunal](participants), [Priya](participants) [at
+    5 p.m.](time) [this afternoon](date) [using Webex](platform)
+
+    - Please set up a meeting for [Priya](participants), [Nitin](participants) [at
+    10 a.m.](time) [next Monday](date) [through Microsoft Teams](platform)
+
+    - I want to organize a discussion with [Pooja](participants) [next Monday](time)
+
+    - Can you book a conference with [Kunal](participants), [Raj](participants) [tomorrow](time)
+    [this afternoon](date) [using Webex](platform)?
+
+    - Schedule a chat for [Deepak](participants), [Neha](participants), [Kavita](participants)
+    [using Webex](platform)
+
+    - Please create a session for [Manish](participants), [Priyanka](participants),
+    [Divya](participants) [next Monday](date)
+
+    - Can you set up a meeting with [Anil](participants), [Divya](participants), [Sunita](participants)
+    [next Monday](date)?
+
+    - Please organize a discussion for [Kunal](participants), [Rohan](participants),
+    [Rekha](participants) [on Friday](time) [this afternoon](date)
+
+    - I want to set up a meeting with [Meena](participants), [Rajesh](participants)
+    [in the evening](time) [next Monday](date)
+
+    - I want to set up a call with [Rohan](participants) [on Skype](platform)
+
+    - Book a call for [Priyanka](participants) [next Monday](date)
+
+    - book a conference with [Pooja](participants), [Suresh](participants) [on Friday](date)
+    [on Google Meet](platform)
+
+    - Set up a call for [Ankit](participants) [in the morning](date) [through Microsoft
+    Teams](platform)
+
+    - Plan a meeting for [Pooja](participants), [Manish](participants), [Deepak](participants)
+    [tomorrow](time)  [on Google Meet](platform)
+
+    - Can you book a conference with [Rohit](participants), [Priya](participants)
+    [in the evening](date) [using Webex](platform)?
+
+    - Please organize a discussion for [Nisha](participants) [via Zoom](platform)
+
+    - Organize a discussion for [Anil](participants), [Shweta](participants), [Rahul](participants)
+    [through Microsoft Teams](platform)
+
+    - Please schedule a chat for [Ankit](participants), [Priyanka](participants),
+    [Kiran](participants) [at 5 p.m.](time) [this afternoon](date)
+
+    - Please set up a call for [penguin](invalid_participant) [on Google Meet](platform)
+
+    - Schedule a chat for [Sameer](participants) [on Friday](time) [on 5th November](date)
+    [via Zoom](platform)
+
+    - Book a conference for [myself](invalid_participant) [through Microsoft Teams](platform)
+
+    - Please organize a discussion for [Raj](participants), [Ankit](participants),
+    [Ritu](participants) [on Google Meet](platform)
+
+    - Can you plan a meeting with [Ritu](participants) [on 5th November](time)?
+
+    - I want to schedule a meeting with [Harsh](participants), [Priyanka](participants)
+    [in the morning](date) [on Skype](platform)
+
+    - Create a session for [Kavya](participants)
+
+    - Set up a call for [Kavita](participants) [next Monday](time)  [using Webex](platform)
+
+    - Can you book a conference with [Shweta](participants), [Divya](participants)
+    [at 5 p.m.](time)?
+
+    - I want to set up a call with [Sunita](participants) [at 10 a.m.](time)  [using
+    Webex](platform)
+
+    - Schedule a meeting for [Shweta](participants), [Pooja](participants) [through
+    Microsoft Teams](platform)
+
+    - I want to schedule a chat with [Sunita](participants) [on Friday](date)
+
+    - Set up a meeting for [Ashwini](participants) [next Monday](date)
+
+    - schedule a chat with [Harsh](participants) [next week](time)
+
+    - Arrange a meeting for [toaster](invalid_participant) [this afternoon](date)
+    [via Zoom](platform)
+
+    - arrange a meeting with [Vijay](participants) [next Monday](time)  [on Skype](platform)
+
+    - I want to book a conference with [Manish](participants) [tomorrow](date)
+
+    - Plan a meeting for [Nitin](participants), [Bhavna](participants) [this afternoon](time)
+    [tomorrow](date)
+
+    - I want to book a call with [Alok](participants) [via Zoom](platform)
+
+    - Can you book a call with [Rakesh](participants), [Sneha](participants) [next
+    Monday](time)?
+
+    - I want to arrange a meeting with [Priya](participants) [at 5 p.m.](time)  [on
+    Skype](platform)
+
+    - Please set up a meeting for [Bhavna](participants) [tomorrow](time) [on 5th
+    November](date)
+
+    - Can you set up a meeting with [Amit](participants) [in the evening](time) [this
+    afternoon](date) [through Microsoft Teams](platform)?
+
+    - plan a meeting with [Suresh](participants) [on Skype](platform)
+
+    - Can you arrange a meeting with [Kavita](participants), [Amit](participants)
+    ?
+
+    - Set up a call for [Alok](participants), [Priya](participants) [using Webex](platform)
+
+    - Schedule a chat for [Amit](participants), [Nitin](participants) [next Monday](time)
+
+    - Please schedule a chat for [Rajesh](participants), [Ritu](participants), [Ashwini](participants)
+    [on 5th November](date) [on Skype](platform)
+
+    - I want to schedule a meeting with [Kunal](participants), [Ritu](participants)
+
+    - book a conference with [Sunita](participants) [this afternoon](time) [tomorrow](date)
+
+    - Please schedule a meeting for [Ashwini](participants), [Meena](participants)
+
+    - Please arrange a meeting for [fork](invalid_participant) [via Zoom](platform)
+
+    - Can you book a conference with [Rahul](participants) [this afternoon](time)  [using
+    Webex](platform)?
+
+    - schedule a meeting with [Rekha](participants), [Neha](participants), [Priyanka](participants)
+    [tomorrow](time) [next Monday](date)
+
+    - I want to schedule a chat with [Harsh](participants), [Varun](participants),
+    [Sameer](participants) [next week](time)  [on Skype](platform)
+
+    - book a conference with [Alok](participants), [Gaurav](participants), [Kunal](participants)
+    [tomorrow](time)  [via Zoom](platform)
+
+    - Please schedule a chat for [Divya](participants) [in the evening](time)  [through
+    Microsoft Teams](platform)
+
+    - I want to set up a meeting with [Kiran](participants) [via Zoom](platform)
+
+    - Can you organize a discussion with [Harsh](participants), [Priya](participants),
+    [Shweta](participants) [tomorrow](time) [tomorrow](date)?
+
+    - I want to arrange a meeting with [Kiran](participants) [on Friday](date)
+
+    - Please plan a meeting for [Rekha](participants), [Sneha](participants) [later
+    today](time) [on 5th November](date) [through Microsoft Teams](platform)
+
+    - create a session with [Rohan](participants), [Rajesh](participants)
+
+    - I want to create a session with [Neha](participants), [Rahul](participants)
+    [tomorrow](date)
+
+    - Can you book a call with [Rahul](participants) [in the evening](time) [on 5th
+    November](date) [using Webex](platform)?
+
+    - schedule a meeting with [penguin](invalid_participant) [on Skype](platform)
+
+    - Set up a meeting for [Sunita](participants), [Ankit](participants), [Kiran](participants)
+    [tomorrow](date) [on Skype](platform)
+
+    - Please set up a meeting for [Kunal](participants) [tomorrow](time) [on 5th November](date)
+    [using Webex](platform)
+
+    - I want to book a conference with [Karan](participants)
+
+    - Please schedule a meeting for [Varun](participants), [Shweta](participants)
+    [on 5th November](time)  [through Microsoft Teams](platform)
+
+    - set up a call with [Ritu](participants), [Rekha](participants), [Rohit](participants)
+    [in the morning](date)
+
+    - Can you book a conference with [Vijay](participants), [Bhavna](participants)
+    [in the evening](time)?
+
+    - book a call with [Meena](participants) [on Friday](date)
+
+    - Please create a session for [Kavita](participants) [tomorrow](date) [through
+    Microsoft Teams](platform)
+
+    - Please set up a call for [Nisha](participants) [next week](time)  [on Google
+    Meet](platform)
+
+    - plan a meeting with [cactus](invalid_participant) [at 5 p.m.](time) [on 5th
+    November](date)
+
+    - Schedule a meeting for [Pooja](participants) [next Monday](time)
+
+    - set up a meeting with [toaster](invalid_participant)
+
+    - Please set up a meeting for [Varun](participants) [next week](time) [tomorrow](date)
+
+    - Can you set up a call with [Rahul](participants), [Shweta](participants) [in
+    the evening](time)  [via Zoom](platform)?
+
+    - schedule a chat with [fork](invalid_participant) [via Zoom](platform)
+
+    - Book a conference for [Divya](participants), [Ankit](participants), [Shweta](participants)
+
+    - Can you arrange a meeting with [Amit](participants) [later today](time) [on
+    5th November](date) [on Skype](platform)?
+
+    - Please book a call for [dog](invalid_participant) [via Zoom](platform)
+
+    - Arrange a meeting for [cactus](invalid_participant) [through Microsoft Teams](platform)
+
+    - plan a meeting with [Ankit](participants), [Rahul](participants), [Sameer](participants)
+
+    - Organize a discussion for [cactus](invalid_participant)
+
+    - Can you book a call with [Gaurav](participants), [Rohan](participants), [Kavita](participants)
+    [at 10 a.m.](time)?
+
+    - I want to schedule a meeting with [Amit](participants), [Sneha](participants),
+    [Ashwini](participants) [tomorrow](time) [in the morning](date)
+
+    - Arrange a meeting for [dog](invalid_participant) [on Friday](time) [on 5th November](date)
+
+    - Please organize a discussion for [Gaurav](participants), [Meena](participants)
+    [via Zoom](platform)
+
+    - Please set up a meeting for [Priya](participants) [in the morning](date)
+
+    - Set up a call for [Suresh](participants), [Meena](participants), [Neha](participants)
+    [in the evening](date) [through Microsoft Teams](platform)
+
+    - set up a meeting with [myself](invalid_participant) [next Monday](time) [this
+    afternoon](date)
+
+    - Please organize a discussion for [toaster](invalid_participant) [in the evening](date)
+    [on Skype](platform)
+
+    - I want to set up a call with [Manish](participants), [Sameer](participants),
+    [Alok](participants) [at 5 p.m.](time) [on Friday](date) [via Zoom](platform)
+
+    - Please book a conference for [Sameer](participants), [Meena](participants) [using
+    Webex](platform)
+
+    - Set up a call for [Shweta](participants) [next Monday](date) [on Skype](platform)
+
+    - Schedule a meeting for [Amit](participants) [next week](time) [tomorrow](date)
+    [via Zoom](platform)
+
+    - Schedule a meeting for [Anju](participants) [next week](time) [in the evening](date)
+
+    - Please schedule a meeting for [Nitin](participants), [Rajesh](participants),
+    [Amit](participants) [this afternoon](time) [on Friday](date)
+
+    - Please schedule a meeting for [Sunita](participants), [Rohan](participants)
+    [in the evening](time) [tomorrow](date) [on Google Meet](platform)
+
+    - Can you plan a meeting with [Amit](participants), [Nitin](participants) [in
+    the morning](date) [via Zoom](platform)?
+
+    - Please create a session for [cactus](invalid_participant) [on 5th November](date)
+
+    - arrange a meeting with [Suresh](participants), [Rohan](participants), [Harsh](participants)
+    [on Skype](platform)
+
+    - Set up a meeting for [Sneha](participants), [Divya](participants), [Ananya](participants)
+
+    - Schedule a meeting for [Sunita](participants), [Bhavna](participants) [on Friday](time)
+    [in the morning](date) [on Skype](platform)
+
+    - I want to organize a discussion with [Raj](participants), [Divya](participants)
+    [on Friday](date)
+
+    - Please book a conference for [Vijay](participants), [Anju](participants) [at
+    10 a.m.](time) [in the morning](date)
+
+    - Schedule a chat for [banana](invalid_participant) [this afternoon](time) [on
+    Friday](date)
+
+    - Organize a discussion for [Ashwini](participants), [Meena](participants), [Priya](participants)
+
+    - Create a session for [penguin](invalid_participant) [using Webex](platform)
+
+    - Please schedule a meeting for [Ananya](participants), [Kunal](participants),
+    [Deepak](participants) [on Friday](date)
+
+    - Book a conference for [Vijay](participants), [Manish](participants), [Nisha](participants)
+    [at 10 a.m.](time)  [using Webex](platform)
+
+    - Set up a call for [Vijay](participants) [on Skype](platform)
+
+    - Please organize a discussion for [Rekha](participants), [Kavita](participants),
+    [Sneha](participants) [tomorrow](time) [tomorrow](date)
+
+    - Can you book a call with [Varun](participants) [on Friday](time) [next Monday](date)?
+
+    - Arrange a meeting for [Rohan](participants), [Kiran](participants), [Meena](participants)
+    [later today](time)  [on Skype](platform)
+
+    - set up a call with [Harsh](participants), [Kavya](participants) [next week](time)
+
+    - Please organize a discussion for [Rohan](participants), [Rohit](participants)
+    [at 10 a.m.](time)
+
+    - book a conference with [Suresh](participants), [Rakesh](participants), [Harsh](participants)
+    [in the evening](time) [next Monday](date)
+
+    - create a session with [Sameer](participants), [Kavya](participants), [Gaurav](participants)
+    [in the morning](date)
+
+    - Can you organize a discussion with [Amit](participants) [on Friday](date) [via
+    Zoom](platform)?
+
+    - Can you schedule a chat with [Vijay](participants), [Rekha](participants) ?
+
+    - Can you organize a discussion with [Rohan](participants) [on Friday](time) [tomorrow](date)?
+
+    - Please organize a discussion for [chimpanzee](invalid_participant) [in the evening](time)
+    [tomorrow](date) [using Webex](platform)
+
+    - Set up a call for [Sanjay](participants), [Ananya](participants) [on Friday](time)
+    [in the morning](date)
+
+    - Can you arrange a meeting with [Deepak](participants) [this afternoon](time)?
+
+    - organize a discussion with [Rohit](participants), [Priyanka](participants),
+    [Anil](participants) [next Monday](date) [using Webex](platform)
+
+    - Please set up a meeting for [myself](invalid_participant) [this afternoon](time)
+    [on Friday](date)
+
+    - Please schedule a chat for [unicorn](invalid_participant) [through Microsoft
+    Teams](platform)
+
+    - plan a meeting with [Sneha](participants) [this afternoon](time) [in the evening](date)
+
+    - Set up a call for [chimpanzee](invalid_participant) [in the morning](date) [via
+    Zoom](platform)
+
+    - I want to set up a call with [Nitin](participants), [Alok](participants) [in
+    the morning](date) [using Webex](platform)
+
+    - organize a discussion with [Rajesh](participants), [Sameer](participants), [Vijay](participants)
+    [this afternoon](date) [on Skype](platform)'

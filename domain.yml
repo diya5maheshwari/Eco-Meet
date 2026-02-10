@@ -1,0 +1,171 @@
+version: "3.1"
+
+intents:
+  - greet
+  - create_meeting
+  - provide_date
+  - provide_time
+  - provide_platform
+  - provide_participants
+  - provide_reminder
+  - affirm
+  - deny
+  - goodbye
+  - bot_challenge
+  - mood_great
+  - mood_unhappy
+  - out_of_scope
+  - nlu_fallback
+
+entities:
+  - time
+  - date
+  - platform
+  - participants
+  - participant
+  - reminder_time
+  - person
+  - invalid_participant
+
+slots:
+  date:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: date
+      - type: from_text
+        intent: provide_date
+  time:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: time
+      - type: from_text
+        intent: provide_time
+  platform:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: platform
+      - type: from_text
+        intent: provide_platform
+  participants:
+    type: list
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: participants
+      - type: from_entity
+        entity: participant
+      - type: from_entity
+        entity: person
+      - type: from_text
+        intent: provide_participants
+  reminder_time:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: reminder_time
+      - type: from_text
+        intent: provide_reminder
+  invalid_participant:
+    type: list
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: invalid_participant
+
+forms:
+  schedule_meeting_form:
+    required_slots:
+      - date
+      - time
+      - platform
+      - participants
+      - reminder_time
+
+responses:
+  utter_greet:
+    - text: "Hey! How can I help you?"
+
+  utter_goodbye:
+    - text: "Bye"
+
+  utter_iamabot:
+    - text: "I am a bot, powered by Rasa."
+
+  utter_weather:
+    - text: "The weather is great today!"
+
+  utter_cheer_up:
+    - text: "Here is something to cheer you up:"
+      image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+    - text: "Did that help you?"
+
+  utter_happy:
+    - text: "Great, carry on!"
+
+  utter_participants_received:
+    - text: "Got it. Participants: {participants}"
+
+  utter_invalid_participant:
+    - text: "One or more participants look invalid. Please provide valid participant names."
+
+  utter_ask_date:
+    - text: "What date should I schedule the meeting?"
+
+  utter_ask_time:
+    - text: "What time should I schedule it?"
+
+  utter_ask_platform:
+    - text: "Which platform do you want to use? (Zoom, Google Meet, Teams, Webex, etc.)"
+
+  utter_ask_participants:
+    - text: "Who should be invited to the meeting?"
+
+  utter_ask_reminder_time:
+    - text: "When should I send you a reminder? (e.g., 10 minutes before)"
+
+  utter_submit:
+    - text: "Got it. Scheduling your meeting now."
+
+  utter_slots_values:
+    - text: |
+        Here's what I understood:
+        Date: {date}
+        Time: {time}
+        Platform: {platform}
+        Participants: {participants}
+        Reminder: {reminder_time}
+
+  utter_out_of_scope:
+    - text: "I can help schedule meetings. Please tell me the meeting details."
+
+  utter_fallback:
+    - text: "Sorry, I didn't quite get that. Could you rephrase?"
+
+  utter_invalid_date:
+    - text: "That date looks invalid or is in the past. Please provide a future date."
+
+  utter_invalid_time:
+    - text: "That time looks invalid. Please provide a valid time."
+
+  utter_invalid_platform:
+    - text: "I support Zoom, Google Meet, Teams, Webex, Skype, and Slack Call. Which platform should I use?"
+
+  utter_invalid_reminder:
+    - text: "Please provide a valid reminder time like '10 minutes before'."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+actions:
+  - validate_schedule_meeting_form
+  - action_submit_meeting

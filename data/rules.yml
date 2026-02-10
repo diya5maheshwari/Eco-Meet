@@ -1,0 +1,50 @@
+version: "3.1"
+
+rules:
+  - rule: Say goodbye anytime the user says goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - rule: Say 'I am a bot' anytime the user challenges
+    steps:
+      - intent: bot_challenge
+      - action: utter_iamabot
+
+  - rule: Fallback
+    steps:
+      - intent: nlu_fallback
+      - action: utter_fallback
+
+  - rule: Out of scope
+    steps:
+      - intent: out_of_scope
+      - action: utter_out_of_scope
+
+  - rule: Activate meeting form
+    steps:
+      - intent: create_meeting
+      - action: schedule_meeting_form
+      - active_loop: schedule_meeting_form
+
+  - rule: Submit meeting form
+    condition:
+      - active_loop: schedule_meeting_form
+    steps:
+      - action: schedule_meeting_form
+      - active_loop: null
+      - action: action_submit_meeting
+
+  - rule: NLU fallback during meeting form
+    condition:
+      - active_loop: schedule_meeting_form
+    steps:
+      - intent: nlu_fallback
+      - action: schedule_meeting_form
+
+  - rule: Out of scope during meeting form
+    condition:
+      - active_loop: schedule_meeting_form
+    steps:
+      - intent: out_of_scope
+      - action: schedule_meeting_form
