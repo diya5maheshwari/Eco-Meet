@@ -2,8 +2,7 @@ import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { useState } from "react";
 import { router } from "expo-router";
 
-import { loginUser } from "../../services/api";
-import { colors } from "../../styles/theme";
+import { loginUser, setAuthToken, API_BASE_URL } from "../../services/api";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -17,12 +16,21 @@ export default function Login() {
 
     try {
       const res = await loginUser({ email, password });
-      console.log("LOGIN RESPONSE 👉", res.data);
+      if (res.data?.token) {
+        await setAuthToken(res.data.token);
+      }
       alert("Login success");
       router.replace("/mic");
     } catch (err: any) {
-      console.log("LOGIN ERROR 👉", err.response?.data);
-      alert(err.response?.data?.message || "Login failed");
+      const msg = err?.response?.data?.message || err?.message || "Login failed";
+      console.log("LOGIN ERROR", err?.response?.data || err?.message);
+      if ((err?.message || "").toLowerCase().includes("network error")) {
+        alert(`Cannot connect to server: ${API_BASE_URL}`);
+      } else if ((msg || "").toLowerCase().includes("otp") || (msg || "").toLowerCase().includes("verify")) {
+        alert("Login failed");
+      } else {
+        alert(msg);
+      }
     }
   };
 
@@ -30,9 +38,7 @@ export default function Login() {
     <View style={styles.container}>
       <View style={styles.card}>
         <Text style={styles.title}>Login</Text>
-        <Text style={styles.subtitle}>
-          Sign in to access your voice history
-        </Text>
+        <Text style={styles.subtitle}>Sign in to access your voice history</Text>
 
         <TextInput
           placeholder="Email"
@@ -40,6 +46,8 @@ export default function Login() {
           value={email}
           onChangeText={setEmail}
           style={styles.input}
+          autoCapitalize="none"
+          keyboardType="email-address"
         />
 
         <TextInput
@@ -55,13 +63,9 @@ export default function Login() {
           <Text style={styles.primaryText}>Login</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={() => router.push("/register")}
-          style={{ marginTop: 16 }}
-        >
+        <TouchableOpacity onPress={() => router.push("/register")} style={{ marginTop: 16 }}>
           <Text style={styles.linkText}>
-            Don't have an account?{" "}
-            <Text style={styles.linkHighlight}>Register</Text>
+            Don't have an account? <Text style={styles.linkHighlight}>Register</Text>
           </Text>
         </TouchableOpacity>
       </View>

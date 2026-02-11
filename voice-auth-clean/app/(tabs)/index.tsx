@@ -54,7 +54,7 @@ export default function Landing() {
           },
         ]}
       >
-        <Text style={styles.title}>VoiceAuth</Text>
+        <Text style={styles.title}>Echo-Meet</Text>
         <Text style={styles.subtitle}>
           Speak. Transcribe. Save your history.
         </Text>

@@ -1,21 +1,78 @@
 import { View, Text, TouchableOpacity, StyleSheet, Platform } from "react-native";
 import { useEffect, useRef, useState } from "react";
 import { Audio } from "expo-av";
-import API, { API_BASE_URL, logoutUser } from "../../services/api";
+import * as Contacts from "expo-contacts";
+import API, {
+  logoutUser,
+  getMe,
+  clearAuthToken,
+  getStoredAuthToken,
+} from "../../services/api";
 import { router } from "expo-router";
 
 export default function Mic() {
   const [text, setText] = useState("");
   const [listening, setListening] = useState(false);
   const [recording, setRecording] = useState<Audio.Recording | null>(null);
+  const [authStatus, setAuthStatus] = useState<"checking" | "authed" | "unauth">(
+    "checking"
+  );
+  const [contactsPermission, setContactsPermission] = useState<
+    "granted" | "denied" | "undetermined"
+  >("undetermined");
+  const [contactsInfo, setContactsInfo] = useState("Contacts not loaded");
   const recognitionRef = useRef<any>(null);
   const isRecognizingRef = useRef(false);
 
   useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const token = await getStoredAuthToken();
+        if (!token) {
+          setAuthStatus("unauth");
+          router.replace("/login");
+          return;
+        }
+        await getMe();
+        setAuthStatus("authed");
+      } catch (e) {
+        setAuthStatus("unauth");
+        router.replace("/login");
+      }
+    };
+    checkAuth();
+  }, []);
+
+  useEffect(() => {
+    const checkContactsPermission = async () => {
+      if (Platform.OS === "web") return;
+      try {
+        const { status } = await Contacts.getPermissionsAsync();
+        setContactsPermission(status);
+      } catch (e) {
+        console.log("Contacts permission error", e);
+      }
+    };
+    checkContactsPermission();
+  }, []);
+
+  useEffect(() => {
+    if (authStatus !== "authed") return;
+    if (Platform.OS === "web") return;
+    if (contactsPermission !== "undetermined") return;
+    requestContactsPermission();
+  }, [authStatus, contactsPermission]);
+
+  useEffect(() => {
+    if (Platform.OS === "web") return;
+    if (contactsPermission !== "granted") return;
+    loadContactsSample();
+  }, [contactsPermission]);
+
+  useEffect(() => {
     if (Platform.OS === "web") {
       const w = typeof window !== "undefined" ? (window as any) : null;
-      const SpeechRecognition =
-        w?.SpeechRecognition || w?.webkitSpeechRecognition;
+      const SpeechRecognition = w?.SpeechRecognition || w?.webkitSpeechRecognition;
 
       if (SpeechRecognition) {
         const recognition = new SpeechRecognition();
@@ -35,7 +92,7 @@ export default function Mic() {
           }
         };
         recognition.onerror = (e: any) => {
-          console.log("Web speech error 👉", e);
+          console.log("Web speech error", e);
           setListening(false);
           isRecognizingRef.current = false;
         };
@@ -54,6 +111,41 @@ export default function Mic() {
     };
   }, []);
 
+  const requestContactsPermission = async () => {
+    try {
+      if (Platform.OS === "web") {
+        alert("Contacts permission is available on mobile devices only");
+        return;
+      }
+      const { status } = await Contacts.requestPermissionsAsync();
+      setContactsPermission(status);
+      if (status !== "granted") {
+        alert("Contacts permission is required to access contacts");
+      }
+    } catch (e) {
+      console.log("Contacts permission request error", e);
+    }
+  };
+
+  const loadContactsSample = async () => {
+    try {
+      const res = await Contacts.getContactsAsync({
+        fields: [Contacts.Fields.PhoneNumbers],
+        pageSize: 20,
+      });
+      const first = res.data?.[0];
+      if (!res.data?.length) {
+        setContactsInfo("Permission granted, but no contacts found");
+        return;
+      }
+      const firstName = first?.name || "Unnamed";
+      setContactsInfo(`Access OK: ${res.data.length} contacts loaded, first: ${firstName}`);
+    } catch (e) {
+      console.log("Contacts read error", e);
+      setContactsInfo("Permission granted, but failed to read contacts");
+    }
+  };
+
   const startListening = async () => {
     if (Platform.OS === "web") {
       if (!recognitionRef.current) {
@@ -68,7 +160,7 @@ export default function Mic() {
       try {
         recognitionRef.current.start();
       } catch (e) {
-        console.log("Web speech start error 👉", e);
+        console.log("Web speech start error", e);
         setListening(false);
         isRecognizingRef.current = false;
       }
@@ -88,9 +180,7 @@ export default function Mic() {
       });
 
       const rec = new Audio.Recording();
-      await rec.prepareToRecordAsync(
-        Audio.RecordingOptionsPresets.HIGH_QUALITY
-      );
+      await rec.prepareToRecordAsync(Audio.RecordingOptionsPresets.HIGH_QUALITY);
       await rec.startAsync();
       setRecording(rec);
       setListening(true);
@@ -147,17 +237,13 @@ export default function Mic() {
         } as any
       );
 
-      const res = await fetch(`${API_BASE_URL}/speech/transcribe`, {
-        method: "POST",
-        body: form,
-        credentials: "include",
+      const res = await API.post("/speech/transcribe", form, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
 
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data?.message || "Transcription failed");
-      }
-
+      const data = res.data;
       if (data?.text) {
         setText(data.text);
         saveText(data.text);
@@ -186,9 +272,34 @@ export default function Mic() {
     } catch (e) {
       console.log("Logout error", e);
     } finally {
+      await clearAuthToken();
       router.replace("/login");
     }
   };
+
+  if (authStatus === "checking") {
+    return (
+      <View style={styles.container}>
+        <View style={styles.card}>
+          <Text style={styles.title}>Checking session...</Text>
+        </View>
+      </View>
+    );
+  }
+
+  if (authStatus === "unauth") {
+    return (
+      <View style={styles.container}>
+        <View style={styles.card}>
+          <Text style={styles.title}>Session expired</Text>
+          <Text style={styles.subtitle}>Please login to continue.</Text>
+          <TouchableOpacity onPress={() => router.replace("/login")} style={styles.secondaryButton}>
+            <Text style={styles.secondaryText}>Go to Login</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -209,22 +320,26 @@ export default function Mic() {
 
         <TouchableOpacity
           onPress={listening ? stopListening : startListening}
-          style={[
-            styles.micButton,
-            { backgroundColor: listening ? "#ef4444" : "#111827" },
-          ]}
+          style={[styles.micButton, { backgroundColor: listening ? "#ef4444" : "#111827" }]}
         >
-          <Text style={styles.micText}>
-            {listening ? "Stop" : "Start Speaking"}
+          <Text style={styles.micText}>{listening ? "Stop" : "Start Speaking"}</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => router.push("/history")} style={styles.secondaryButton}>
+          <Text style={styles.secondaryText}>Previous Chats</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={requestContactsPermission} style={styles.secondaryButton}>
+          <Text style={styles.secondaryText}>
+            {contactsPermission === "granted"
+              ? "Contacts permission granted"
+              : "Allow Contacts Permission"}
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={() => router.push("/history")}
-          style={styles.secondaryButton}
-        >
-          <Text style={styles.secondaryText}>Previous Chats</Text>
-        </TouchableOpacity>
+        <View style={styles.statusBox}>
+          <Text style={styles.statusText}>{contactsInfo}</Text>
+        </View>
       </View>
     </View>
   );
@@ -305,6 +420,19 @@ const styles = StyleSheet.create({
   logoutText: {
     color: "#e2e8f0",
     fontWeight: "600",
+    fontSize: 12,
+  },
+  statusBox: {
+    marginTop: 12,
+    borderWidth: 1,
+    borderColor: "#334155",
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    backgroundColor: "#0b1220",
+  },
+  statusText: {
+    color: "#94a3b8",
     fontSize: 12,
   },
 });

@@ -3,7 +3,6 @@ import { useState } from "react";
 import { router } from "expo-router";
 
 import { registerUser } from "../../services/api";
-import { colors } from "../../styles/theme";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -21,10 +20,8 @@ export default function Register() {
       alert("Registered successfully");
       router.replace("/login");
     } catch (error: any) {
-  console.log(error.response?.data);
-  alert(error.response?.data?.message || "Register failed");
-}
-
+      alert(error.response?.data?.message || "Register failed");
+    }
   };
 
   return (
@@ -49,6 +46,8 @@ export default function Register() {
           value={email}
           onChangeText={setEmail}
           style={styles.input}
+          autoCapitalize="none"
+          keyboardType="email-address"
         />
 
         <TextInput
@@ -64,13 +63,9 @@ export default function Register() {
           <Text style={styles.primaryText}>Create Account</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={() => router.push("/login")}
-          style={{ marginTop: 16 }}
-        >
+        <TouchableOpacity onPress={() => router.push("/login")} style={{ marginTop: 16 }}>
           <Text style={styles.linkText}>
-            Already have an account?{" "}
-            <Text style={styles.linkHighlight}>Login</Text>
+            Already have an account? <Text style={styles.linkHighlight}>Login</Text>
           </Text>
         </TouchableOpacity>
       </View>

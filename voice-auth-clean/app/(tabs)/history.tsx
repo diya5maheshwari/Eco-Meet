@@ -1,6 +1,11 @@
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
-import API, { logoutUser } from "../../services/api";
+import API, {
+  logoutUser,
+  getMe,
+  clearAuthToken,
+  getStoredAuthToken,
+} from "../../services/api";
 import { router } from "expo-router";
 import { colors } from "../../styles/theme";
 
@@ -13,6 +18,7 @@ type Item = {
 export default function History() {
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(false);
+  const [authChecked, setAuthChecked] = useState(false);
 
   const loadTexts = async () => {
     try {
@@ -28,7 +34,22 @@ export default function History() {
   };
 
   useEffect(() => {
-    loadTexts();
+    const checkAuthAndLoad = async () => {
+      try {
+        const token = await getStoredAuthToken();
+        if (!token) {
+          setAuthChecked(false);
+          router.replace("/login");
+          return;
+        }
+        await getMe();
+        setAuthChecked(true);
+        await loadTexts();
+      } catch (e) {
+        router.replace("/login");
+      }
+    };
+    checkAuthAndLoad();
   }, []);
 
   const handleLogout = async () => {
@@ -37,9 +58,18 @@ export default function History() {
     } catch (e) {
       console.log("Logout error", e);
     } finally {
+      await clearAuthToken();
       router.replace("/login");
     }
   };
+
+  if (!authChecked) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Checking session...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>

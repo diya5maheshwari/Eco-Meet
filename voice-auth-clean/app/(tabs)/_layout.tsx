@@ -1,5 +1,7 @@
-import { Tabs } from 'expo-router';
+import { Tabs, usePathname, router } from 'expo-router';
 import React from 'react';
+import { useEffect, useState } from 'react';
+import { getStoredAuthToken } from '../../services/api';
 
 import { HapticTab } from '@/components/haptic-tab';
 import { IconSymbol } from '@/components/ui/icon-symbol';
@@ -8,6 +10,23 @@ import { useColorScheme } from '@/hooks/use-color-scheme';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const pathname = usePathname();
+  const [isAuthed, setIsAuthed] = useState(false);
+
+  useEffect(() => {
+    const loadAuth = async () => {
+      const token = await getStoredAuthToken();
+      setIsAuthed(Boolean(token));
+    };
+    loadAuth();
+  }, [pathname]);
+
+  useEffect(() => {
+    if (isAuthed) return;
+    if (pathname === "/mic" || pathname === "/history") {
+      router.replace("/login");
+    }
+  }, [isAuthed, pathname]);
 
   return (
     <Tabs
@@ -28,6 +47,7 @@ export default function TabLayout() {
         options={{
           title: 'Mic',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="mic.fill" color={color} />,
+          href: isAuthed ? undefined : null,
         }}
       />
       <Tabs.Screen
@@ -35,6 +55,23 @@ export default function TabLayout() {
         options={{
           title: 'History',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="clock.fill" color={color} />,
+          href: isAuthed ? undefined : null,
+        }}
+      />
+      <Tabs.Screen
+        name="login"
+        options={{
+          title: 'Login',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="person.fill" color={color} />,
+          href: isAuthed ? null : undefined,
+        }}
+      />
+      <Tabs.Screen
+        name="register"
+        options={{
+          title: 'Register',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="person.badge.plus" color={color} />,
+          href: isAuthed ? null : undefined,
         }}
       />
     </Tabs>

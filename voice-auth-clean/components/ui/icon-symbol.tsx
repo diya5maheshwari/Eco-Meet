@@ -20,6 +20,8 @@ const MAPPING = {
   'chevron.right': 'chevron-right',
   'mic.fill': 'mic',
   'clock.fill': 'history',
+  'person.fill': 'person',
+  'person.badge.plus': 'person-add',
 } as IconMapping;
 
 /**

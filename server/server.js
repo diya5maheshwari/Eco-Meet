@@ -12,14 +12,15 @@ dotenv.config();
 const app = express();
 
 const allowedOrigins = process.env.CORS_ORIGIN
-  ? process.env.CORS_ORIGIN.split(",").map((o) => o.trim())
+  ? process.env.CORS_ORIGIN.split(",").map((o) => o.trim().replace(/\/$/, ""))
   : null;
 
 app.use(
   cors({
     origin: (origin, cb) => {
       if (!origin) return cb(null, true);
-      if (!allowedOrigins || allowedOrigins.includes(origin)) {
+      const normalized = origin.replace(/\/$/, "");
+      if (!allowedOrigins || allowedOrigins.includes(normalized)) {
         return cb(null, true);
       }
       return cb(new Error("Not allowed by CORS"));
