@@ -29,7 +29,6 @@
 
 # Excluded folders
 server/
-voice-auth-clean/
 
 # Python/Rasa artifacts
 .rasa/
