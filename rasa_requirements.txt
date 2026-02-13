@@ -1,0 +1,10 @@
+# Rasa virtual environment requirements.
+# Install with: pip install -r rasa_requirements.txt
+
+# Core Rasa runtime
+rasa==3.5.10
+rasa-sdk==3.5.1
+
+# Action-server helpers used in custom actions
+dateparser==1.1.8
+requests==2.32.5

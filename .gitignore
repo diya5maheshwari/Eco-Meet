@@ -35,8 +35,14 @@ voice-auth-clean/
 .rasa/
 .venv/
 new_venv/
+venv_flask/
+venv_rasa/
 models/
 *.db
+action_server.log
+action_server.err.log
+rasa_server.log
+rasa_server.err.log
 
 # Python bytecode
 __pycache__/

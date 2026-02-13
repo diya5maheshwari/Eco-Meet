@@ -1,14 +1,15 @@
-import os
+"""Custom Rasa actions and validators for meeting scheduling."""
+
 import re
 from datetime import datetime
 from typing import Any, Dict, List, Text
 
-import requests
 import dateparser
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormValidationAction
 from rasa_sdk.types import DomainDict
+from dateparser.search import search_dates
 
 
 PLATFORM_ALIASES = {
@@ -33,14 +34,23 @@ INVALID_NAME_TOKENS = {
 }
 
 NAME_RE = re.compile(r"^[A-Za-z][A-Za-z .'\-]{0,49}$")
+TIME_RE = re.compile(
+    r"\b((1[0-2]|0?[1-9])(:[0-5][0-9])?\s*[AaPp][Mm]|([01]?[0-9]|2[0-3]):[0-5][0-9]|noon|midnight|morning|afternoon|evening|night)\b"
+)
+PARTICIPANT_HINT_RE = re.compile(
+    r"(?:with|for|invite|including|add)\s+(.+?)(?:\s+(?:on|at|by|via|using|tomorrow|today|next|this)\b|$)",
+    re.IGNORECASE,
+)
 
 
 def _normalize_platform(value: Text) -> Text:
+    """Map platform aliases from free text to canonical platform names."""
     key = re.sub(r"\s+", " ", value.strip().lower())
     return PLATFORM_ALIASES.get(key, value.strip())
 
 
 def _split_participants(value: Any) -> List[Text]:
+    """Split a participant string/list into individual candidate names."""
     if isinstance(value, list):
         raw = []
         for item in value:
@@ -57,6 +67,7 @@ def _split_participants(value: Any) -> List[Text]:
 
 
 def _entities_by_type(tracker: Tracker, entity_type: Text) -> List[Text]:
+    """Collect entity values of a given type from latest user message."""
     entities = tracker.latest_message.get("entities", []) or []
     values = []
     for ent in entities:
@@ -66,6 +77,7 @@ def _entities_by_type(tracker: Tracker, entity_type: Text) -> List[Text]:
 
 
 def _is_valid_name(name: Text) -> bool:
+    """Validate participant tokens and reject obvious non-person terms."""
     lower = name.strip().lower()
     if lower in INVALID_NAME_TOKENS:
         return False
@@ -74,8 +86,83 @@ def _is_valid_name(name: Text) -> bool:
     return bool(NAME_RE.match(name.strip()))
 
 
+def _latest_text(tracker: Tracker) -> Text:
+    """Return latest user message text (or empty string)."""
+    return (tracker.latest_message.get("text") or "").strip()
+
+
+def _extract_platform_from_text(text: Text) -> Text:
+    """Extract a known platform from unstructured user text."""
+    lowered = f" {text.lower()} "
+    for alias, canonical in PLATFORM_ALIASES.items():
+        if f" {alias} " in lowered:
+            return canonical
+    return ""
+
+
+def _extract_date_from_text(text: Text) -> Text:
+    """Extract a future date from user text as ISO yyyy-mm-dd."""
+    if not text:
+        return ""
+    matches = search_dates(
+        text,
+        settings={"PREFER_DATES_FROM": "future", "RELATIVE_BASE": datetime.now()},
+        languages=["en"],
+    ) or []
+    now = datetime.now()
+    for _, dt in matches:
+        if dt.date() >= now.date():
+            return dt.date().isoformat()
+    return ""
+
+
+def _extract_time_from_text(text: Text) -> Text:
+    """Extract a time from user text as HH:MM (24-hour)."""
+    if not text:
+        return ""
+    match = TIME_RE.search(text)
+    candidate = match.group(1) if match else text
+    parsed = dateparser.parse(candidate)
+    if not parsed:
+        return ""
+    return parsed.strftime("%H:%M")
+
+
+def _extract_reminder_from_text(text: Text) -> Text:
+    """Extract reminder duration and normalize to 'X minutes before'."""
+    match = re.search(
+        r"(?:remind(?: me)?\s*)?(\d+)\s*(minute|minutes|min|mins|hour|hours|hr|hrs)\s*(?:before|earlier)?",
+        text.lower(),
+    )
+    if not match:
+        return ""
+    amount = int(match.group(1))
+    unit = match.group(2)
+    minutes = amount * 60 if unit.startswith("h") else amount
+    return f"{minutes} minutes before"
+
+
+def _extract_participants_from_text(text: Text) -> List[Text]:
+    """Extract participant names from common phrasing patterns."""
+    if not text:
+        return []
+    chunks = []
+    for m in PARTICIPANT_HINT_RE.finditer(text):
+        chunks.append(m.group(1))
+    if not chunks:
+        return []
+
+    raw = ", ".join(chunks)
+    names = _split_participants(raw)
+    valid = [n.title() for n in names if _is_valid_name(n)]
+    return list(dict.fromkeys(valid))
+
+
 class ValidateScheduleMeetingForm(FormValidationAction):
+    """Form validator/extractor for meeting slots."""
+
     def name(self) -> Text:
+        """Return action name configured in domain."""
         return "validate_schedule_meeting_form"
 
     def validate_participants(
@@ -85,6 +172,7 @@ class ValidateScheduleMeetingForm(FormValidationAction):
         tracker: Tracker,
         domain: DomainDict,
     ) -> Dict[Text, Any]:
+        """Validate participant slot and enforce name quality checks."""
         # Prefer explicit participant entities; ignore invalid_participant if valid names exist.
         entity_names = []
         entity_names += _entities_by_type(tracker, "participants")
@@ -110,6 +198,22 @@ class ValidateScheduleMeetingForm(FormValidationAction):
 
         return {"participants": valid, "invalid_participant": []}
 
+    def extract_participants(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Attempt participant extraction even when entity extraction misses."""
+        entity_names = []
+        entity_names += _entities_by_type(tracker, "participants")
+        entity_names += _entities_by_type(tracker, "participant")
+        entity_names += _entities_by_type(tracker, "person")
+        names = _split_participants(entity_names) if entity_names else _extract_participants_from_text(_latest_text(tracker))
+        valid = [n.title() for n in names if _is_valid_name(n)]
+        valid = list(dict.fromkeys(valid))
+        return {"participants": valid} if valid else {}
+
     def validate_date(
         self,
         value: Text,
@@ -117,6 +221,7 @@ class ValidateScheduleMeetingForm(FormValidationAction):
         tracker: Tracker,
         domain: DomainDict,
     ) -> Dict[Text, Any]:
+        """Validate and normalize date slot."""
         parsed = dateparser.parse(
             value,
             settings={"PREFER_DATES_FROM": "future", "RELATIVE_BASE": datetime.now()},
@@ -132,6 +237,17 @@ class ValidateScheduleMeetingForm(FormValidationAction):
 
         return {"date": parsed.date().isoformat()}
 
+    def extract_date(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Attempt date extraction from latest message text."""
+        text = _latest_text(tracker)
+        extracted = _extract_date_from_text(text)
+        return {"date": extracted} if extracted else {}
+
     def validate_time(
         self,
         value: Text,
@@ -139,12 +255,24 @@ class ValidateScheduleMeetingForm(FormValidationAction):
         tracker: Tracker,
         domain: DomainDict,
     ) -> Dict[Text, Any]:
+        """Validate and normalize time slot."""
         parsed = dateparser.parse(value)
         if not parsed:
             dispatcher.utter_message(response="utter_invalid_time")
             return {"time": None}
 
         return {"time": parsed.strftime("%H:%M")}
+
+    def extract_time(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Attempt time extraction from latest message text."""
+        text = _latest_text(tracker)
+        extracted = _extract_time_from_text(text)
+        return {"time": extracted} if extracted else {}
 
     def validate_platform(
         self,
@@ -153,11 +281,30 @@ class ValidateScheduleMeetingForm(FormValidationAction):
         tracker: Tracker,
         domain: DomainDict,
     ) -> Dict[Text, Any]:
+        """Validate platform slot, defaulting to Google Meet when absent."""
         normalized = _normalize_platform(value)
+        if not normalized:
+            return {"platform": "Google Meet"}
         if normalized not in PLATFORM_ALIASES.values():
             dispatcher.utter_message(response="utter_invalid_platform")
             return {"platform": None}
         return {"platform": normalized}
+
+    def extract_platform(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Attempt platform extraction from entities or latest text."""
+        entities = _entities_by_type(tracker, "platform")
+        if entities:
+            normalized = _normalize_platform(entities[0])
+            if normalized:
+                return {"platform": normalized}
+        text = _latest_text(tracker)
+        extracted = _extract_platform_from_text(text)
+        return {"platform": extracted} if extracted else {}
 
     def validate_reminder_time(
         self,
@@ -166,19 +313,35 @@ class ValidateScheduleMeetingForm(FormValidationAction):
         tracker: Tracker,
         domain: DomainDict,
     ) -> Dict[Text, Any]:
-        match = re.search(r"(\d+)\s*(minute|minutes|min|mins|hour|hours|hr|hrs)", value.lower())
-        if not match:
+        """Validate reminder slot."""
+        normalized = _extract_reminder_from_text(value)
+        if not normalized:
             dispatcher.utter_message(response="utter_invalid_reminder")
             return {"reminder_time": None}
+        return {"reminder_time": normalized}
 
-        amount = int(match.group(1))
-        unit = match.group(2)
-        minutes = amount * 60 if unit.startswith("h") else amount
-        return {"reminder_time": f"{minutes} minutes before"}
+    def extract_reminder_time(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Attempt reminder extraction from entities or latest text."""
+        entities = _entities_by_type(tracker, "reminder_time")
+        if entities:
+            normalized = _extract_reminder_from_text(entities[0])
+            if normalized:
+                return {"reminder_time": normalized}
+        text = _latest_text(tracker)
+        extracted = _extract_reminder_from_text(text)
+        return {"reminder_time": extracted} if extracted else {}
 
 
 class ActionSubmitMeeting(Action):
+    """Emit final meeting payload after form completion."""
+
     def name(self) -> Text:
+        """Return action name configured in domain."""
         return "action_submit_meeting"
 
     async def run(
@@ -187,29 +350,31 @@ class ActionSubmitMeeting(Action):
         tracker: Tracker,
         domain: DomainDict,
     ) -> List[Dict[Text, Any]]:
+        """Build and send final structured payload + human-readable confirmation."""
+        platform = tracker.get_slot("platform") or "Google Meet"
+        participants = tracker.get_slot("participants") or []
         payload = {
+            "type": "meeting_data",
             "date": tracker.get_slot("date"),
             "time": tracker.get_slot("time"),
-            "platform": tracker.get_slot("platform"),
-            "participants": tracker.get_slot("participants") or [],
+            "platform": platform,
+            "participants": participants,
             "reminder_time": tracker.get_slot("reminder_time"),
             "user_id": tracker.sender_id,
         }
 
-        dispatcher.utter_message(response="utter_slots_values")
-
-        api_url = os.getenv("SCHEDULER_API_URL")
-        if api_url:
-            try:
-                requests.post(api_url, json=payload, timeout=5)
-                dispatcher.utter_message(text="Meeting request sent to the scheduler.")
-            except requests.RequestException:
-                dispatcher.utter_message(
-                    text="I couldn't reach the scheduler right now. Please try again."
-                )
-        else:
+        if not tracker.get_slot("platform"):
             dispatcher.utter_message(
-                text="Scheduler is not configured yet. Set SCHEDULER_API_URL to enable scheduling."
+                text="Platform not provided, choosing Google Meet as the default platform. You can change it anytime."
             )
+
+        dispatcher.utter_message(
+            text=(
+                f"Meeting details captured: date {payload['date']}, time {payload['time']}, "
+                f"platform {payload['platform']}, participants {', '.join(participants) if participants else 'None'}, "
+                f"reminder {payload['reminder_time']}."
+            )
+        )
+        dispatcher.utter_message(json_message=payload)
 
         return []

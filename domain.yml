@@ -1,3 +1,7 @@
+# Rasa domain:
+# - intents, entities, slots
+# - forms and responses
+# - custom actions
 version: "3.1"
 
 intents:
@@ -47,6 +51,7 @@ slots:
   platform:
     type: text
     influence_conversation: true
+    initial_value: "Google Meet"
     mappings:
       - type: from_entity
         entity: platform
@@ -124,7 +129,7 @@ responses:
     - text: "What time should I schedule it?"
 
   utter_ask_platform:
-    - text: "Which platform do you want to use? (Zoom, Google Meet, Teams, Webex, etc.)"
+    - text: "Which platform do you want to use? Default is Google Meet. (Zoom, Google Meet, Teams, Webex, etc.)"
 
   utter_ask_participants:
     - text: "Who should be invited to the meeting?"

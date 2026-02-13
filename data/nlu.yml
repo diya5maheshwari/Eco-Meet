@@ -1,3 +1,5 @@
+# NLU training data for meeting scheduling assistant.
+# Includes intents, entity annotations, regexes, and lookups.
 version: "3.1"
 
 nlu:
@@ -188,6 +190,10 @@ nlu:
     - [Webex](platform)
     - [Skype](platform)
     - [Slack Call](platform)
+    - [gmeet](platform)
+    - [googlemeet](platform)
+    - [microsoft teams](platform)
+    - [meet](platform)
 
 - intent: provide_participants
   examples: |
@@ -203,6 +209,51 @@ nlu:
     - remind me [15 minutes before](reminder_time)
     - [1 hour before](reminder_time)
     - [30 mins before](reminder_time)
+    - remind me [2 hours before](reminder_time)
+    - reminder [45 minutes before](reminder_time)
+    - set reminder [5 min before](reminder_time)
+    - [20 min before](reminder_time)
+
+- regex: platform
+  examples: |
+    - (?i)\b(zoom|google meet|googlemeet|gmeet|meet|teams|microsoft teams|webex|skype|slack call)\b
+
+- regex: reminder_time
+  examples: |
+    - (?i)\b\d+\s*(minutes?|mins?|hours?|hrs?)\s*(before|earlier)?\b
+
+- lookup: platform
+  examples: |
+    - Zoom
+    - Google Meet
+    - gmeet
+    - googlemeet
+    - Teams
+    - Microsoft Teams
+    - Webex
+    - Skype
+    - Slack Call
+
+- intent: create_meeting
+  examples: |
+    - schedule a meeting with [Rahul](participants) and [Neha](participants) [tomorrow](date) at [10 am](time) on [Google Meet](platform) with reminder [15 minutes before](reminder_time)
+    - set a call for [Ananya](participants) [next Monday](date) [3:30 pm](time) on [Zoom](platform) remind me [30 mins before](reminder_time)
+    - book meeting with [Karan](participants), [Aditi](participants) [Friday](date) at [6 pm](time) via [Teams](platform) and reminder [1 hour before](reminder_time)
+    - create meeting with [Rohit](participants) [today](date) [5:15 pm](time) on [Webex](platform) remind [10 minutes before](reminder_time)
+    - plan a session with [Priya](participants) [tomorrow](date) [9:00](time) [gmeet](platform)
+    - arrange a meeting with [Deepak](participants) and [Sonal](participants) [next week](date) [11 am](time)
+    - schedule meeting with [Isha](participants) [this Thursday](date) [2 pm](time) via [Skype](platform)
+    - create a call with [Ritu](participants), [Aman](participants), [Nitin](participants) [2026-03-10](date) [14:30](time) on [Google Meet](platform)
+    - set up meeting for [Divya](participants) [tomorrow](date) [evening](time) on [microsoft teams](platform)
+    - schedule with [Ankit](participants) and [Kavya](participants) [next Tuesday](date) [10:45 am](time) remind [20 min before](reminder_time)
+    - create meeting for [Harsh](participants) [Saturday](date) [noon](time)
+    - book call with [Meena](participants) [this Friday](date) [night](time) by [Zoom](platform)
+    - organize meeting with [Sanjay](participants) [tomorrow](date) [8:30 am](time) [googlemeet](platform)
+    - set meeting with [Pooja](participants), [Raj](participants) [next Wednesday](date) at [4 pm](time) reminder [45 minutes before](reminder_time)
+    - create a meeting with [Rahul](participants) on [Google Meet](platform)
+    - I need a meeting with [Ananya](participants) [tomorrow](date)
+    - schedule meeting at [7 pm](time) with [Nisha](participants)
+    - arrange call with [Rakesh](participants) and [Priya](participants) via [Webex](platform)
 
 - intent: out_of_scope
   examples: |

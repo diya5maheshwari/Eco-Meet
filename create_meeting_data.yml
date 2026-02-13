@@ -2653,4 +2653,8 @@ nlu:
     the morning](date) [using Webex](platform)
 
     - organize a discussion with [Rajesh](participants), [Sameer](participants), [Vijay](participants)
-    [this afternoon](date) [on Skype](platform)'
+    [this afternoon](date) [on Skype](platform)
+    
+    - Create a meeting with [Diya](participants) [today](date) [on Google Meet](platform) 
+    - Schedule a meeting for [Diya](participants) [tomorrow](date) [on Google Meet](platform)
+    - Set up a call for [Diya](participants) [on Friday](date)
