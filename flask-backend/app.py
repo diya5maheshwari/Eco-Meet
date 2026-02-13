@@ -114,12 +114,13 @@
 # if __name__ == "__main__":
 #     _init_db()
 #     app.run(host="0.0.0.0", port=8000, debug=True)
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS
 
 from database import init_db
 from auth.routes import auth_bp
 from meetings.routes import meetings_bp
+from contacts.routes import contacts_bp
 from rasa.routes import rasa_bp
 
 app = Flask(__name__)
@@ -130,18 +131,16 @@ CORS(app)
 # Ensure SQLite tables exist before serving traffic.
 init_db()
 
+@app.before_request
+def log_request_info():
+    print(f"Request: {request.method} {request.url} from {request.remote_addr}")
+
 app.register_blueprint(auth_bp, url_prefix="/api/auth")
 app.register_blueprint(meetings_bp, url_prefix="/api/meetings")
+app.register_blueprint(contacts_bp, url_prefix="/api/contacts")
 app.register_blueprint(rasa_bp, url_prefix="/api")
 
 if __name__ == "__main__":
     # Local development runner.
     app.run(host="0.0.0.0", port=8000, debug=True)
-"""Flask API entrypoint for the EchoMeet backend.
-
-This app exposes:
-- authentication routes
-- meeting scheduling/history routes
-- Rasa proxy routes
-"""
 

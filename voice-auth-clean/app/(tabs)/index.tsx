@@ -1,86 +1,307 @@
-import { View, Text, TouchableOpacity, StyleSheet, Animated, Easing } from "react-native";
-import { useEffect, useRef } from "react";
-import { router } from "expo-router";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Platform,
+  ScrollView,
+  TextInput,
+} from "react-native";
+import { useEffect, useRef, useState } from "react";
+import { Audio } from "expo-av";
+import * as FileSystem from "expo-file-system/legacy";
+import * as Contacts from "expo-contacts";
+import API from "../../services/api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useAuth } from "../../context/AuthContext";
 
-export default function Landing() {
-  const fade = useRef(new Animated.Value(0)).current;
-  const slide = useRef(new Animated.Value(20)).current;
-  const pulse = useRef(new Animated.Value(0.9)).current;
+const DEEPGRAM_API_KEY = "de69095600f4ca89395490564246f23ebdb257c6";
 
+type Message = {
+  id: string;
+  sender: "user" | "bot";
+  text: string;
+};
+
+export default function Mic() {
+  const { user } = useAuth();
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [inputText, setInputText] = useState("");
+  const [listening, setListening] = useState(false);
+
+  // Refs
+  const recordingRef = useRef<Audio.Recording | null>(null);
+  const lastSpeakingTimeRef = useRef<number>(0);
+  const recognitionRef = useRef<any>(null);
+  const scrollRef = useRef<ScrollView>(null);
+  const isStoppingRef = useRef(false);
+
+  // Auto-scroll
   useEffect(() => {
-    Animated.parallel([
-      Animated.timing(fade, {
-        toValue: 1,
-        duration: 700,
-        useNativeDriver: true,
-      }),
-      Animated.timing(slide, {
-        toValue: 0,
-        duration: 700,
-        easing: Easing.out(Easing.cubic),
-        useNativeDriver: true,
-      }),
-    ]).start();
+    scrollRef.current?.scrollToEnd({ animated: true });
+  }, [messages]);
 
-    Animated.loop(
-      Animated.sequence([
-        Animated.timing(pulse, {
-          toValue: 1.05,
-          duration: 1200,
-          easing: Easing.inOut(Easing.quad),
-          useNativeDriver: true,
-        }),
-        Animated.timing(pulse, {
-          toValue: 0.92,
-          duration: 1200,
-          easing: Easing.inOut(Easing.quad),
-          useNativeDriver: true,
-        }),
-      ])
-    ).start();
-  }, [fade, slide, pulse]);
+  // ---------------- CONTACT SYNC (Restored) ----------------
+  useEffect(() => {
+    (async () => {
+      try {
+        const { status } = await Contacts.requestPermissionsAsync();
+        if (status === "granted") {
+          const { data } = await Contacts.getContactsAsync({
+            fields: [Contacts.Fields.Emails, Contacts.Fields.PhoneNumbers],
+          });
 
+          if (data.length > 0) {
+            const formatted = data.map(c => ({
+              name: c.name || "Unknown",
+              phone_numbers: c.phoneNumbers?.map(p => p.number).join(",") || "",
+              emails: c.emails?.map(e => e.email).join(",") || ""
+            }));
+
+            await API.post("/contacts/sync", { contacts: formatted });
+          }
+        } else {
+          // alert("Permission to access contacts was denied");
+        }
+      } catch (e) {
+        console.log("Contact sync failed", e);
+      }
+    })();
+  }, []);
+
+
+  // ---------------- RECORDING OPTIONS ----------------
+  const recordingOptions: any = {
+    android: {
+      extension: ".m4a",
+      outputFormat: Audio.AndroidOutputFormat.MPEG_4,
+      audioEncoder: Audio.AndroidAudioEncoder.AAC,
+      sampleRate: 44100,
+      numberOfChannels: 1,
+      bitRate: 128000,
+      meteringIntervalMillis: 200,
+    },
+    ios: {
+      extension: ".m4a",
+      audioQuality: Audio.IOSAudioQuality.HIGH,
+      sampleRate: 44100,
+      numberOfChannels: 1,
+      bitRate: 128000,
+      linearPCMBitDepth: 16,
+      linearPCMIsBigEndian: false,
+      linearPCMIsFloat: false,
+      meteringIntervalMillis: 200,
+    },
+    web: { mimeType: "audio/webm", bitsPerSecond: 128000 },
+  };
+
+  // ---------------- LISTEN LOGIC ----------------
+  const startListening = async () => {
+    if (Platform.OS === "web") {
+      recognitionRef.current?.start();
+      setListening(true);
+      return;
+    }
+
+    try {
+      if (recordingRef.current) await stopListening();
+
+      const { status } = await Audio.requestPermissionsAsync();
+      if (status !== "granted") {
+        alert("Microphone permission required");
+        return;
+      }
+
+      const rec = new Audio.Recording();
+      await rec.prepareToRecordAsync(recordingOptions);
+      rec.setProgressUpdateInterval(200);
+
+      lastSpeakingTimeRef.current = Date.now();
+      isStoppingRef.current = false;
+
+      rec.setOnRecordingStatusUpdate((status) => {
+        if (!status.isRecording || isStoppingRef.current) return;
+
+        if (status.metering !== undefined) {
+          // EXTREMELY STRICT THRESHOLD: -10dB
+          // Normal speaking: -2 to -8dB
+          // Silence/Noise: -40 to -160dB
+          if (status.metering > -20) {
+            lastSpeakingTimeRef.current = Date.now();
+          } else {
+            const silenceDuration = Date.now() - lastSpeakingTimeRef.current;
+            if (silenceDuration > 3000) {
+              console.log("Auto-stopping (3s silence)");
+              stopListening();
+            }
+          }
+        }
+      });
+
+      await rec.startAsync();
+      recordingRef.current = rec;
+      setListening(true);
+    } catch (error) {
+      console.log("Start error", error);
+    }
+  };
+
+  const stopListening = async () => {
+    if (Platform.OS === "web") {
+      recognitionRef.current?.stop();
+      setListening(false);
+      return;
+    }
+
+    if (isStoppingRef.current) return;
+    isStoppingRef.current = true;
+
+    const rec = recordingRef.current;
+    if (!rec) return;
+
+    try {
+      if (rec._canRecord) await rec.stopAndUnloadAsync();
+      const uri = rec.getURI();
+      recordingRef.current = null;
+      setListening(false);
+
+      if (uri) await transcribeWithDeepgram(uri);
+    } catch (error) {
+      console.log("Stop video error", error);
+    } finally {
+      isStoppingRef.current = false;
+    }
+  };
+
+  // ---------------- TRANSCRIPTION ----------------
+  const transcribeWithDeepgram = async (uri: string) => {
+    try {
+      const response = await FileSystem.uploadAsync(
+        "https://api.deepgram.com/v1/listen?model=nova-2&smart_format=true",
+        uri,
+        {
+          headers: {
+            Authorization: `Token ${DEEPGRAM_API_KEY}`,
+            "Content-Type": "audio/m4a",
+          },
+          httpMethod: "POST",
+          uploadType: 0,
+        }
+      );
+
+      if (response.status === 200) {
+        const result = JSON.parse(response.body);
+        const transcript = result?.results?.channels?.[0]?.alternatives?.[0]?.transcript;
+        if (transcript) await sendToChat(transcript);
+      }
+    } catch (error) {
+      console.log("Deepgram error", error);
+    }
+  };
+
+  // ---------------- SEND TO CHAT (WITH AUTO-DELETE) ----------------
+  const sendToChat = async (messageText: string) => {
+    if (!messageText.trim()) return;
+
+    try {
+      const token = await AsyncStorage.getItem("token");
+      const msgId = Date.now().toString();
+
+      // 1. Add User Message
+      const newUserMsg: Message = { id: msgId, sender: "user", text: messageText };
+      setMessages((prev) => [...prev, newUserMsg]);
+      setInputText("");
+
+      // Auto-delete user message after 2 minutes (120000 ms)
+      setTimeout(() => {
+        setMessages(prev => prev.filter(m => m.id !== msgId));
+      }, 120000);
+
+      // 2. Send to Backend
+      const res = await API.post(
+        "/chat",
+        { text: messageText },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      // 3. Handle Bot Reply
+      if (res.data?.length > 0) {
+        const botReplyText = res.data[0]?.text;
+        if (botReplyText) {
+          const botMsgId = (Date.now() + 1).toString();
+          const newBotMsg: Message = { id: botMsgId, sender: "bot", text: botReplyText };
+
+          setMessages((prev) => [...prev, newBotMsg]);
+
+          // Auto-delete bot message after 1.5 minutes
+          setTimeout(() => {
+            setMessages(prev => prev.filter(m => m.id !== botMsgId));
+          }, 90000);
+        }
+      }
+
+    } catch (error: any) {
+      console.log("Chat error", error);
+    }
+  };
+
+  // ---------------- RENDER ----------------
   return (
     <View style={styles.container}>
-      <View style={styles.orbOne} />
-      <View style={styles.orbTwo} />
+      <View style={styles.card}>
+        <View style={styles.header}>
+          <Text style={styles.title}>Welcome, {user?.name}</Text>
+        </View>
 
-      <Animated.View
-        style={[
-          styles.card,
-          {
-            opacity: fade,
-            transform: [{ translateY: slide }],
-          },
-        ]}
-      >
-        <Text style={styles.title}>VoiceAuth</Text>
-        <Text style={styles.subtitle}>
-          Speak. Transcribe. Save your history.
-        </Text>
+        <ScrollView ref={scrollRef} style={styles.box}>
+          {messages.length === 0 ? (
+            <Text style={styles.placeholder}>
+              Start speaking...
+            </Text>
+          ) : (
+            messages.map((msg) => (
+              <Text
+                key={msg.id}
+                style={[
+                  styles.message,
+                  { color: msg.sender === "user" ? "#38bdf8" : "#22c55e" },
+                ]}
+              >
+                {msg.sender === "user" ? "You: " : "Bot: "}
+                {msg.text}
+              </Text>
+            ))
+          )}
+        </ScrollView>
 
-        <Animated.View style={[styles.micRing, { transform: [{ scale: pulse }] }]}>
-          <View style={styles.micDot} />
-        </Animated.View>
-
-        <Text style={styles.body}>
-          Convert speech to text on web and mobile, securely stored in your account.
-        </Text>
+        <View style={styles.inputRow}>
+          <TextInput
+            style={styles.input}
+            placeholder="Type message..."
+            placeholderTextColor="#94a3b8"
+            value={inputText}
+            onChangeText={setInputText}
+          />
+          <TouchableOpacity
+            style={styles.sendButton}
+            onPress={() => sendToChat(inputText)}
+          >
+            <Text style={styles.sendText}>Send</Text>
+          </TouchableOpacity>
+        </View>
 
         <TouchableOpacity
-          onPress={() => router.push("/login")}
-          style={styles.primaryButton}
+          onPress={listening ? stopListening : startListening}
+          style={[
+            styles.micButton,
+            { backgroundColor: listening ? "#ef4444" : "#111827" },
+          ]}
         >
-          <Text style={styles.primaryText}>Login</Text>
+          <Text style={styles.micText}>
+            {listening ? "Stop" : "Start Speaking"}
+          </Text>
         </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => router.push("/register")}
-          style={styles.secondaryButton}
-        >
-          <Text style={styles.secondaryText}>Create Account</Text>
-        </TouchableOpacity>
-      </Animated.View>
+      </View>
     </View>
   );
 }
@@ -88,91 +309,76 @@ export default function Landing() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0b1020",
+    backgroundColor: "#0f172a",
     justifyContent: "center",
     padding: 16,
   },
-  orbOne: {
-    position: "absolute",
-    width: 280,
-    height: 280,
-    borderRadius: 140,
-    backgroundColor: "#1d4ed8",
-    opacity: 0.25,
-    top: -40,
-    right: -80,
-  },
-  orbTwo: {
-    position: "absolute",
-    width: 220,
-    height: 220,
-    borderRadius: 110,
-    backgroundColor: "#22d3ee",
-    opacity: 0.18,
-    bottom: -40,
-    left: -60,
-  },
   card: {
     backgroundColor: "#111827",
-    borderRadius: 20,
-    padding: 22,
-    borderWidth: 1,
-    borderColor: "#1f2937",
+    borderRadius: 16,
+    padding: 18,
+    flex: 1,
+  },
+  header: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginBottom: 10,
   },
   title: {
     color: "#f8fafc",
-    fontSize: 30,
-    fontWeight: "800",
-    textAlign: "center",
-  },
-  subtitle: {
-    color: "#94a3b8",
-    textAlign: "center",
-    marginTop: 6,
-    marginBottom: 18,
-  },
-  micRing: {
-    alignSelf: "center",
-    width: 86,
-    height: 86,
-    borderRadius: 43,
-    borderWidth: 2,
-    borderColor: "#38bdf8",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 16,
-  },
-  micDot: {
-    width: 42,
-    height: 42,
-    borderRadius: 21,
-    backgroundColor: "#38bdf8",
-  },
-  body: {
-    color: "#cbd5f5",
-    textAlign: "center",
-    marginBottom: 16,
-  },
-  primaryButton: {
-    backgroundColor: "#2563eb",
-    paddingVertical: 14,
-    borderRadius: 12,
-    alignItems: "center",
-  },
-  primaryText: {
-    color: "#f8fafc",
+    fontSize: 20,
     fontWeight: "700",
   },
-  secondaryButton: {
-    marginTop: 10,
-    paddingVertical: 12,
-    borderRadius: 12,
+  box: {
+    flex: 1,
     borderWidth: 1,
     borderColor: "#334155",
-    alignItems: "center",
+    backgroundColor: "#0b1220",
+    padding: 12,
+    borderRadius: 12,
+    marginBottom: 12,
   },
-  secondaryText: {
+  message: {
+    marginBottom: 8,
+  },
+  placeholder: {
+    color: "#94a3b8",
+  },
+  inputRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  input: {
+    flex: 1,
+    backgroundColor: "#0b1220",
     color: "#e2e8f0",
+    padding: 12,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#334155",
+    marginRight: 8,
+  },
+  sendButton: {
+    backgroundColor: "#2563eb",
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderRadius: 10,
+  },
+  sendText: {
+    color: "#fff",
     fontWeight: "600",
+  },
+  micButton: {
+    paddingVertical: 16,
+    borderRadius: 999,
+    alignItems: "center",
+    backgroundColor: "#111827",
+    borderWidth: 1,
+    borderColor: "#334155",
+  },
+  micText: {
+    color: "#f8fafc",
+    fontWeight: "700",
   },
 });

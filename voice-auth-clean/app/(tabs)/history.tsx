@@ -2,8 +2,7 @@
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
 import API from "../../services/api";
-import { router } from "expo-router";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useAuth } from "../../context/AuthContext";
 
 type Item = {
   id: number;
@@ -19,6 +18,7 @@ export default function History() {
   // Fetch and display past meetings for the logged-in user.
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(false);
+  const { logout } = useAuth();
 
   const loadTexts = async () => {
     // Load meeting history from Flask API.
@@ -39,17 +39,11 @@ export default function History() {
     loadTexts();
   }, []);
 
-const handleLogout = async () => {
-  // Remove local token and return to login.
-  await AsyncStorage.removeItem("token");
-  router.replace("/login");
-};
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Previous Meetings</Text>
-        <TouchableOpacity style={styles.logoutBtn} onPress={handleLogout}>
+        <TouchableOpacity style={styles.logoutBtn} onPress={logout}>
           <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
       </View>

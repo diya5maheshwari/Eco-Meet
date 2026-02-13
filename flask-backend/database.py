@@ -36,3 +36,14 @@ def init_db():
                 reminder_time TEXT
             )
         """)
+
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS contacts (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER,
+                name TEXT NOT NULL,
+                phone_numbers TEXT,
+                emails TEXT,
+                synced_at TEXT
+            )
+        """)

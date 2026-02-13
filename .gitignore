@@ -46,3 +46,4 @@ rasa_server.err.log
 # Python bytecode
 __pycache__/
 *.pyc
+venv/

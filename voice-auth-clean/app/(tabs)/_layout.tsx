@@ -12,21 +12,19 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: '#3b82f6', // Blue for active
+        tabBarInactiveTintColor: '#94a3b8', // Gray for inactive
         headerShown: false,
         tabBarButton: HapticTab,
+        tabBarStyle: {
+          backgroundColor: '#0f172a', // Dark blue background
+          borderTopColor: '#334155', // Subtle border
+        }
       }}>
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="mic"
-        options={{
-          title: 'Mic',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="mic.fill" color={color} />,
         }}
       />
@@ -35,6 +33,13 @@ export default function TabLayout() {
         options={{
           title: 'History',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="clock.fill" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="person.circle.fill" color={color} />,
         }}
       />
     </Tabs>
