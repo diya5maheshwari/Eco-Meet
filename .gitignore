@@ -50,3 +50,7 @@ venv/
 
 # local python env (VERY IMPORTANT)
 rasaenv/
+
+# secrets
+flask_backend/credentials.json
+flask_backend/token.json
