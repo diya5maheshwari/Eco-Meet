@@ -117,11 +117,12 @@
 from flask import Flask, request
 from flask_cors import CORS
 
-from database import init_db
-from auth.routes import auth_bp
-from meetings.routes import meetings_bp
-from contacts.routes import contacts_bp
-from rasa.routes import rasa_bp
+from flask_backend.database import init_db
+from flask_backend.auth.routes import auth_bp
+from flask_backend.meetings.routes import meetings_bp
+from flask_backend.contacts.routes import contacts_bp
+from flask_backend.rasa.routes import rasa_bp
+
 
 app = Flask(__name__)
 

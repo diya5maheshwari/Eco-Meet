@@ -1,7 +1,8 @@
 """Database helpers for the Flask backend (SQLite)."""
 
 import sqlite3
-from config import DB_PATH
+from flask_backend.config import DB_PATH
+
 
 
 def get_connection():

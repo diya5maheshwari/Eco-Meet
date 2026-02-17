@@ -3,8 +3,8 @@
 import jwt
 from flask import request, jsonify
 from functools import wraps
-from config import SECRET_KEY
-from database import get_connection
+from flask_backend.config import SECRET_KEY
+from flask_backend.database import get_connection
 
 
 def token_required(f):

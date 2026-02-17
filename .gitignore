@@ -47,3 +47,4 @@ rasa_server.err.log
 __pycache__/
 *.pyc
 venv/
+

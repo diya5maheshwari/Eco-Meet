@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify
-from database import get_connection
+from flask_backend.database import get_connection
 import json
 from datetime import datetime
-from decorators import token_required
+from flask_backend.decorators import token_required
 
 contacts_bp = Blueprint('contacts', __name__)
 

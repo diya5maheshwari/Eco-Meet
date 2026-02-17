@@ -5,8 +5,9 @@ import bcrypt
 import jwt
 import sqlite3
 from datetime import datetime, timedelta
-from config import SECRET_KEY
-from database import get_connection
+from flask_backend.database import get_connection
+from flask_backend.config import SECRET_KEY
+from flask_backend.database import get_connection
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -44,8 +45,10 @@ def register():
 
     except sqlite3.IntegrityError:
         return jsonify({"message": "User already exists"}), 400
-    except Exception:
-        return jsonify({"message": "Failed to register user"}), 500
+    except Exception as e:
+        print("REGISTER ERROR:", e)
+        return jsonify({"message": str(e)}), 500
+
 
 
 @auth_bp.route("/login", methods=["POST"])

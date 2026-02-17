@@ -1,9 +1,10 @@
 """Flask proxy routes for Rasa chat and parse APIs."""
-
+from flask_backend.google_calendar_service import create_google_meet_link
 from flask import Blueprint, request, jsonify
-from config import RASA_WEBHOOK_URL, RASA_URL
-from decorators import token_required
 import requests
+from flask_backend.config import RASA_WEBHOOK_URL, RASA_URL
+from flask_backend.decorators import token_required
+
 
 rasa_bp = Blueprint("rasa", __name__)
 
@@ -23,16 +24,30 @@ def _default_rasa_offline_message():
     ]
 
 
+# ---------------- HEALTH CHECK ----------------
+@rasa_bp.route("/health", methods=["GET"])
+def health():
+    """Check if Flask can reach Rasa server."""
+    try:
+        resp = requests.get(f"{RASA_URL}/status", timeout=3)
+        if resp.status_code == 200:
+            return jsonify({"status": "ok", "rasa": "connected"})
+    except requests.RequestException:
+        pass
+
+    return jsonify({"status": "ok", "rasa": "disconnected"}), 200
+
+
+# ---------------- CHAT ----------------
 @rasa_bp.route("/chat", methods=["POST"])
 @token_required
 def chat(current_user):
-    """Forward user chat message to Rasa and normalize fallback/default behavior."""
+
     body = _json_body()
     if body is None:
         return jsonify({"error": "invalid JSON body"}), 400
 
     text = (body.get("text") or "").strip()
-
     if not text:
         return jsonify({"error": "text required"}), 400
 
@@ -44,29 +59,44 @@ def chat(current_user):
         )
         resp.raise_for_status()
         messages = resp.json()
+
     except (requests.RequestException, ValueError):
         return jsonify(_default_rasa_offline_message()), 200
 
     if not isinstance(messages, list):
         return jsonify(_default_rasa_offline_message()), 200
 
-    # If Rasa emits meeting payload without platform, inject user-facing default notice.
-    platform_notice_added = False
+    # 🔥 HERE WE HANDLE MEETING CREATION
+    new_messages = []
+
     for message in messages:
+        new_messages.append(message)
+
         custom = message.get("custom") if isinstance(message, dict) else None
+
         if isinstance(custom, dict) and custom.get("type") == "meeting_data":
-            if not (custom.get("platform") or "").strip():
-                custom["platform"] = "Google Meet"
-                platform_notice_added = True
 
-    if platform_notice_added:
-        messages.append({
-            "text": "Platform was not provided, choosing Google Meet as the default platform."
-        })
+            meeting_info = create_google_meet_link(
+                custom.get("date"),
+                custom.get("time"),
+                custom.get("participants", [])
+            )
 
-    return jsonify(messages)
+            new_messages.append({
+                "text": f"Your meeting is scheduled! Here is your link:\n{meeting_info['meeting_link']}"
+            })
+
+            new_messages.append({
+                "custom": {
+                    "type": "meeting_link",
+                    **meeting_info
+                }
+            })
+
+    return jsonify(new_messages)
 
 
+# ---------------- NLU PARSE ----------------
 @rasa_bp.route("/nlu/parse", methods=["POST"])
 def nlu_parse():
     """Forward raw text to Rasa NLU parse endpoint."""
@@ -86,6 +116,7 @@ def nlu_parse():
         )
         resp.raise_for_status()
         return jsonify(resp.json())
+
     except (requests.RequestException, ValueError):
         return jsonify({
             "error": "Rasa parse service unavailable",

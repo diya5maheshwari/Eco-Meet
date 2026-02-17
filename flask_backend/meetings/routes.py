@@ -1,9 +1,10 @@
 """Meeting scheduling and history routes for Flask API."""
 
 from flask import Blueprint, request, jsonify
-from decorators import token_required
-from database import get_connection
+from flask_backend.decorators import token_required
+from flask_backend.database import get_connection
 from datetime import datetime
+
 import json
 import dateparser
 
