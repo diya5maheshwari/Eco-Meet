@@ -7,8 +7,8 @@ const envBase = (process.env.EXPO_PUBLIC_API_URL || "").trim();
 
 const defaultBase =
   Platform.OS === "web"
-    ? "http://localhost:8000/api"
-    : "http://192.168.1.33:8000/api";
+    ? "http://10.228.1.65:8000/api"
+    : "http://10.228.1.65:8000/api";
 
 export const API_BASE_URL =
   envBase || defaultBase;
