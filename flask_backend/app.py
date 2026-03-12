@@ -114,8 +114,14 @@
 # if __name__ == "__main__":
 #     _init_db()
 #     app.run(host="0.0.0.0", port=8000, debug=True)
+import os
+
+from dotenv import load_dotenv
 from flask import Flask, request
 from flask_cors import CORS
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 from flask_backend.database import init_db
 from flask_backend.auth.routes import auth_bp

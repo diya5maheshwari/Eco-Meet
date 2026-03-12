@@ -37,6 +37,25 @@ NAME_RE = re.compile(r"^[A-Za-z][A-Za-z .'\-]{0,49}$")
 TIME_RE = re.compile(
     r"\b((1[0-2]|0?[1-9])(:[0-5][0-9])?\s*[AaPp][Mm]|([01]?[0-9]|2[0-3]):[0-5][0-9]|noon|midnight|morning|afternoon|evening|night)\b"
 )
+DOT_TIME_RE = re.compile(r"\b(\d{1,2})\.(\d{2})\b")
+SPACE_TIME_RE = re.compile(r"\b(\d{1,2})\s+(\d{2})\s*([AaPp][Mm])?\b")
+
+
+def _normalize_time_text(text: Text) -> Text:
+    """Normalize common time formats like 6.18 or '6 18 AM' to 6:18 AM."""
+    if not text:
+        return text
+    updated = DOT_TIME_RE.sub(r"\1:\2", text)
+
+    def _space_repl(match: re.Match) -> str:
+        hour, minute, ampm = match.group(1), match.group(2), match.group(3) or ""
+        start = match.start()
+        prefix = updated[max(0, start - 6):start].lower()
+        if "at" in prefix or ampm:
+            return f"{hour}:{minute} {ampm}".strip()
+        return match.group(0)
+
+    return SPACE_TIME_RE.sub(_space_repl, updated)
 PARTICIPANT_HINT_RE = re.compile(
     r"(?:with|for|invite|including|add)\s+(.+?)(?:\s+(?:on|at|by|via|using|tomorrow|today|next|this)\b|$)",
     re.IGNORECASE,
@@ -120,6 +139,7 @@ def _extract_time_from_text(text: Text) -> Text:
     """Extract a time from user text as HH:MM (24-hour)."""
     if not text:
         return ""
+    text = _normalize_time_text(text)
     match = TIME_RE.search(text)
     candidate = match.group(1) if match else text
     parsed = dateparser.parse(candidate)
@@ -256,7 +276,8 @@ class ValidateScheduleMeetingForm(FormValidationAction):
         domain: DomainDict,
     ) -> Dict[Text, Any]:
         """Validate and normalize time slot."""
-        parsed = dateparser.parse(value)
+        normalized = _normalize_time_text(value) if isinstance(value, str) else value
+        parsed = dateparser.parse(normalized)
         if not parsed:
             dispatcher.utter_message(response="utter_invalid_time")
             return {"time": None}

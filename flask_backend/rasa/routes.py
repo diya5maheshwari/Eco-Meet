@@ -1,5 +1,11 @@
 """Flask proxy routes for Rasa chat and parse APIs."""
+import json
+from datetime import datetime
+
 from flask_backend.google_calendar_service import create_google_meet_link
+from flask_backend.notifications import send_meeting_notifications
+from flask_backend.meetings.routes import normalize_meeting
+from flask_backend.database import get_connection
 from flask import Blueprint, request, jsonify
 import requests
 from flask_backend.config import RASA_WEBHOOK_URL, RASA_URL
@@ -81,6 +87,61 @@ def chat(current_user):
                 custom.get("time"),
                 custom.get("participants", [])
             )
+
+            try:
+                normalized = normalize_meeting({
+                    "date": custom.get("date"),
+                    "time": custom.get("time"),
+                    "platform": meeting_info.get("platform", custom.get("platform")),
+                    "participants": custom.get("participants", []),
+                    "reminder_time": custom.get("reminder_time"),
+                })
+
+                with get_connection() as conn:
+                    cursor = conn.execute(
+                        """
+                        INSERT INTO meetings
+                        (created_at, user_id, date, time, platform, participants, reminder_time)
+                        VALUES (?, ?, ?, ?, ?, ?, ?)
+                        """,
+                        (
+                            datetime.utcnow().isoformat(),
+                            current_user[0],
+                            normalized["date"],
+                            normalized["time"],
+                            normalized["platform"],
+                            json.dumps(normalized["participants"]),
+                            normalized["reminder_time"],
+                        ),
+                    )
+                    meeting_id = cursor.lastrowid
+
+                new_messages.append({
+                    "custom": {
+                        "type": "meeting_saved",
+                        "meeting_id": meeting_id,
+                        "date": normalized["date"],
+                        "time": normalized["time"],
+                        "platform": normalized["platform"],
+                        "participants": normalized["participants"],
+                        "reminder_time": normalized["reminder_time"],
+                    }
+                })
+            except Exception as exc:
+                print(f"Failed to save meeting: {exc}")
+
+            try:
+                send_meeting_notifications(
+                    user_id=current_user[0],
+                    date=custom.get("date"),
+                    time=custom.get("time"),
+                    platform=meeting_info.get("platform", "Google Meet"),
+                    meeting_link=meeting_info.get("meeting_link", ""),
+                    participants=custom.get("participants", []),
+                    reminder_time=custom.get("reminder_time"),
+                )
+            except Exception as exc:
+                print(f"Failed to send WhatsApp notifications: {exc}")
 
             new_messages.append({
                 "text": f"Your meeting is scheduled! Here is your link:\n{meeting_info['meeting_link']}"
