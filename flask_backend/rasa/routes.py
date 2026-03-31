@@ -4,6 +4,10 @@ from flask import Blueprint, request, jsonify
 import requests
 from flask_backend.config import RASA_WEBHOOK_URL, RASA_URL
 from flask_backend.decorators import token_required
+from flask_backend.email_service import send_email
+from flask_backend.database import get_connection
+from flask_backend.zoom_service import create_zoom_meeting
+import json
 
 
 rasa_bp = Blueprint("rasa", __name__)
@@ -76,14 +80,48 @@ def chat(current_user):
 
         if isinstance(custom, dict) and custom.get("type") == "meeting_data":
 
-            meeting_info = create_google_meet_link(
-                custom.get("date"),
-                custom.get("time"),
-                custom.get("participants", [])
-            )
+            participant_names = custom.get("participants", [])
+
+            emails = []
+
+            with get_connection() as conn:
+
+                for participant in participant_names:
+
+                    # If user directly said email
+                    if "@" in participant:
+                        emails.append(participant)
+                        continue
+
+                    # Otherwise search in contacts
+                    row = conn.execute(
+                        "SELECT emails FROM contacts WHERE LOWER(name)=LOWER(?) LIMIT 1",
+                        (participant,)
+                    ).fetchone()
+
+                    if row:
+                        email_list = json.loads(row[0]) if row[0] else []
+                        if email_list:
+                            emails.append(email_list[0])
+
+            platform = (custom.get("platform") or "Google Meet").lower()
+
+            if "zoom" in platform:
+                meeting_info = create_zoom_meeting()
+            else:
+                meeting_info = create_google_meet_link(
+                    custom.get("date"),
+                    custom.get("time"),
+                    emails
+                )
+
+            meet_link = meeting_info["meeting_link"]
+
+            for email in emails:
+                send_email(email, meet_link)
 
             new_messages.append({
-                "text": f"Your meeting is scheduled! Here is your link:\n{meeting_info['meeting_link']}"
+                "text": f"Your meeting is scheduled! Here is your link:\n{meet_link}"
             })
 
             new_messages.append({
@@ -93,34 +131,5 @@ def chat(current_user):
                 }
             })
 
+    # ✅ IMPORTANT — always return response
     return jsonify(new_messages)
-
-
-# ---------------- NLU PARSE ----------------
-@rasa_bp.route("/nlu/parse", methods=["POST"])
-def nlu_parse():
-    """Forward raw text to Rasa NLU parse endpoint."""
-    body = _json_body()
-    if body is None:
-        return jsonify({"error": "invalid JSON body"}), 400
-
-    text = (body.get("text") or "").strip()
-    if not text:
-        return jsonify({"error": "text required"}), 400
-
-    try:
-        resp = requests.post(
-            f"{RASA_URL}/model/parse",
-            json={"text": text},
-            timeout=5
-        )
-        resp.raise_for_status()
-        return jsonify(resp.json())
-
-    except (requests.RequestException, ValueError):
-        return jsonify({
-            "error": "Rasa parse service unavailable",
-            "text": text,
-            "intent": {"name": "nlu_fallback", "confidence": 0.0},
-            "entities": []
-        }), 503

@@ -48,3 +48,17 @@ rules:
     steps:
       - intent: out_of_scope
       - action: schedule_meeting_form
+  - rule: Reschedule meeting
+    steps:
+    - intent: reschedule_meeting
+    - action: action_reschedule_meeting
+
+  - rule: Cancel meeting
+    steps:
+    - intent: cancel_meeting
+    - action: action_cancel_meeting
+
+  - rule: Add participant
+    steps:
+    - intent: add_participant
+    - action: action_add_participant

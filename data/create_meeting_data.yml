@@ -107,9 +107,6 @@ nlu:
     - start meeting via [Google Meet](platform)
     - I want to arrange meeting for tomorrow evening
     - please organize meeting at [4 pm](time)
-
-- intent: create_meeting
-  examples: |
     - schedule a meeting with [Aditi](participant) and [Ishaan](participant) next [Tuesday](date) at [9 am](time) via [Zoom](platform)
     - create meeting with [Ritika](participant) on [Friday](date) evening through [Teams](platform)
     - plan meeting tomorrow with [Kabir](participant) and [Misha](participant) on [Google Meet](platform)
@@ -214,9 +211,6 @@ nlu:
     - create meeting today evening
     - setup quick online call
     - plan video conference
-
-- intent: create_meeting
-  examples: |
     - schedule meeting with [Neha](participant) tomorrow at [10 AM](time) using [Zoom](platform)
     - create meeting between [Amit](participant) and [Tina](participant) via [Teams](platform)
     - I want to organize [Google Meet](platform) for [Rohan](participant) and [Simran](participant)
@@ -344,9 +338,6 @@ nlu:
     - make [Webex](platform) meeting for [table](invalid_participant)
     - plan [Google Meet](platform) with [book](invalid_participant)
     - create [Zoom](platform) link for [door](invalid_participant)
-
-- intent: create_meeting
-  examples: |
     - create meeting for [Ananya](participant) and [Isha](participant) tomorrow on [Zoom](platform)
     - plan a call with [Deepak](participant) and [Sanya](participant) at [6 PM](time)
     - schedule a [Google Meet](platform) with [Rohan](participant) on [Friday](date)
@@ -460,9 +451,6 @@ nlu:
     - fix meeting with [Rohit](participant)
     - book call for [Anjali](participant)
     - make [Zoom](platform) call right now
-
-- intent: create_meeting
-  examples: |
     - schedule a meeting with [Ethan](participant) and [Kavya](participant) on [Tuesday](date) at [9 AM](time) via [Zoom](platform)
     - create a [Teams](platform) call for [Priya](participant) and [Lucas](participant) this [Friday](date) at [5 PM](time)
     - plan [Google Meet](platform) with [Hiroshi](participant) and [Meera](participant) on [Monday](date) at [10:30 AM](time)
@@ -524,3 +512,140 @@ nlu:
     - create [Teams](platform) call with [pillow](invalid_participant) and [Meera](participant) on [Wednesday](date) at [7:50 PM](time)
     - organize [Webex](platform) discussion including [door](invalid_participant) and [Daniel](participant) at [6:40 PM](time)
     - schedule [Slack call](platform) with [window](invalid_participant) and [Rohan](participant) tomorrow at [9:25 AM](time)
+    - schedule meeting with [rahul@gmail.com](participant)
+    - set meeting with [aman@gmail.com](participant)
+    - arrange meeting with [neha@gmail.com](participant)
+    - create meeting with [rohit@gmail.com](participant)
+    - plan meeting with [priya@gmail.com](participant)
+    - schedule meeting with [test@gmail.com](participant)
+    - schedule meeting with [example@gmail.com](participant)
+    - set a meeting with [user@gmail.com](participant)
+    - book meeting with [contact@gmail.com](participant)
+    - start meeting with [friend@gmail.com](participant)
+
+    - schedule meeting with [rahul@gmail.com](participant) tomorrow
+    - set meeting with [aman@gmail.com](participant) tomorrow
+    - arrange meeting with [neha@gmail.com](participant) tomorrow
+    - create meeting with [rohit@gmail.com](participant) tomorrow
+    - plan meeting with [priya@gmail.com](participant) tomorrow
+    - schedule meeting with [test@gmail.com](participant) tomorrow
+    - schedule meeting with [example@gmail.com](participant) tomorrow
+    - set meeting with [user@gmail.com](participant) tomorrow
+    - book meeting with [contact@gmail.com](participant) tomorrow
+    - start meeting with [friend@gmail.com](participant) tomorrow
+
+    - schedule meeting with [rahul@gmail.com](participant) at 3 pm
+    - set meeting with [aman@gmail.com](participant) at 5 pm
+    - arrange meeting with [neha@gmail.com](participant) at 4 pm
+    - create meeting with [rohit@gmail.com](participant) at 6 pm
+    - plan meeting with [priya@gmail.com](participant) at 2 pm
+    - schedule meeting with [test@gmail.com](participant) at 1 pm
+    - schedule meeting with [example@gmail.com](participant) at 7 pm
+    - set meeting with [user@gmail.com](participant) at 11 am
+    - book meeting with [contact@gmail.com](participant) at 9 am
+    - start meeting with [friend@gmail.com](participant) at 10 am
+
+    - schedule meeting with [rahul@gmail.com](participant) tomorrow at 3 pm
+    - set meeting with [aman@gmail.com](participant) tomorrow at 5 pm
+    - arrange meeting with [neha@gmail.com](participant) tomorrow at 4 pm
+    - create meeting with [rohit@gmail.com](participant) tomorrow at 6 pm
+    - plan meeting with [priya@gmail.com](participant) tomorrow at 2 pm
+    - schedule meeting with [test@gmail.com](participant) tomorrow at 1 pm
+    - schedule meeting with [example@gmail.com](participant) tomorrow at 7 pm
+    - set meeting with [user@gmail.com](participant) tomorrow at 11 am
+    - book meeting with [contact@gmail.com](participant) tomorrow at 9 am
+    - start meeting with [friend@gmail.com](participant) tomorrow at 10 am
+
+    - set up meeting with [rahul@gmail.com](participant)
+    - set up meeting with [aman@gmail.com](participant)
+    - set up meeting with [neha@gmail.com](participant)
+    - set up meeting with [rohit@gmail.com](participant)
+    - set up meeting with [priya@gmail.com](participant)
+    - set up meeting with [test@gmail.com](participant)
+    - set up meeting with [example@gmail.com](participant)
+    - set up meeting with [user@gmail.com](participant)
+    - set up meeting with [contact@gmail.com](participant)
+    - set up meeting with [friend@gmail.com](participant)
+
+    - create a meeting with [rahul@gmail.com](participant)
+    - create a meeting with [aman@gmail.com](participant)
+    - create a meeting with [neha@gmail.com](participant)
+    - create a meeting with [rohit@gmail.com](participant)
+    - create a meeting with [priya@gmail.com](participant)
+    - create a meeting with [test@gmail.com](participant)
+    - create a meeting with [example@gmail.com](participant)
+    - create a meeting with [user@gmail.com](participant)
+    - create a meeting with [contact@gmail.com](participant)
+    - create a meeting with [friend@gmail.com](participant)
+
+    - schedule call with [rahul@gmail.com](participant)
+    - schedule call with [aman@gmail.com](participant)
+    - schedule call with [neha@gmail.com](participant)
+    - schedule call with [rohit@gmail.com](participant)
+    - schedule call with [priya@gmail.com](participant)
+    - schedule call with [test@gmail.com](participant)
+    - schedule call with [example@gmail.com](participant)
+    - schedule call with [user@gmail.com](participant)
+    - schedule call with [contact@gmail.com](participant)
+    - schedule call with [friend@gmail.com](participant)
+
+    - arrange call with [rahul@gmail.com](participant) tomorrow
+    - arrange call with [aman@gmail.com](participant) tomorrow
+    - arrange call with [neha@gmail.com](participant) tomorrow
+    - arrange call with [rohit@gmail.com](participant) tomorrow
+    - arrange call with [priya@gmail.com](participant) tomorrow
+    - arrange call with [test@gmail.com](participant) tomorrow
+    - arrange call with [example@gmail.com](participant) tomorrow
+    - arrange call with [user@gmail.com](participant) tomorrow
+    - arrange call with [contact@gmail.com](participant) tomorrow
+    - arrange call with [friend@gmail.com](participant) tomorrow
+
+    - schedule a call with [rahul@gmail.com](participant) at 3 pm tomorrow
+    - schedule a call with [aman@gmail.com](participant) at 5 pm tomorrow
+    - schedule a call with [neha@gmail.com](participant) at 4 pm tomorrow
+    - schedule a call with [rohit@gmail.com](participant) at 6 pm tomorrow
+    - schedule a call with [priya@gmail.com](participant) at 2 pm tomorrow
+    - schedule a call with [test@gmail.com](participant) at 1 pm tomorrow
+    - schedule a call with [example@gmail.com](participant) at 7 pm tomorrow
+    - schedule a call with [user@gmail.com](participant) at 11 am tomorrow
+    - schedule a call with [contact@gmail.com](participant) at 9 am tomorrow
+    - schedule a call with [friend@gmail.com](participant) at 10 am tomorrow
+    - schedule meeting with [rahul@gmail.com](participant) and [aman@gmail.com](participant)
+    - create meeting with [neha@gmail.com](participant) and [rohit@gmail.com](participant)
+    - schedule meeting with [rahul@gmail.com](participant) and [aman@gmail.com](participant)
+    - create meeting with [neha@gmail.com](participant) and [rohit@gmail.com](participant)
+    - arrange meeting with [priya@gmail.com](participant) and [vikas@gmail.com](participant)
+    - set up meeting with [ananya@gmail.com](participant) and [deepak@gmail.com](participant)
+    - plan a meeting with [simran@gmail.com](participant) and [nidhi@gmail.com](participant)
+    - book meeting with [raj@gmail.com](participant) and [sanya@gmail.com](participant)
+    - organize meeting with [amit@gmail.com](participant) and [pooja@gmail.com](participant)
+    - start meeting with [ravi@gmail.com](participant) and [tina@gmail.com](participant)
+    - create a meeting with [akash@gmail.com](participant) and [isha@gmail.com](participant)
+    - schedule call with [arjun@gmail.com](participant) and [meera@gmail.com](participant)
+    - schedule meeting with [rahul@gmail.com](participant) and [aman@gmail.com](participant)
+    - create meeting with [neha@gmail.com](participant) and [rohit@gmail.com](participant)
+    - arrange meeting with [priya@gmail.com](participant) and [vikas@gmail.com](participant)
+    - set up meeting with [ananya@gmail.com](participant) and [deepak@gmail.com](participant)
+    - plan a meeting with [simran@gmail.com](participant) and [nidhi@gmail.com](participant)
+    - book meeting with [raj@gmail.com](participant) and [sanya@gmail.com](participant)
+    - organize meeting with [amit@gmail.com](participant) and [pooja@gmail.com](participant)
+    - start meeting with [ravi@gmail.com](participant) and [tina@gmail.com](participant)
+    - create a meeting with [akash@gmail.com](participant) and [isha@gmail.com](participant)
+    - schedule call with [arjun@gmail.com](participant) and [meera@gmail.com](participant)
+    - schedule meeting with [rahul@gmail.com](participant), [aman@gmail.com](participant) and [neha@gmail.com](participant)
+    - create meeting with [rohit@gmail.com](participant), [priya@gmail.com](participant) and [vikas@gmail.com](participant)
+    - arrange meeting with [deepak@gmail.com](participant), [simran@gmail.com](participant) and [nidhi@gmail.com](participant)
+    - plan meeting with [raj@gmail.com](participant), [sanya@gmail.com](participant) and [pooja@gmail.com](participant)
+    - organize meeting with [amit@gmail.com](participant), [akash@gmail.com](participant) and [isha@gmail.com](participant)
+    - schedule call with [ravi@gmail.com](participant), [tina@gmail.com](participant) and [meera@gmail.com](participant)
+    - create a meeting with [arjun@gmail.com](participant), [neha@gmail.com](participant) and [ananya@gmail.com](participant)
+    - book meeting with [vikas@gmail.com](participant), [sanya@gmail.com](participant) and [raj@gmail.com](participant)- schedule meeting with [rahul@gmail.com](participant), [aman@gmail.com](participant), [neha@gmail.com](participant) and [rohit@gmail.com](participant)
+    - create meeting with [priya@gmail.com](participant), [vikas@gmail.com](participant), [simran@gmail.com](participant) and [nidhi@gmail.com](participant)
+    - arrange meeting with [raj@gmail.com](participant), [sanya@gmail.com](participant), [amit@gmail.com](participant) and [pooja@gmail.com](participant)
+    - plan meeting with [akash@gmail.com](participant), [isha@gmail.com](participant), [ravi@gmail.com](participant) and [tina@gmail.com](participant)
+    - organize meeting with [arjun@gmail.com](participant), [meera@gmail.com](participant), [ananya@gmail.com](participant) and [deepak@gmail.com](participant)
+    - schedule meeting with [rahul@gmail.com](participant), [aman@gmail.com](participant) and [neha@gmail.com](participant) tomorrow at [5 pm](time)
+    - create meeting with [rohit@gmail.com](participant), [priya@gmail.com](participant) and [vikas@gmail.com](participant) on [Friday](date) at [4 pm](time)
+    - arrange meeting with [deepak@gmail.com](participant), [simran@gmail.com](participant), [nidhi@gmail.com](participant) tomorrow at [2 pm](time)
+    - plan meeting with [raj@gmail.com](participant), [sanya@gmail.com](participant), [amit@gmail.com](participant) and [pooja@gmail.com](participant) on [Monday](date)
+    - organize meeting with [akash@gmail.com](participant), [isha@gmail.com](participant), [ravi@gmail.com](participant) and [tina@gmail.com](participant) tomorrow evening

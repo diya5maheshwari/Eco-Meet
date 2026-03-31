@@ -20,6 +20,9 @@ intents:
   - mood_unhappy
   - out_of_scope
   - nlu_fallback
+  - reschedule_meeting
+  - cancel_meeting
+  - add_participant
 
 entities:
   - time
@@ -87,10 +90,10 @@ slots:
 forms:
   schedule_meeting_form:
     required_slots:
+      - participants
       - date
       - time
       - platform
-      - participants
       - reminder_time
 
 responses:
@@ -129,10 +132,10 @@ responses:
     - text: "What time should I schedule it?"
 
   utter_ask_platform:
-    - text: "Which platform do you want to use? Default is Google Meet. (Zoom, Google Meet, Teams, Webex, etc.)"
+    - text: "Which platform should I use? Google Meet or Zoom?"
 
   utter_ask_participants:
-    - text: "Who should be invited to the meeting?"
+    - text: "With whom should I schedule the meeting?"
 
   utter_ask_reminder_time:
     - text: "When should I send you a reminder? (e.g., 10 minutes before)"
@@ -169,8 +172,15 @@ responses:
 
 session_config:
   session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+  carry_over_slots_to_new_session: false
 
 actions:
   - validate_schedule_meeting_form
   - action_submit_meeting
+  - action_reschedule_meeting
+  - action_cancel_meeting
+  - action_add_participant
+
+regex:
+- name: email
+  pattern: '[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+'

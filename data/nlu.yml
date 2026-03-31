@@ -276,3 +276,25 @@ nlu:
     - not good
     - unhappy
     - terrible
+- intent: reschedule_meeting
+  examples: |
+    - move my meeting with [rahul](participant) to [6 pm](time)
+    - reschedule meeting with [rahul](participant) to [7 pm](time)
+    - change my meeting with [aman](participant) to [5 pm](time)
+    - move tomorrow's meeting to [4 pm](time)
+    - reschedule the meeting to [3 pm](time)
+
+- intent: cancel_meeting
+  examples: |
+    - cancel my meeting with [rahul](participant)
+    - cancel tomorrow's meeting
+    - delete the meeting with [aman](participant)
+    - remove the meeting tomorrow
+    - cancel my meeting
+
+- intent: add_participant
+  examples: |
+    - add [aman](participant) to the meeting
+    - include [rahul](participant) in the meeting
+    - invite [aman](participant)
+    - add [divyanshi0620@gmail.com](participant) to the meeting
